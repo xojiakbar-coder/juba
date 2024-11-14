@@ -19,6 +19,7 @@
 :root {
   --grayColor: #bdbdbd;
   --yellowColor: #faaf0a;
+  --dangerColor: #ff0000;
   --darkColor: rgb(26, 26, 26);
   --darkTextColor: rgb(20, 20, 20);
   --hoverCardBg: rgb(32, 32, 32);

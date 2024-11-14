@@ -19,7 +19,7 @@ const HomeContent = ({ title, short_description }) => {
       <div
         className={`flex md:flex-row flex-col gap-[20px] ${
           width < 540
-            ? "mt-[40px] flex-col-reverse"
+            ? "mt-[40px] flex-col"
             : width <= 1130
             ? "mt-[30px]"
             : "mt-[40px]"

@@ -18,6 +18,7 @@ module.exports = {
         yellow: "var(--yellowColor)",
         "gray-color": "var(--grayColor)",
         "dark-text": "var(--darkTextColor)",
+        "danger-color": "var(--dangerColor)",
         "hover-card-bg": "var(--hoverCardBg)",
       },
       fontFamily: {

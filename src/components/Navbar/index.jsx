@@ -7,7 +7,6 @@ import NavbarDrawer from "./Drawer";
 import useSize from "../../hooks/useSize";
 import Button from "../Generic/Button/Button";
 import menuIcon from "../../assets/icons/menu.svg";
-import { Element } from "react-scroll";
 
 const Navbar = () => {
   const { width } = useSize();
@@ -26,7 +25,7 @@ const Navbar = () => {
         } `}
       >
         <Logo />
-        {width > 1020 ? <Items w="max" /> : null}
+        {width > 1020 ? <Items w="full" /> : null}
         {width > 730 && (
           <div className="flex flex-row justify-between gap-[30px]">
             <Lang />

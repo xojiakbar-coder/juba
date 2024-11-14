@@ -1,7 +1,7 @@
 import axios from "axios";
+import { useState } from "react";
 import { ENDPOINTURL } from "./index";
 import useSize from "../../hooks/useSize";
-import { useState } from "react";
 import Button from "../Generic/Button/Button";
 
 const Contact = ({ data }) => {
@@ -10,20 +10,9 @@ const Contact = ({ data }) => {
     username: "",
     phonenumber: "",
   });
-  const [error, setError] = useState({
-    usernameError: "",
-    phoneNumberError: "",
-  });
 
   const phoneNumberRegex = /^\+?\d{1,14}$/;
   const usernameRegex = /^[a-zA-Zа-яА-ЯёЁ\s]{1,50}$/;
-
-  const messages = {
-    usernameError: "Username can only contain letters and spaces.",
-    phoneNumberError: "Phone number must only contain digits.",
-  };
-
-  console.log(userData.username, userData.phonenumber);
 
   const socialLinkStyle = `cursor-pointer leading-[24px] text-[24px] underline py-[6px] transition duration-105 ease-in-out w-max rounded-lg hover:text-yellow`;
 
@@ -38,34 +27,33 @@ const Contact = ({ data }) => {
   } = data[0];
 
   const onSubmit = async () => {
-    // e.preventDefault();
-
-    let formIsValid = false;
-    if (
+    const formIsValid =
       usernameRegex.test(userData.username) &&
-      usernameRegex.test(userData.phonenumber)
-    ) {
-      formIsValid = true;
-      console.log(formIsValid);
-    }
+      phoneNumberRegex.test(userData.phonenumber);
 
-    if (formIsValid) {
-      try {
-        const data = await axios.post(`${ENDPOINTURL}/contact-user/`, {
-          name: userData.username,
-          phone_number: userData.phonenumber,
-        });
+    // if (formIsValid) {
+    //   try {
+    //     const response = await fetch(`${ENDPOINTURL}/contact-user/`, {
+    //       method: "POST",
+    //       headers: {
+    //         "Content-Type": "application/json",
+    //       },
+    //       body: JSON.stringify({
+    //         name: [userData.username],
+    //         phone_number: [userData.phonenumber],
+    //       }),
+    //     });
 
-        if (data) {
-          alert("Form successfully submitted");
-          setUserData({ username: "", phonenumber: "" });
-        } else {
-          alert("Something went wrong with the submission.");
-        }
-      } catch (error) {
-        console.error("Something went wrong with the submission:", error);
-      }
-    }
+    //     if (response.ok) {
+    //       alert("Form successfully submitted");
+    //       setUserData({ username: "", phonenumber: "" });
+    //     } else {
+    //       alert("Submission else error.");
+    //     }
+    //   } catch (error) {
+    //     console.error("Submission catch error:", error);
+    //   }
+    // }
   };
 
   return (
@@ -143,13 +131,6 @@ const Contact = ({ data }) => {
               }
               maxLength={50}
             />
-            <div className="flex flex-col w-full">
-              {error.usernameError && (
-                <p className="text-danger-color text-sm">
-                  {error.usernameError}
-                </p>
-              )}
-            </div>
             <input
               className="w-full px-4 py-[14px] rounded-[8px] outline-none bg-dark text-light placeholder:text-gray-color"
               placeholder="Телефон номер"
@@ -160,23 +141,14 @@ const Contact = ({ data }) => {
                 setUserData({ ...userData, phonenumber: target.value })
               }
             />
-            <div className="flex flex-col w-full">
-              {error.phoneNumberError && (
-                <p className="text-danger-color text-sm">
-                  {error.phoneNumberError}
-                </p>
-              )}
-            </div>
-            <div className="flex justify-center w-full cursor-progress">
-              <Button
-                variant="outline"
-                hover={true}
-                className="w-full"
-                onClick={onSubmit}
-              >
-                Отправить
-              </Button>
-            </div>
+            <Button
+              variant="outline"
+              hover={true}
+              className="w-full"
+              onClick={onSubmit}
+            >
+              Отправить
+            </Button>
           </form>
         </div>
       </div>

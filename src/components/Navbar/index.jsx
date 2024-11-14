@@ -11,7 +11,7 @@ import { Element } from "react-scroll";
 
 const Navbar = () => {
   const { width } = useSize();
-  const textToCopy = `+998 90 047 22 20`;
+  const numberButton = `+998 90 047 22 20`;
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   const toggleDrawer = () => {
@@ -22,17 +22,17 @@ const Navbar = () => {
     <div className="flex flex-col justify-center w-full sticky z-[999] top-0 bg-dark-text h-[100px] min-h-[100px]">
       <div
         className={`flex items-center justify-between ${
-          width > 1220 ? "px-[5%]" : "px-[20px]"
+          width > 1200 ? "px-[5%]" : "px-[20px]"
         } `}
       >
         <Logo />
-        {width > 1020 ? <Items /> : null}
+        {width > 1020 ? <Items w="max" /> : null}
         {width > 730 && (
           <div className="flex flex-row justify-between gap-[30px]">
             <Lang />
             <a href="https://t.me/JubaMarketing" target="_blank">
               <Button variant="outline" hover={true}>
-                {textToCopy}
+                {numberButton}
               </Button>
             </a>
           </div>
@@ -52,7 +52,9 @@ const Navbar = () => {
             </div>
           </div>
         )}
-        <NavbarDrawer isOpen={isDrawerOpen} onClose={toggleDrawer} />
+        {width < 1020 && (
+          <NavbarDrawer isOpen={isDrawerOpen} onClose={toggleDrawer} />
+        )}
       </div>
       <div>
         <Body />

@@ -2,7 +2,7 @@ import Logo from "../Navbar/Logo";
 
 const Footer = () => {
   return (
-    <div className="w-full bg-white flex flex-row items-center justify-center gap-5">
+    <div className="flex justify-center py-[5px] bg-light w-full border-black">
       <Logo />
     </div>
   );

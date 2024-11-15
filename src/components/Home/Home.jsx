@@ -1,16 +1,16 @@
 import HomeContent from "./HomeContent";
-import homeImage from "../../assets/images/home/home.png";
 import useSize from "../../hooks/useSize";
+import homeImage from "../../assets/images/home/home.png";
 
 const Home = ({ data }) => {
   const { width } = useSize();
-  const { title, short_description } = data[0];
+  const { title, short_description, photo } = data[0];
   const backgroundImage = {
     backgroundSize: "cover",
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
-    backgroundAttachment: "fixed",
-    backgroundImage: `url(${homeImage})`,
+    // backgroundAttachment: "fixed",
+    backgroundImage: `url(${photo ? photo : homeImage})`,
   };
 
   return (

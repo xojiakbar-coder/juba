@@ -1,7 +1,7 @@
 import React from "react";
+import useSize from "../../hooks/useSize";
 import Title from "../Generic/Title/Title";
 import Button from "../Generic/Button/Button";
-import useSize from "../../hooks/useSize";
 
 const HomeContent = ({ title, short_description }) => {
   const { width } = useSize();

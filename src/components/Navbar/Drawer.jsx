@@ -28,7 +28,7 @@ const NavbarDrawer = ({ isOpen, onClose }) => {
         >
           <img
             src={closeIcon}
-            alt="menu icon not found"
+            alt=""
             className={`${
               width > 460 ? "w-[24px] h-[24px]" : "w-[18px] h-[18px]"
             } select-none font-mont transition duration-105 ease-in-out`}

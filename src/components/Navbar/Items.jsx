@@ -1,22 +1,26 @@
-import { Popover } from "antd";
 import { Link } from "react-scroll";
+import Popup, { Content } from "./Popup";
 import useSize from "../../hooks/useSize";
-import { NavLink } from "react-router-dom";
-import { DownOutlined } from "@ant-design/icons";
 import navbar_items_data from "../../utils/navbar";
 
 const Items = ({
   dir = "row",
   w = "full",
   onClose,
-  gapY = "24px",
+  paddingX = "",
+  gapY = "0px",
   gapX = "24px",
 }) => {
   const { width } = useSize();
 
   return (
     <div
-      className={`flex flex-${dir} gap-x-[24px] items-center gap-y-[${gapY}] w-${w} h-full justify-center`}
+      className={`flex flex-${dir} items-center w-${w} h-full justify-center`}
+      style={{
+        paddingLeft: paddingX,
+        paddingRight: paddingX,
+        gap: `${gapY} ${gapX}`,
+      }}
     >
       {navbar_items_data.map((item) => {
         const { id, title, path, children } = item;
@@ -38,42 +42,28 @@ const Items = ({
                 }`}
               >
                 {dropdownItems.map((child) => (
-                  <div key={child.id} className="group w-full">
-                    <NavLink
-                      to={child.path}
-                      onClick={dir === "col" ? () => onClose() : null}
-                      className="font-[500] font-body-font text-dark group-hover:text-yellow group-hover:cursor-pointer text-[16px] transition duration-150 ease-in-out w-full border-black"
-                    >
-                      {child.title}
-                    </NavLink>
-                  </div>
+                  <Content
+                    key={id}
+                    dir={dir}
+                    onClose={onClose}
+                    path={child.path}
+                    title={child.title}
+                  />
                 ))}
               </div>
             </div>
           );
 
           return (
-            <div key={id} className="relative w-full flex justify-center">
-              <Popover
-                className="flex flex-row gap-x-[2px] items-center bg-transparent hover:bg-transparent outline-none group"
-                placement="top"
-                trigger={["hover"]}
-                content={content}
-              >
-                <div
-                  className={`font-body-font font-[400] ${
-                    dir === "col"
-                      ? "text-[20px]"
-                      : width <= 1390
-                      ? "text-[14px]"
-                      : "text-[16px]"
-                  } text-light hover:text-yellow select-none transition duration-150 ease-out cursor-pointer`}
-                >
-                  {title}
-                  <DownOutlined className="group-hover:text-yellow mt-[1.5px] text-[14.5px]" />
-                </div>
-              </Popover>
-            </div>
+            <Popup
+              id={id}
+              key={id}
+              dir={dir}
+              title={title}
+              content={content}
+              placement={"bottomLeft"}
+              trigger={["hover", "click"]}
+            />
           );
         }
 
@@ -84,7 +74,7 @@ const Items = ({
             smooth={true}
             duration={800}
             onClick={dir == "col" ? () => onClose() : null}
-            className={`font-body-font font-[400] ${
+            className={`font-body-font whitespace-nowrap font-[400] ${
               dir === "col"
                 ? "text-[20px]"
                 : width <= 1390

@@ -1,7 +1,7 @@
 import { Suspense, useState } from "react";
+import { Card, PhotoCard } from "../../Generic";
 import { Button, Desc, Title } from "../../Generic";
 import img from "../../../assets/images/seo/maxresdefault.jpg";
-import { Card, PhotoCard } from "../../Generic";
 
 const cardData = [
   {
@@ -115,7 +115,22 @@ const cases = [
 const Branding = () => {
   const [loading, setLoading] = useState(false);
 
-  if (loading) <div>Loading...</div>;
+  const getData = async () => {
+    try {
+      const response = await axios(`${ENDPOINTURL}/service/`);
+      const data = response.data;
+      console.log(data);
+      return data;
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  getData();
+
+  if (loading) {
+    <div>Loading...</div>;
+  }
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
@@ -203,16 +218,6 @@ const Branding = () => {
               планах.
             </Desc>
           </div>
-          {/* <div className="grid gap-5 grid-cols-4 max-lg:grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1 px-4">
-            {price.map((itm) => (
-              <PriceCard
-                key={itm.id}
-                name={itm.name}
-                price={itm.price}
-                features={itm.features}
-              />
-            ))}
-          </div> */}
         </section>
 
         <section className="mt-10">

@@ -9,6 +9,7 @@ const Home = ({ data }) => {
     backgroundSize: "cover",
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
+    backgroundAttachment: "fixed",
     backgroundImage: `url(${homeImage})`,
   };
 

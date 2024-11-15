@@ -1,26 +1,26 @@
 const navbar_itmes_data = [
   {
-    id: `1`,
+    id: 1,
     title: "Главная",
     path: "/",
   },
   {
-    id: `2`,
+    id: 2,
     title: "О компании",
     path: "/about",
   },
   {
-    id: `3`,
+    id: 3,
     title: "Проекты",
     path: "/Проекты",
   },
   {
-    id: `4`,
+    id: 4,
     title: "Команда",
     path: "/our-team",
   },
   {
-    id: `5`,
+    id: 5,
     title: "Услуги",
     path: "/",
     children: [
@@ -82,7 +82,7 @@ const navbar_itmes_data = [
     ],
   },
   {
-    id: `6`,
+    id: 6,
     title: "Контакты",
     path: "/contact",
   },

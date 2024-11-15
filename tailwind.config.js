@@ -20,6 +20,7 @@ module.exports = {
         "dark-text": "var(--darkTextColor)",
         "danger-color": "var(--dangerColor)",
         "hover-card-bg": "var(--hoverCardBg)",
+        "dark-gray-color": "var(--darkGrayColor)",
       },
       fontFamily: {
         "body-font": "var(--bodyFont)",

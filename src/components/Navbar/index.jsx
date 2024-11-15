@@ -21,11 +21,11 @@ const Navbar = () => {
     <div className="flex flex-col justify-center w-full sticky z-[999] top-0 bg-dark-text h-[100px] min-h-[100px]">
       <div
         className={`flex items-center justify-between ${
-          width > 1200 ? "px-[5%]" : "px-[20px]"
+          width > 1230 ? "px-[5%]" : "px-[20px]"
         } `}
       >
         <Logo />
-        {width > 1020 ? <Items w="full" /> : null}
+        {width > 1140 ? <Items w="max" paddingX="20px" /> : null}
         {width > 730 && (
           <div className="flex flex-row justify-between gap-[30px]">
             <Lang />
@@ -37,7 +37,7 @@ const Navbar = () => {
           </div>
         )}
 
-        {width <= 1020 && (
+        {width <= 1140 && (
           <div>
             <div
               className="select-none cursor-pointer rounded-full bg-light p-[21px]"
@@ -45,13 +45,13 @@ const Navbar = () => {
             >
               <img
                 src={menuIcon}
-                alt="menu icon not found"
+                alt=""
                 className="w-[24px] h-[24px] select-none font-mont transition duration-105 ease-in-out"
               />
             </div>
           </div>
         )}
-        {width < 1020 && (
+        {width < 1140 && (
           <NavbarDrawer isOpen={isDrawerOpen} onClose={toggleDrawer} />
         )}
       </div>

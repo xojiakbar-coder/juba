@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import Profiles from "./Profiles";
 import { ENDPOINTURL } from "./index";
 import useSize from "../../hooks/useSize";
 import Button from "../Generic/Button/Button";
@@ -11,10 +12,13 @@ const Contact = ({ data }) => {
     phonenumber: "",
   });
 
+  const [wrongValue, setWrongValue] = useState({
+    userNameWrong: "",
+    phoneNumberWrong: "",
+  });
+
   const phoneNumberRegex = /^\+?\d{1,14}$/;
   const usernameRegex = /^[a-zA-Zа-яА-ЯёЁ\s]{1,50}$/;
-
-  const socialLinkStyle = `cursor-pointer leading-[24px] text-[24px] underline py-[6px] transition duration-105 ease-in-out w-max rounded-lg hover:text-yellow`;
 
   const {
     latitude: lat,
@@ -26,34 +30,39 @@ const Contact = ({ data }) => {
     telegram_url,
   } = data[0];
 
+  const showMessage = ({ showMessage }) => {
+    switch (showMessage.type) {
+      case "success":
+        setWrongValue({ userNameWrong: "" });
+      default:
+        return;
+    }
+  };
+
   const onSubmit = async () => {
-    const formIsValid =
+    let formIsValid = false;
+
+    if (
       usernameRegex.test(userData.username) &&
-      phoneNumberRegex.test(userData.phonenumber);
+      phoneNumberRegex.test(userData.phonenumber)
+    ) {
+      formIsValid = true;
+    } else {
+    }
 
-    // if (formIsValid) {
-    //   try {
-    //     const response = await fetch(`${ENDPOINTURL}/contact-user/`, {
-    //       method: "POST",
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //       },
-    //       body: JSON.stringify({
-    //         name: [userData.username],
-    //         phone_number: [userData.phonenumber],
-    //       }),
-    //     });
+    if (formIsValid) {
+      const requestOptions = {
+        method: "POST",
+        body: JSON.stringify({
+          name: [userData.username],
+          phone_number: [userData.phonenumber],
+        }),
+      };
 
-    //     if (response.ok) {
-    //       alert("Form successfully submitted");
-    //       setUserData({ username: "", phonenumber: "" });
-    //     } else {
-    //       alert("Submission else error.");
-    //     }
-    //   } catch (error) {
-    //     console.error("Submission catch error:", error);
-    //   }
-    // }
+      fetch(`${ENDPOINTURL}/contact-user/`, requestOptions)
+        .then((res) => res.ok === true && showMessage("success"))
+        .catch((error) => error && showMessage("Something went wrong"));
+    }
   };
 
   return (
@@ -83,45 +92,31 @@ const Contact = ({ data }) => {
               className="w-full"
             ></iframe>
           </div>
-          <div
-            className={`text-gray2 text-center sm:text-start ${
-              width > 1020 ? "w-full" : "w-full"
-            }`}
-          >
-            <div className="flex flex-col items-center w-full">
-              <p className="text-dark text-[24px]">{phone_number}</p>
-              <p className="text-[24px]">{email}</p>
-              <p className="leading-7 text-[24px]">Ислам Каримов 49, 10 этаж</p>
-            </div>
-            <ul className="flex flex-col mt-5 gap-[7px] items-center">
-              <li className={socialLinkStyle}>
-                <a href={telegram_url}>Telegram</a>
-              </li>
-              <li className={socialLinkStyle}>
-                <a href={instagram_url}>Instagram</a>
-              </li>
-              <li className={socialLinkStyle}>
-                <a href={facebook_url}>Facebook</a>
-              </li>
-            </ul>
-          </div>
+          {/* our social profile links */}
+          <Profiles
+            facebook_url={facebook_url}
+            instagram_url={instagram_url}
+            email={email}
+            phone_number={phone_number}
+            telegram_url={telegram_url}
+          />
         </div>
       </div>
 
-      <div className="py-20 bg-dark-color">
-        <h1 className="text-center font-bold text-base md:text-md lg:text-3xl text-white">
+      <div className="py-[120px] bg-dark-color">
+        <h1 className="text-center font-bold text-base md:text-md md:text-3xl sm:text-xl text-[18px] text-white">
           Заполните форму,
           <br /> мы перезвоним и обсудим
           <br /> ваш проект
         </h1>
         <div className="flex justify-center w-full">
           <form
-            className={`flex flex-col mt-10 grid grid-cols-1 gap-y-4 justify-items-center ${
-              width > 1024 ? "w-[23%]" : "w-[60%]"
+            className={`flex flex-col mt-10 min-w-[34%] grid grid-cols-1 gap-y-4 justify-items-center ${
+              width > 1024 ? "w-[34%]" : "w-[60%]"
             }`}
           >
             <input
-              className="w-full px-4 py-[14px] rounded-[8px] outline-none bg-dark text-light"
+              className="w-full px-4 py-[14px] rounded-[8px] outline-none bg-dark-gray-color text-light placeholder:text-light"
               placeholder="Имя"
               type="text"
               required
@@ -132,7 +127,7 @@ const Contact = ({ data }) => {
               maxLength={50}
             />
             <input
-              className="w-full px-4 py-[14px] rounded-[8px] outline-none bg-dark text-light placeholder:text-gray-color"
+              className="w-full px-4 py-[14px] rounded-[8px] outline-none bg-dark-gray-color text-light placeholder:text-light"
               placeholder="Телефон номер"
               required
               maxLength={13}

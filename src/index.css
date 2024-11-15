@@ -1,4 +1,4 @@
-/* import fornt */
+/* import font */
 @import url("https://fonts.googleapis.com/css2?family=Unbounded:wght@200..900&display=swap");
 
 /* tailwindcss */
@@ -20,10 +20,11 @@
   --grayColor: #bdbdbd;
   --yellowColor: #faaf0a;
   --dangerColor: #ff0000;
+  --darkGrayColor: #424242;
   --darkColor: rgb(26, 26, 26);
-  --darkTextColor: rgb(20, 20, 20);
   --hoverCardBg: rgb(32, 32, 32);
   --lightColor: rgb(255, 255, 255);
+  --darkTextColor: rgb(20, 20, 20);
   --bodyFont: "Unbounded", sans-serif;
 }
 

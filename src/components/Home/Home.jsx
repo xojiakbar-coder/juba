@@ -4,7 +4,9 @@ import homeImage from "../../assets/images/home/home.png";
 
 const Home = ({ data }) => {
   const { width } = useSize();
+  // console.log(data, "slider");
   const { title, short_description, photo } = data[0];
+
   const backgroundImage = {
     backgroundSize: "cover",
     backgroundPosition: "center",

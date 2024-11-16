@@ -2,7 +2,6 @@ import { Suspense, useState } from "react";
 import { DatailCard } from "../../Generic";
 import { Button, Desc, Title } from "../../Generic";
 import img from "../../../assets/images/seo/maxresdefault.jpg";
-// import Item from "antd/es/list/Item";
 
 const cardData = [
   {
@@ -74,7 +73,9 @@ const price = [
 const Seo = () => {
   const [loading, setLoading] = useState(false);
 
-  if (loading) <div>Loading...</div>;
+  if (loading) {
+    <div>Loading...</div>;
+  }
 
   return (
     <Suspense fallback={<div>Loading...</div>}>

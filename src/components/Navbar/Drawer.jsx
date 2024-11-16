@@ -9,7 +9,7 @@ const NavbarDrawer = ({ isOpen, onClose }) => {
   const numberButton = `+998 90 047 22 20`;
   return (
     <div
-      className={`fixed top-0 right-0 w-full flex flex-col h-full bg-dark transform overflow-y-auto overflow-x-hidden transition duration-[370ms] ease-in-out ${
+      className={`fixed top-0 right-0 w-full flex flex-col h-[100vh] min-h-[100vh] bg-dark transform overflow-y-auto overflow-x-hidden transition duration-[370ms] ease-in-out ${
         isOpen ? "translate-x-0" : "translate-x-full"
       }`}
       style={{ zIndex: 1000 }}

@@ -1,9 +1,9 @@
+import Layout from "./Layout";
 import { Fragment } from "react";
 import Home from "../components/Home/index";
 import useMessages from "../hooks/useMessage";
-import Seo from "../components/Detail/Seo/index";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Navbar from "../components/Navbar";
+import detail_pages_data from "../utils/detail";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
 const Root = () => {
   const { contextHolder } = useMessages();
@@ -12,10 +12,26 @@ const Root = () => {
       {contextHolder}
       <BrowserRouter>
         <Routes>
+          {/* Home page */}
           <Route path="/" element={<Home />} />
-            <Route path="/seo" element={<Seo />} />
-          <Route element={<Navbar />}>
-          </Route>
+
+          {/* Detail pages */}
+          {detail_pages_data.map(({ id, element: Element, path, page }) => {
+            return (
+              <Route
+                key={id}
+                path={path}
+                element={
+                  <Layout page={page}>
+                    <Element />
+                  </Layout>
+                }
+              />
+            );
+          })}
+
+          {/* 404 Not Found page */}
+          <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </BrowserRouter>
     </Fragment>

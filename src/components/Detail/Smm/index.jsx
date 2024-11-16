@@ -1,8 +1,9 @@
-import { Suspense, useState } from "react";
+import axios from "axios";
+import { ENDPOINTURL } from "../../Home";
 import { Card, PhotoCard } from "../../Generic";
 import { Button, Desc, Title } from "../../Generic";
+import { Suspense, useEffect, useState } from "react";
 import img from "../../../assets/images/seo/maxresdefault.jpg";
-import axios from "axios";
 
 const cardData = [
   {
@@ -116,64 +117,63 @@ const cases = [
 const Branding = () => {
   const [loading, setLoading] = useState(false);
 
-  // const getData = async () => {
-  //   try {
-  //     const response = await axios(`${ENDPOINTURL}/service/`);
-  //     const data = response.data;
-  //     console.log(data);
-  //     return data;
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
+  const getData = async () => {
+    try {
+      const response = await axios(`${ENDPOINTURL}/service/1/detail/`);
+      const data = response.data;
+      console.log(data);
+      return data;
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
-  // getData();
+  useEffect(() => {
+    getData();
+  }, []);
 
   if (loading) {
     <div>Loading...</div>;
   }
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <div className="container">
-        <header className="py-40 px-4">
-          <div>
-            <Title variant={"primary"} className="max-md:text-3xl">
-              Разработка сайтов
-            </Title>
-            <Title variant={"secondary"} className="max-md:text-3xl">
-              в Ташкенте
-            </Title>
-            <Desc className="max-w-3xl">
-              Экспертная команда по веб-разработке в Ташкенте: Создание
-              качественных и эффективных сайтов для вашего бизнеса Обсудить
-              проект
-            </Desc>
-            <Button variant={"primary"}>Обсудить проект</Button>
-          </div>
-        </header>
+    <div className="container px-[5%] py-[25px]">
+      <header className="py-40 px-4">
+        <div>
+          <Title variant={"primary"} className="max-md:text-3xl">
+            SMM
+          </Title>
+          <Title variant={"secondary"} className="max-md:text-3xl">
+            в Ташкенте
+          </Title>
+          <Desc className="w-full">
+            Экспертная команда по веб-разработке в Ташкенте: Создание
+            качественных и эффективных сайтов для вашего бизнеса Обсудить проект
+          </Desc>
+          <Button variant={"primary"}>Обсудить проект</Button>
+        </div>
+      </header>
 
-        <section>
-          <div className="max-w-6xl m-auto px-4">
-            <Title variant={"title"}>Этапы разработки сайтов</Title>
-            <Desc center>
-              Эти три типа этапов обеспечивают структурированный подход к
-              разработке сайтов , обеспечивая гладкое и успешное выполнение
-              процесса от планирования до развертывания и дальше.
-            </Desc>
-          </div>
+      <section>
+        <div className="max-w-full m-auto px-4">
+          <Title variant={"title"}>Этапы разработки сайтов</Title>
+          <Desc center>
+            Эти три типа этапов обеспечивают структурированный подход к
+            разработке сайтов , обеспечивая гладкое и успешное выполнение
+            процесса от планирования до развертывания и дальше.
+          </Desc>
+        </div>
 
-          <div className="grid max-md:grid-cols-1 grid-cols-3">
-            {cardData.map((itm) => (
-              <div key={itm.id} className="m-4">
-                <Card title={itm.title} num={itm.id} desc={itm.body} />
-              </div>
-            ))}
-          </div>
-        </section>
-      </div>
+        <div className="grid max-md:grid-cols-1 grid-cols-3">
+          {cardData.map((itm) => (
+            <div key={itm.id} className="m-4">
+              <Card title={itm.title} num={itm.id} desc={itm.body} />
+            </div>
+          ))}
+        </div>
+      </section>
 
-      <section className="mt-[150px] w-full bg-light py-[100px] px-[5%] h-max">
+      <section className="mt-[150px] w-full bg-light py-[100px] px-[5%] h-max w-full">
         <div className="flex flex-col justify-center items-center w-full h-max">
           <Title variant="section-name">Создание сайтов в Ташкенте</Title>
           <div className="grid grid-cols-2 max-lg:grid-cols-1 gap-[50px] mt-[50px]">
@@ -212,7 +212,7 @@ const Branding = () => {
 
       <div className="container pt-16">
         <section>
-          <div className="max-w-6xl m-auto px-4">
+          <div className="max-w-full m-auto px-4">
             <Title variant={"title"}>Услуги и стоимость</Title>
             <Desc center>
               Мы рады предоставить вам информацию о наших текущих тарифных
@@ -236,7 +236,7 @@ const Branding = () => {
           </div>
         </section>
       </div>
-    </Suspense>
+    </div>
   );
 };
 

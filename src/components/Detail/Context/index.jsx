@@ -2,7 +2,6 @@ import { Suspense, useState } from "react";
 import { Card, PhotoCard } from "../../Generic";
 import { Button, Desc, Title } from "../../Generic";
 import img from "../../../assets/images/seo/maxresdefault.jpg";
-import axios from "axios";
 
 const cardData = [
   {

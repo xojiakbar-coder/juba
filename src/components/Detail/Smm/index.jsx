@@ -1,10 +1,12 @@
+import axios from "axios";
 import About from "./About";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useSize from "../../../hooks/useSize";
+import ENDPOINTURL from "../../../config/endpoint";
 import { Button, Desc, Title } from "../../Generic";
-import { Card, Loader, PhotoCard } from "../../Generic";
-import img from "../../../assets/images/cards/image-2.png";
 import photoCard_data from "../../../utils/photoCard";
+import { Card, Loader, PhotoCard } from "../../Generic";
+import Headers from "./Headers";
 
 const cardData = [
   {
@@ -26,45 +28,32 @@ const cardData = [
 
 const SMM = () => {
   const { width } = useSize();
-  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState();
+  const [loading, setLoading] = useState(true);
 
-  // const getData = async () => {
-  //   try {
-  //     const response = await axios(`${ENDPOINTURL}/service/1/detail/`);
-  //     const data = response.data;
-  //     console.log(data);
-  //     return data;
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
+  const getData = async () => {
+    try {
+      const response = await axios(`${ENDPOINTURL}/service/1/detail/`);
+      setData(response.data);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-  // useEffect(() => {
-  //   getData();
-  // }, []);
+  useEffect(() => {
+    getData();
+  }, []);
 
   if (loading) return <Loader />;
 
   return (
     <div className="px-[5%] py-[25px] border w-full">
-      <header className="px-4 py-40">
-        <div>
-          <Title variant={"primary"} className="max-md:text-3xl">
-            SMM
-          </Title>
-          <Title variant={"secondary"} className="max-md:text-3xl">
-            в Ташкенте
-          </Title>
-          <Desc className="w-full">
-            Экспертная команда по веб-разработке в Ташкенте: Создание
-            качественных и эффективных сайтов для вашего бизнеса Обсудить проект
-          </Desc>
-          <Button variant={"primary"}>Обсудить проект</Button>
-        </div>
-      </header>
+      <Headers data={data} />
 
       <section>
-        <div className="m-auto max-w-full px-4">
+        <div className="max-w-full px-4 m-auto">
           <Title variant={"title"}>Этапы разработки сайтов</Title>
           <Desc center>
             Эти три типа этапов обеспечивают структурированный подход к
@@ -86,7 +75,7 @@ const SMM = () => {
 
       <div className="w-full pt-16">
         <section>
-          <div className="m-auto max-w-full px-4">
+          <div className="max-w-full px-4 m-auto">
             <Title variant={"title"}>Услуги и стоимость</Title>
             <Desc center>
               Мы рады предоставить вам информацию о наших текущих тарифных

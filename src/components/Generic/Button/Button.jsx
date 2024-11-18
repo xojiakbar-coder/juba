@@ -20,9 +20,9 @@ const Button = ({
       case "primary":
         return `bg-yellow border-[3px] border-yellow text-dark-text hover:border-yellow hover:bg-transparent hover:text-light lg:text-[18px] md:text-[16px] sm:text-[14px] text-[12px] ${hoverTransition}`;
       case "outline":
-        return `border-[1px] border-yellow text-yellow bg-transparent hover:bg-yellow hover:text-light lg:text-[18px] md:text-[16px] sm:text-[14px] text-[12px]`;
+        return `border-[2px] border-yellow text-yellow bg-transparent hover:bg-yellow hover:text-light lg:text-[18px] md:text-[16px] sm:text-[14px] text-[12px]`;
       case "secondary":
-        return `bg-light text-dark-text border-[3px] hover:bg-transparent hover:text-light lg:text-[18px] md:text-[16px] sm:text-[14px] text-[12px] ${hoverTransition}`;
+        return `bg-light text-dark-text border-[3px] border-light hover:bg-transparent hover:text-light lg:text-[18px] md:text-[16px] sm:text-[14px] text-[12px] ${hoverTransition}`;
       default:
         return "border-[1px] border-yellow text-yellow bg-transparent";
     }

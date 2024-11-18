@@ -1,9 +1,7 @@
-import React from "react";
+import { PhotoCard } from "../../Generic";
 import { Desc, Title } from "../../Generic";
 import useSize from "../../../hooks/useSize";
-import { Loader, PhotoCard } from "../../Generic";
 import photoCard_data from "../../../utils/photoCard";
-// import img from "../../../assets/images/cards/image-2.png";
 
 const Projects = () => {
   const { width } = useSize();

@@ -3,11 +3,13 @@ const navbar_itmes_data = [
     id: 1,
     title: "Главная",
     path: "/",
+    to: "/",
   },
   {
     id: 2,
     title: "О компании",
     path: "/about",
+    to: "/about",
   },
   {
     id: 3,
@@ -18,6 +20,7 @@ const navbar_itmes_data = [
     id: 4,
     title: "Команда",
     path: "/our-team",
+    to: "/our-team",
   },
   {
     id: 5,
@@ -85,6 +88,7 @@ const navbar_itmes_data = [
     id: 6,
     title: "Контакты",
     path: "/contact",
+    to: "/contact",
   },
 ];
 

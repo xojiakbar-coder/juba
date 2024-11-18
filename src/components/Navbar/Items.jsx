@@ -2,6 +2,7 @@ import { Link } from "react-scroll";
 import Popup, { Content } from "./Popup";
 import useSize from "../../hooks/useSize";
 import navbar_items_data from "../../utils/navbar";
+import { useLocation } from "react-router-dom";
 
 const Items = ({
   dir = "row",
@@ -12,6 +13,15 @@ const Items = ({
   gapX = "24px",
 }) => {
   const { width } = useSize();
+  const navigate = useLocation();
+
+  const onClickItems = ({ dir, to }) => {
+    if (dir === "col") onClose();
+    if (to) {
+      console.log(to);
+      navigate(to);
+    }
+  };
 
   return (
     <div
@@ -23,7 +33,7 @@ const Items = ({
       }}
     >
       {navbar_items_data.map((item) => {
-        const { id, title, path, children } = item;
+        const { id, title, path, children, to } = item;
 
         if (children?.length) {
           const dropdownItems = children.map((child) => ({
@@ -73,7 +83,7 @@ const Items = ({
             to={path}
             smooth={true}
             duration={800}
-            onClick={dir == "col" ? () => onClose() : null}
+            onClick={() => onClickItems(dir, to)}
             className={`font-body-font whitespace-nowrap font-[400] ${
               dir === "col"
                 ? "text-[20px]"

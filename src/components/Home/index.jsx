@@ -1,16 +1,16 @@
 import axios from "axios";
 import Team from "./Team";
 import About from "./About";
-import HomePage from "./Home";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
 import Clients from "./Clients";
-import Contact from "./Contact";
 import Service from "./Services";
+import HomePage from "./HomePage";
 import { Loader } from "../Generic";
 import { Element } from "react-scroll";
+import Contact from "../Contact/Contact";
+import ENDPOINTURL from "../../config/endpoint";
 import { Suspense, useEffect, useState } from "react";
-export const ENDPOINTURL = import.meta.env.VITE_REACT_APP_API_URL;
 
 const Home = () => {
   const [loading, setLoading] = useState(true);

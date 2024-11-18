@@ -2,9 +2,8 @@ import HomeContent from "./HomeContent";
 import useSize from "../../hooks/useSize";
 import homeImage from "../../assets/images/home/home.png";
 
-const Home = ({ data }) => {
+const HomePage = ({ data }) => {
   const { width } = useSize();
-  // console.log(data, "slider");
   const { title, short_description, photo } = data[0];
 
   const backgroundImage = {
@@ -39,4 +38,4 @@ const Home = ({ data }) => {
   );
 };
 
-export default Home;
+export default HomePage;

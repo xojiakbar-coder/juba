@@ -1,9 +1,9 @@
 import axios from "axios";
 import { useState } from "react";
-import Profiles from "./Profiles";
-import { ENDPOINTURL } from "./index";
+import { Button } from "../Generic";
+import Profiles from "../Home/Profiles";
 import useSize from "../../hooks/useSize";
-import Button from "../Generic/Button/Button";
+import ENDPOINTURL from "../../config/endpoint";
 
 const Contact = ({ data }) => {
   const { width } = useSize();
@@ -64,7 +64,7 @@ const Contact = ({ data }) => {
   return (
     <div>
       <div className="flex items-center flex-col w-full bg-white py-20 justify-center pt-[120px]">
-        <h2 className="font-bold text-4xl text-center">Контакты</h2>
+        <h2 className="text-4xl font-bold text-center">Контакты</h2>
         <div
           className={`grid ${
             width > 1020 ? "grid-cols-2 px-[12%]" : "grid-cols-1 px-[20px]"
@@ -127,7 +127,7 @@ const Contact = ({ data }) => {
               maxLength={32}
             />
             {wrongValue.userNameWrong && (
-              <p className="text-red-500 text-sm">{wrongValue.userNameWrong}</p>
+              <p className="text-sm text-red-500">{wrongValue.userNameWrong}</p>
             )}
             <input
               className="w-full px-4 py-[14px] rounded-[8px] outline-none bg-dark-gray-color text-light placeholder:text-light"
@@ -140,7 +140,7 @@ const Contact = ({ data }) => {
               }
             />
             {wrongValue.phoneNumberWrong && (
-              <p className="text-red-500 text-sm">
+              <p className="text-sm text-red-500">
                 {wrongValue.phoneNumberWrong}
               </p>
             )}

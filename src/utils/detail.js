@@ -1,15 +1,5 @@
 import Smm from "../components/Detail/Smm";
-import Seo from "../components/Detail/Seo";
 import Web from "../components/Detail/Web";
-import Crm from "../components/Detail/Crm";
-import Bot from "../components/Detail/Bot";
-import Video from "../components/Detail/Video";
-import Target from "../components/Detail/Target";
-// import Blogger from "../components/Detail/Blogger";
-import Context from "../components/Detail/Context";
-import Branding from "../components/Detail/Branding";
-import Advertisng from "../components/Detail/Advertisng";
-import GenericElement from "../view";
 
 const detail_pages_data = [
   {

@@ -1,8 +1,7 @@
 import { Suspense, useState } from "react";
-import { Card, PhotoCard } from "../../Generic";
 import { Button, Desc, Title } from "../../Generic";
-import img from "../../../assets/images/seo/maxresdefault.jpg";
-import axios from "axios";
+import { DatailCard, PhotoCard } from "../../Generic";
+import img from "../../../assets/images/cards/image-2.png";
 
 const cardData = [
   {
@@ -82,61 +81,64 @@ const price = [
 
 const cases = [
   {
+    id: 1,
     name: "Платформа для покупок билетов по регионам  Узбекистана",
-    img: img,
+    img,
     badges: ["Дизайн", "Вёрстка", "Адаптивный дизайн"],
   },
   {
+    id: 2,
     name: "Хостел The Palms в Ташкенте",
-    img: img,
+    img,
     badges: ["Дизайн", "Вёрстка", "Адаптивный дизайн", "Прототипирование"],
   },
   {
+    id: 3,
     name: "Платформа для покупок билетов по регионам  Узбекистана",
-    img: img,
+    img,
     badges: ["Дизайн", "Вёрстка", "Адаптивный дизайн"],
   },
   {
+    id: 4,
     name: "Хостел The Palms в Ташкенте",
-    img: img,
+    img,
     badges: ["Дизайн", "Вёрстка", "Адаптивный дизайн"],
   },
   {
+    id: 5,
     name: "Платформа для покупок билетов по регионам  Узбекистана",
-    img: img,
+    img,
     badges: ["Дизайн", "Вёрстка", "Адаптивный дизайн"],
   },
   {
+    id: 6,
     name: "Хостел The Palms в Ташкенте",
-    img: img,
+    img,
     badges: ["Дизайн", "Вёрстка", "Адаптивный дизайн", "Прототипирование"],
+  },
+  {
+    id: 7,
+    name: "Платформа для покупок билетов по регионам  Узбекистана",
+    img,
+    badges: ["Дизайн", "Вёрстка", "Адаптивный дизайн"],
+  },
+  {
+    id: 8,
+    name: "Хостел The Palms в Ташкенте",
+    img,
+    badges: ["Дизайн", "Вёрстка", "Адаптивный дизайн"],
   },
 ];
 
-const Branding = () => {
+const Developing = () => {
   const [loading, setLoading] = useState(false);
 
-  // const getData = async () => {
-  //   try {
-  //     const response = await axios(`${ENDPOINTURL}/service/`);
-  //     const data = response.data;
-  //     console.log(data);
-  //     return data;
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
-
-  // getData();
-
-  if (loading) {
-    <div>Loading...</div>;
-  }
+  if (loading) <div>Loading...</div>;
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <div className="container">
-        <header className="py-40 px-4">
+      <div className="">
+        <header className="px-4 py-40">
           <div>
             <Title variant={"primary"} className="max-md:text-3xl">
               Разработка сайтов
@@ -154,7 +156,7 @@ const Branding = () => {
         </header>
 
         <section>
-          <div className="max-w-6xl m-auto px-4">
+          <div className="m-auto max-w-6xl px-4">
             <Title variant={"title"}>Этапы разработки сайтов</Title>
             <Desc center>
               Эти три типа этапов обеспечивают структурированный подход к
@@ -163,10 +165,10 @@ const Branding = () => {
             </Desc>
           </div>
 
-          <div className="grid max-md:grid-cols-1 grid-cols-3">
+          <div className="grid grid-cols-3 max-md:grid-cols-1">
             {cardData.map((itm) => (
               <div key={itm.id} className="m-4">
-                <Card title={itm.title} num={itm.id} desc={itm.body} />
+                <DatailCard title={itm.title} num={itm.id} desc={itm.body} />
               </div>
             ))}
           </div>
@@ -174,7 +176,7 @@ const Branding = () => {
       </div>
 
       <section className="mt-[150px] w-full bg-light py-[100px] px-[5%] h-max">
-        <div className="flex flex-col justify-center items-center w-full h-max">
+        <div className="w-full h-max flex flex-col justify-center items-center">
           <Title variant="section-name">Создание сайтов в Ташкенте</Title>
           <div className="grid grid-cols-2 max-lg:grid-cols-1 gap-[50px] mt-[50px]">
             <div className="w-full">
@@ -210,28 +212,37 @@ const Branding = () => {
         </div>
       </section>
 
-      <div className="container pt-16">
+      <div className="pt-16">
         <section>
-          <div className="max-w-6xl m-auto px-4">
+          <div className="m-auto max-w-6xl px-4">
             <Title variant={"title"}>Услуги и стоимость</Title>
             <Desc center>
               Мы рады предоставить вам информацию о наших текущих тарифных
               планах.
             </Desc>
           </div>
+          {/* <div className="grid grid-cols-4 gap-5 px-4 max-lg:grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1">
+            {price.map((itm) => (
+              <PriceCard
+                key={itm.id}
+                name={itm.name}
+                price={itm.price}
+                features={itm.features}
+              />
+            ))}
+          </div> */}
         </section>
 
         <section className="mt-10">
           <Title variant="title">Наши кейсы</Title>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-            {cases.map((item, index) => (
-              <div key={index + 1}>
-                <PhotoCard
-                  img={item.img}
-                  title={item.name}
-                  badges={item.badges}
-                />
-              </div>
+          <div className="grid grid-cols-1 gap-16 lg:grid-cols-2">
+            {cases.map((item) => (
+              <PhotoCard
+                image={item.img}
+                key={item.badges}
+                title={item.name}
+                badges={item.badges}
+              />
             ))}
           </div>
         </section>
@@ -240,4 +251,4 @@ const Branding = () => {
   );
 };
 
-export default Branding;
+export default Developing;

@@ -1,9 +1,10 @@
-import axios from "axios";
-import { ENDPOINTURL } from "../../Home";
-import { Card, PhotoCard } from "../../Generic";
+import About from "./About";
+import { useState } from "react";
+import useSize from "../../../hooks/useSize";
 import { Button, Desc, Title } from "../../Generic";
-import { Suspense, useEffect, useState } from "react";
-import img from "../../../assets/images/seo/maxresdefault.jpg";
+import { Card, Loader, PhotoCard } from "../../Generic";
+import img from "../../../assets/images/cards/image-2.png";
+import photoCard_data from "../../../utils/photoCard";
 
 const cardData = [
   {
@@ -23,122 +24,30 @@ const cardData = [
   },
 ];
 
-const price = [
-  {
-    id: 1,
-    name: "Одностраничный сайт “No Code”",
-    price: 100,
-    features: [
-      "До 20 ключевых слов",
-      "Аудит сайта",
-      "Внутренняя оптимизация",
-      "Внешняя оптимизация",
-      "Написание уникальных текстов",
-      "Анализ конкурентов",
-    ],
-  },
-  {
-    id: 2,
-    name: "Одностраничный сайт",
-    price: 150,
-    features: [
-      "До 40 ключевых слов",
-      "Аудит сайта",
-      "Внутренняя оптимизация",
-      "Внешняя оптимизация",
-      "Написание уникальных текстов",
-      "Анализ конкурентов",
-      "Редизайн",
-    ],
-  },
-  {
-    id: 3,
-    name: "Корпоративный сайт",
-    price: "от 400$",
-    features: [
-      "До 60 ключевых слов",
-      "Аудит сайта",
-      "Внутренняя оптимизация",
-      "Внешняя оптимизация",
-      "Написание уникальных текстов",
-      "Анализ конкурентов",
-      "Редизайн",
-    ],
-  },
-  {
-    id: 4,
-    name: "Интернет-магазин",
-    price: "от 1000$",
-    features: [
-      "До 60 ключевых слов",
-      "Аудит сайта",
-      "Внутренняя оптимизация",
-      "Внешняя оптимизация",
-      "Написание уникальных текстов",
-      "Анализ конкурентов",
-      "Редизайн",
-    ],
-  },
-];
-
-const cases = [
-  {
-    name: "Платформа для покупок билетов по регионам  Узбекистана",
-    img: img,
-    badges: ["Дизайн", "Вёрстка", "Адаптивный дизайн"],
-  },
-  {
-    name: "Хостел The Palms в Ташкенте",
-    img: img,
-    badges: ["Дизайн", "Вёрстка", "Адаптивный дизайн", "Прототипирование"],
-  },
-  {
-    name: "Платформа для покупок билетов по регионам  Узбекистана",
-    img: img,
-    badges: ["Дизайн", "Вёрстка", "Адаптивный дизайн"],
-  },
-  {
-    name: "Хостел The Palms в Ташкенте",
-    img: img,
-    badges: ["Дизайн", "Вёрстка", "Адаптивный дизайн"],
-  },
-  {
-    name: "Платформа для покупок билетов по регионам  Узбекистана",
-    img: img,
-    badges: ["Дизайн", "Вёрстка", "Адаптивный дизайн"],
-  },
-  {
-    name: "Хостел The Palms в Ташкенте",
-    img: img,
-    badges: ["Дизайн", "Вёрстка", "Адаптивный дизайн", "Прототипирование"],
-  },
-];
-
-const Branding = () => {
+const SMM = () => {
+  const { width } = useSize();
   const [loading, setLoading] = useState(false);
 
-  const getData = async () => {
-    try {
-      const response = await axios(`${ENDPOINTURL}/service/1/detail/`);
-      const data = response.data;
-      console.log(data);
-      return data;
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  // const getData = async () => {
+  //   try {
+  //     const response = await axios(`${ENDPOINTURL}/service/1/detail/`);
+  //     const data = response.data;
+  //     console.log(data);
+  //     return data;
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
 
-  useEffect(() => {
-    getData();
-  }, []);
+  // useEffect(() => {
+  //   getData();
+  // }, []);
 
-  if (loading) {
-    <div>Loading...</div>;
-  }
+  if (loading) return <Loader />;
 
   return (
-    <div className="container px-[5%] py-[25px]">
-      <header className="py-40 px-4">
+    <div className="px-[5%] py-[25px] border w-full">
+      <header className="px-4 py-40">
         <div>
           <Title variant={"primary"} className="max-md:text-3xl">
             SMM
@@ -155,7 +64,7 @@ const Branding = () => {
       </header>
 
       <section>
-        <div className="max-w-full m-auto px-4">
+        <div className="m-auto max-w-full px-4">
           <Title variant={"title"}>Этапы разработки сайтов</Title>
           <Desc center>
             Эти три типа этапов обеспечивают структурированный подход к
@@ -164,55 +73,20 @@ const Branding = () => {
           </Desc>
         </div>
 
-        <div className="grid max-md:grid-cols-1 grid-cols-3">
+        <div className="grid grid-cols-3 max-md:grid-cols-1">
           {cardData.map((itm) => (
             <div key={itm.id} className="m-4">
-              <Card title={itm.title} num={itm.id} desc={itm.body} />
+              <Card title={itm.title} text={itm.body} />
             </div>
           ))}
         </div>
       </section>
 
-      <section className="mt-[150px] w-full bg-light py-[100px] px-[5%] h-max w-full">
-        <div className="flex flex-col justify-center items-center w-full h-max">
-          <Title variant="section-name">Создание сайтов в Ташкенте</Title>
-          <div className="grid grid-cols-2 max-lg:grid-cols-1 gap-[50px] mt-[50px]">
-            <div className="w-full">
-              <img
-                src={img}
-                alt="about icon not found"
-                className="w-full rounded-lg cursor-pointer"
-              />
-            </div>
-            <div className="flex flex-col justify-between py-[2px] h-full w-full">
-              <p className="text-gray-color font-[400] text-[16px] leading-[26px]">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet
-                iusto rem voluptatem beatae illo deleniti in libero eaque quae
-                accusamus quis assumenda doloremque natus dolorum laboriosam
-                tempore odio odit facere sunt, aspernatur excepturi cupiditate
-                soluta cumque. Quod deleniti quos sunt possimus itaque dolorem
-                modi, cupiditate dolor inventore, beatae fuga fugiat, voluptate
-                mollitia dolore. Debitis, perspiciatis corporis placeat
-                aspernatur, iste molestias tenetur beatae quo ad ea error
-                deleniti reiciendis ab architecto unde! Unde odit, voluptatem
-                vel nam voluptatibus magnam esse distinctio exercitationem vero
-                hic tempora ut quis possimus quam? Officiis, sapiente sunt! Aut,
-                voluptates voluptate necessitatibus ipsam, blanditiis suscipit
-                ut recusandae qui illum, cumque praesentium! Rem vitae eum dolor
-                quis quisquam corporis quam voluptates error perspiciatis ea
-                eligendi odio totam nostrum ut veritatis fugit, magni
-                voluptatibus vel tempora laudantium! Magni mollitia vitae
-                officiis numquam totam illum explicabo voluptates excepturi,
-                consectetur modi quis tempora asperiores unde quae nemo.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <About />
 
-      <div className="container pt-16">
+      <div className="w-full pt-16">
         <section>
-          <div className="max-w-full m-auto px-4">
+          <div className="m-auto max-w-full px-4">
             <Title variant={"title"}>Услуги и стоимость</Title>
             <Desc center>
               Мы рады предоставить вам информацию о наших текущих тарифных
@@ -221,17 +95,20 @@ const Branding = () => {
           </div>
         </section>
 
-        <section className="mt-10">
+        <section className="w-full mt-10">
           <Title variant="title">Наши кейсы</Title>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-            {cases.map((item, index) => (
-              <div key={index + 1}>
-                <PhotoCard
-                  img={item.img}
-                  title={item.name}
-                  badges={item.badges}
-                />
-              </div>
+          <div
+            className={`grid gap-16 pt-[50px] ${
+              width > 1150 ? "lg:grid-cols-2" : "grid-cols-1"
+            }`}
+          >
+            {photoCard_data.map((item) => (
+              <PhotoCard
+                key={item.id}
+                image={item.image}
+                title={item.title}
+                badges={item.button}
+              />
             ))}
           </div>
         </section>
@@ -240,4 +117,4 @@ const Branding = () => {
   );
 };
 
-export default Branding;
+export default SMM;

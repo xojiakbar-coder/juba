@@ -8,8 +8,8 @@ import ENDPOINTURL from "../../config/endpoint";
 const Contact = ({ data }) => {
   const { width } = useSize();
   const [userData, setUserData] = useState({
-    username: "",
-    phonenumber: "",
+    userName: "",
+    phoneNumber: "",
   });
 
   const [wrongValue, setWrongValue] = useState({
@@ -18,7 +18,7 @@ const Contact = ({ data }) => {
   });
 
   const phoneNumberRegex = /^\+?\d{1,14}$/;
-  const usernameRegex = /^[a-zA-Zа-яА-ЯёЁ\s]{1,50}$/;
+  const userNameRegex = /^[a-zA-Zа-яА-ЯёЁ\s]{1,50}$/;
 
   const {
     latitude: lat,
@@ -31,15 +31,19 @@ const Contact = ({ data }) => {
   } = data[0];
 
   const onSubmit = async () => {
-    const { username, phonenumber } = userData;
+    const { userName, phoneNumber } = userData;
 
     // Validation
     let errors = {};
-    if (!usernameRegex.test(username)) {
+    if (!userNameRegex.test(userName)) {
       errors.userNameWrong = "Неверный формат имени.";
+    } else if (userName === "") {
+      errors.userNameWrong = "пожалуйста, введите имя";
     }
-    if (!phoneNumberRegex.test(phonenumber)) {
+    if (!phoneNumberRegex.test(phoneNumber)) {
       errors.phoneNumberWrong = "Неверный формат номера телефона.";
+    } else if (phoneNumber === "") {
+      errors.phoneNumberWrong = "пожалуйста, введите свой номер телефона";
     }
 
     setWrongValue(errors);
@@ -47,13 +51,13 @@ const Contact = ({ data }) => {
     if (Object.keys(errors).length === 0) {
       try {
         const response = await axios.post(`${ENDPOINTURL}/contact-user/`, {
-          name: username,
-          phone_number: phonenumber,
+          name: userName,
+          phone_number: phoneNumber,
         });
 
         if (response.status === 200 || response.status === 201) {
           alert("Успешно отправлено!");
-          setUserData({ username: "", phonenumber: "" });
+          setUserData({ userName: "", phoneNumber: "" });
         }
       } catch (error) {
         alert("Ошибка при отправке данных. Попробуйте снова.");
@@ -134,9 +138,9 @@ const Contact = ({ data }) => {
               placeholder="Телефон номер"
               required
               maxLength={13}
-              value={userData.phonenumber}
+              value={userData.phoneNumber}
               onChange={({ target }) =>
-                setUserData({ ...userData, phonenumber: target.value })
+                setUserData({ ...userData, phoneNumber: target.value })
               }
             />
             {wrongValue.phoneNumberWrong && (

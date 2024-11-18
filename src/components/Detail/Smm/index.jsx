@@ -2,9 +2,9 @@ import About from "./About";
 import { useState } from "react";
 import useSize from "../../../hooks/useSize";
 import { Button, Desc, Title } from "../../Generic";
-import { Card, Loader, PhotoCard } from "../../Generic";
-import img from "../../../assets/images/cards/image-2.png";
 import photoCard_data from "../../../utils/photoCard";
+import { Card, Loader, PhotoCard } from "../../Generic";
+import Projects from "./Projects";
 
 const cardData = [
   {
@@ -64,7 +64,7 @@ const SMM = () => {
       </header>
 
       <section>
-        <div className="m-auto max-w-full px-4">
+        <div className="max-w-full px-4 m-auto">
           <Title variant={"title"}>Этапы разработки сайтов</Title>
           <Desc center>
             Эти три типа этапов обеспечивают структурированный подход к
@@ -83,36 +83,7 @@ const SMM = () => {
       </section>
 
       <About />
-
-      <div className="w-full pt-16">
-        <section>
-          <div className="m-auto max-w-full px-4">
-            <Title variant={"title"}>Услуги и стоимость</Title>
-            <Desc center>
-              Мы рады предоставить вам информацию о наших текущих тарифных
-              планах.
-            </Desc>
-          </div>
-        </section>
-
-        <section className="w-full mt-10">
-          <Title variant="title">Наши кейсы</Title>
-          <div
-            className={`grid gap-16 pt-[50px] ${
-              width > 1150 ? "lg:grid-cols-2" : "grid-cols-1"
-            }`}
-          >
-            {photoCard_data.map((item) => (
-              <PhotoCard
-                key={item.id}
-                image={item.image}
-                title={item.title}
-                badges={item.button}
-              />
-            ))}
-          </div>
-        </section>
-      </div>
+      <Projects />
     </div>
   );
 };

@@ -7,31 +7,14 @@ import { useEffect, useState } from "react";
 import useSize from "../../../hooks/useSize";
 import ENDPOINTURL from "../../../config/endpoint";
 
-const SMM = () => {
+const SMM = ({ data }) => {
   const { width } = useSize();
-  const [data, setData] = useState();
   const [loading, setLoading] = useState(true);
-
-  const getData = async () => {
-    try {
-      const response = await axios(`${ENDPOINTURL}/service/1/detail/`);
-      setData(response.data);
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    getData();
-  }, []);
-
-  if (loading) return <Loader />;
+  const titleData = data[0];
 
   return (
-    <div className="px-[5%] py-[25px] border w-full">
-      <Headers data={data} />
+    <div className="px-[5%] py-[25px] w-full">
+      <Headers data={titleData} />
       <About />
       <Projects />
     </div>

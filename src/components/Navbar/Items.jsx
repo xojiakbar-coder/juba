@@ -2,7 +2,7 @@ import { Link } from "react-scroll";
 import Popup, { Content } from "./Popup";
 import useSize from "../../hooks/useSize";
 import navbar_items_data from "../../utils/navbar";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Items = ({
   dir = "row",
@@ -13,19 +13,28 @@ const Items = ({
   gapX = "24px",
 }) => {
   const { width } = useSize();
-  const navigate = useLocation();
+  const location = useLocation();
+  const navigate = useNavigate();
 
-  const onClickItems = ({ dir, to }) => {
-    if (dir === "col") onClose();
-    if (to) {
-      console.log(to);
-      navigate(to);
+  const handleNavigation = (path) => {
+    if (location.pathname === "/") {
+      if (dir === "col") {
+        onClose();
+      }
+      const section = document.querySelector(`[name="${path}"]`);
+      section?.scrollIntoView({ behavior: "smooth" });
+    } else {
+      navigate("/");
+      setTimeout(() => {
+        const section = document.querySelector(`[name="${path}"]`);
+        section?.scrollIntoView({ behavior: "smooth" });
+      }, 100);
     }
   };
 
   return (
     <div
-      className={`flex flex-${dir} items-center w-${w} h-full justify-center`}
+      className={`flex-${dir} w-${w} h-full flex justify-center items-center`}
       style={{
         paddingLeft: paddingX,
         paddingRight: paddingX,
@@ -33,7 +42,7 @@ const Items = ({
       }}
     >
       {navbar_items_data.map((item) => {
-        const { id, title, path, children, to } = item;
+        const { id, title, path, children } = item;
 
         if (children?.length) {
           const dropdownItems = children.map((child) => ({
@@ -53,7 +62,7 @@ const Items = ({
               >
                 {dropdownItems.map((child) => (
                   <Content
-                    key={id}
+                    key={child.id}
                     dir={dir}
                     onClose={onClose}
                     path={child.path}
@@ -81,9 +90,6 @@ const Items = ({
           <Link
             key={id}
             to={path}
-            smooth={true}
-            duration={800}
-            onClick={() => onClickItems(dir, to)}
             className={`font-body-font whitespace-nowrap font-[400] ${
               dir === "col"
                 ? "text-[20px]"
@@ -91,6 +97,7 @@ const Items = ({
                 ? "text-[14px]"
                 : "text-[16px]"
             } w-full text-center text-light hover:text-yellow select-none transition duration-150 ease-out cursor-pointer`}
+            onClick={() => handleNavigation(path)}
           >
             {title}
           </Link>

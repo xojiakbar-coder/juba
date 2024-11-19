@@ -1,5 +1,6 @@
-import Smm from "../components/Detail/Smm";
-import Web from "../components/Detail/Web";
+import Smm from "../components/Detail/index";
+import Web from "../components/Detail/Web/index";
+import GenericElement from "../view";
 
 const detail_pages_data = [
   {
@@ -10,63 +11,75 @@ const detail_pages_data = [
   },
   {
     id: 2,
-    element: "",
-    path: "/seo",
+    element: GenericElement,
+    path: "/seo-optimization",
     page: false,
   },
   {
     id: 3,
     element: Web,
     page: true,
-    path: "/web-development",
+    path: "/website-development",
   },
   {
     id: 4,
-    element: "",
+    element: GenericElement,
     path: "branding",
     page: false,
   },
   {
     id: 5,
-    element: "",
+    element: GenericElement,
     path: "/video",
     page: false,
   },
   {
     id: 6,
-    element: "",
-    path: "/advertisting",
+    element: GenericElement,
     page: false,
+    path: "/contextual-advertising",
   },
   {
     id: 7,
-    element: "",
+    element: GenericElement,
     path: "/crm",
     page: false,
   },
   {
     id: 8,
-    element: "",
-    path: "/bot",
+    element: GenericElement,
     page: false,
+    path: "bot-development",
   },
   {
     id: 9,
-    element: "",
+    element: GenericElement,
     path: "/target",
     page: false,
   },
   {
     id: 10,
-    element: "",
+    element: GenericElement,
     path: "/context",
     page: false,
   },
   {
     id: 11,
-    element: "",
+    element: GenericElement,
     path: "/blogger",
     page: false,
+  },
+  {
+    id: 12,
+    element: GenericElement,
+    title: "Наружная реклама",
+    path: "outdoor-advertising",
+  },
+  {
+    id: 8,
+    element: GenericElement,
+    title: "Интеграция с блогерами",
+    path: "integration-with-bloggers",
   },
 ];
 

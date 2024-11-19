@@ -8,7 +8,7 @@ const GenericElement = () => {
   return (
     <div className="flex flex-col gap-[60px] justify-center h-screen min-h-screen items-center w-full py-[100px] px-10">
       <h1 className="text-light font-body-font text-[24px] w-full text-center">
-        {location.pathname} coming soon. . .
+        {location.pathname} page coming soon. . .
       </h1>
       <Button variant={"secondary"} onClick={() => navigate("/")}>
         Back to Home page

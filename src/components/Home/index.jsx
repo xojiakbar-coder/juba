@@ -1,14 +1,15 @@
 import axios from "axios";
 import Team from "./Team";
-import About from "./About";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
 import Clients from "./Clients";
 import Service from "./Services";
 import HomePage from "./HomePage";
+import OurResault from "./Resault";
 import { Loader } from "../Generic";
 import { Element } from "react-scroll";
 import Contact from "../Contact/Contact";
+import About from "../Generic/About/About";
 import ENDPOINTURL from "../../config/endpoint";
 import { Suspense, useEffect, useState } from "react";
 
@@ -84,9 +85,10 @@ const Home = () => {
     {
       id: 3,
       Component: About,
-      data: { soloMain: data.soloMain, ourResault: data.ourResault },
+      data: data.soloMain,
       path: "/about",
       padding: false,
+      bottomPage: true,
     },
     {
       id: 4,
@@ -116,15 +118,26 @@ const Home = () => {
       <Suspense>
         <Navbar />
         <div className="w-full">
-          {components.map(({ id, Component, data, padding, path }) => (
-            <Element
-              key={id}
-              className={padding ? "px-[5%] py-[25px]" : ""}
-              name={path}
-            >
-              <Component data={data} />
-            </Element>
-          ))}
+          {components.map(
+            ({ id, Component, data, bottomPage, padding, path }) => (
+              <Element
+                key={id}
+                className={padding ? "px-[5%] py-[25px]" : ""}
+                name={path}
+              >
+                <Component
+                  data={data}
+                  bottomPage={
+                    bottomPage && (
+                      <div className="w-full mt-[100px] h-max">
+                        <OurResault data={data.ourResault} />
+                      </div>
+                    )
+                  }
+                />
+              </Element>
+            )
+          )}
         </div>
         <Footer />
       </Suspense>

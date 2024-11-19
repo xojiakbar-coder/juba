@@ -21,7 +21,9 @@ const PhotoCard = ({ image = "", title = "", badges = [] }) => {
               ? "grid-cols-3"
               : width > 1200
               ? "grid-cols-2"
-              : "grid-cols-1"
+              : width < 400
+              ? "grid-cols-1"
+              : "grid-cols-2"
           } items-center`}
         >
           {badges.length > 0 &&
@@ -31,7 +33,9 @@ const PhotoCard = ({ image = "", title = "", badges = [] }) => {
                   key={id}
                   className="flex justify-center items-center border-[1px] border-light cursor-pointer hover:bg-hover-card-bg w-full rounded-[10px] px-[20px] py-[19px] transition duration-[180] ease-in text-ellipsis"
                 >
-                  <button className="text-light whitespace-nowrap text-center font-[400] text-[12px] leading-[15px] font-body-font text-gray-color">
+                  <button
+                    className={`whitespace-nowrap text-center font-[400] md:text-[12px] sm:text-[10px] text-[8px] leading-[15px] font-body-font text-gray-color`}
+                  >
                     {title}
                   </button>
                 </div>

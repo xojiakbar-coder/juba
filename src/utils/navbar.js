@@ -14,7 +14,7 @@ const navbar_itmes_data = [
   {
     id: 3,
     title: "Проекты",
-    path: "/Проекты",
+    path: "/clients",
   },
   {
     id: 4,

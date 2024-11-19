@@ -49,7 +49,7 @@ const SMM = () => {
   if (loading) return <Loader />;
 
   return (
-    <div className="px-[5%] py-[25px] border w-full">
+    <div className="px-[5%] py-[25px] w-full">
       <Headers data={data} />
 
       <section>

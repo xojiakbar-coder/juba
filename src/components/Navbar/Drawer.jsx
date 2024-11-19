@@ -36,7 +36,7 @@ const NavbarDrawer = ({ isOpen, onClose }) => {
         </div>
       </div>
       <div className="px-[20px] flex flex-col justify-center h-[80%] w-full items-center">
-        <Items dir="col" gapY="40px" w="full" />
+        <Items dir="col" gapY="40px" w="full" onClose={onClose} />
       </div>
       <div className="flex flex-row justify-center px-[20px] mt-auto py-[20px]">
         <a href="https://t.me/JubaMarketing" target="_blank">

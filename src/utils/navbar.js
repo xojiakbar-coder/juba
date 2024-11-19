@@ -40,17 +40,17 @@ const navbar_itmes_data = [
       {
         id: 3,
         title: "Контекстаная реклама",
-        path: "/Контекстаная-реклама",
+        path: "/contextual-advertising",
       },
       {
         id: 4,
         title: "SEO оптимизация",
-        path: "/seo",
+        path: "/seo-optimization",
       },
       {
         id: 5,
         title: "Разработка-ботов",
-        path: "Разработка-ботов",
+        path: "bot-development",
       },
       {
         id: 6,
@@ -65,22 +65,22 @@ const navbar_itmes_data = [
       {
         id: 8,
         title: "Интеграция с блогерами",
-        path: "Интеграция-с-блогерами",
+        path: "integration-with-bloggers",
       },
       {
         id: 9,
         title: "Таргет",
-        path: "/Таргет",
+        path: "/target",
       },
       {
         id: 10,
         title: "Наружная реклама",
-        path: "Наружная реклама",
+        path: "outdoor-advertising",
       },
       {
         id: 11,
         title: "Видео",
-        path: "Видео",
+        path: "/video",
       },
     ],
   },

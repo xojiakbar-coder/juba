@@ -131,32 +131,11 @@ const cases = [
 ];
 
 const Developing = () => {
-  const [loading, setLoading] = useState(false);
-
-  if (loading) <div>Loading...</div>;
-
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <div className="">
-        <header className="px-4 py-40">
-          <div>
-            <Title variant={"primary"} className="max-md:text-3xl">
-              Разработка сайтов
-            </Title>
-            <Title variant={"secondary"} className="max-md:text-3xl">
-              в Ташкенте
-            </Title>
-            <Desc className="max-w-3xl">
-              Экспертная команда по веб-разработке в Ташкенте: Создание
-              качественных и эффективных сайтов для вашего бизнеса Обсудить
-              проект
-            </Desc>
-            <Button variant={"primary"}>Обсудить проект</Button>
-          </div>
-        </header>
-
         <section>
-          <div className="m-auto max-w-6xl px-4">
+          <div className="max-w-6xl px-4 m-auto">
             <Title variant={"title"}>Этапы разработки сайтов</Title>
             <Desc center>
               Эти три типа этапов обеспечивают структурированный подход к
@@ -176,7 +155,7 @@ const Developing = () => {
       </div>
 
       <section className="mt-[150px] w-full bg-light py-[100px] px-[5%] h-max">
-        <div className="w-full h-max flex flex-col justify-center items-center">
+        <div className="flex flex-col items-center justify-center w-full h-max">
           <Title variant="section-name">Создание сайтов в Ташкенте</Title>
           <div className="grid grid-cols-2 max-lg:grid-cols-1 gap-[50px] mt-[50px]">
             <div className="w-full">
@@ -214,23 +193,13 @@ const Developing = () => {
 
       <div className="pt-16">
         <section>
-          <div className="m-auto max-w-6xl px-4">
+          <div className="max-w-6xl px-4 m-auto">
             <Title variant={"title"}>Услуги и стоимость</Title>
             <Desc center>
               Мы рады предоставить вам информацию о наших текущих тарифных
               планах.
             </Desc>
           </div>
-          {/* <div className="grid grid-cols-4 gap-5 px-4 max-lg:grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1">
-            {price.map((itm) => (
-              <PriceCard
-                key={itm.id}
-                name={itm.name}
-                price={itm.price}
-                features={itm.features}
-              />
-            ))}
-          </div> */}
         </section>
 
         <section className="mt-10">

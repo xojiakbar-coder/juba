@@ -6,10 +6,8 @@ import detail_pages_data from "../utils/detail";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
 const Root = () => {
-  const { contextHolder } = useMessages();
   return (
     <Fragment>
-      {contextHolder}
       <BrowserRouter>
         <Routes>
           {/* Home page */}

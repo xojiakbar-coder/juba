@@ -90,6 +90,8 @@ const Items = ({
           <Link
             key={id}
             to={path}
+            duration={800}
+            smooth={true}
             className={`font-body-font whitespace-nowrap font-[400] ${
               dir === "col"
                 ? "text-[20px]"

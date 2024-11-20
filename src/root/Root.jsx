@@ -1,7 +1,6 @@
 import Layout from "./Layout";
 import { Fragment } from "react";
 import Home from "../components/Home/index";
-import useMessages from "../hooks/useMessage";
 import detail_pages_data from "../utils/detail";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 

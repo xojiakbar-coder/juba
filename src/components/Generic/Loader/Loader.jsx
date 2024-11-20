@@ -1,11 +1,14 @@
 const Loader = () => {
   return (
-    <div className="w-full flex justify-center items-center text-[47px] h-[100vh] min-h-[100vh] w-full min-w-full text-yellow border">
-      <div role="status" className="cursor-pointer select-none">
+    <div className="w-full min-w-full h-screen min-h-screen flex justify-center items-center">
+      <div
+        role="status"
+        className="w-full h-full flex justify-center items-center cursor-pointer select-none"
+      >
         <svg
           aria-hidden="true"
-          className="w-[90px] h-[90px] text-gray-200 animate-spin dark:text-light fill-yellow"
-          // viewBox="0 0 100 101"
+          className="w-[90px] h-[90px] max-w-[90px] max-h-[90px] min-w-[90px] min-h-[90px] text-gray-200 animate-spin dark:text-light fill-yellow"
+          viewBox="0 0 100 101"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -18,7 +21,6 @@ const Loader = () => {
             fill="currentFill"
           />
         </svg>
-        <span className="sr-only">Loading...</span>
       </div>
     </div>
   );

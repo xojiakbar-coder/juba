@@ -1,13 +1,11 @@
-// import { Mosaic } from "react-loading-indicators";
-
 const Loader = () => {
   return (
-    <div className="w-full flex justify-center items-center text-[47px] h-[100vh] min-h-[100vh] w-full min-w-full text-yellow">
+    <div className="w-full flex justify-center items-center text-[47px] h-[100vh] min-h-[100vh] w-full min-w-full text-yellow border">
       <div role="status" className="cursor-pointer select-none">
         <svg
           aria-hidden="true"
           className="w-[90px] h-[90px] text-gray-200 animate-spin dark:text-light fill-yellow"
-          viewBox="0 0 100 101"
+          // viewBox="0 0 100 101"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -27,3 +25,5 @@ const Loader = () => {
 };
 
 export default Loader;
+
+// yarn run dev

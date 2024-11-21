@@ -46,7 +46,7 @@ const SMM = ({ data }) => {
     <div className="w-full">
       {section_data.map(({ id, Section, padding, path, data }) => {
         return (
-          <div key={id} className={padding ? "px-[5%] py-[25px] border" : ""}>
+          <div key={id} className={padding ? "px-[5%] py-[25px]" : ""}>
             <Section data={data} />
           </div>
         );

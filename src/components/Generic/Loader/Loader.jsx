@@ -1,4 +1,4 @@
-import loadingSpinner from "../../../assets/icons/load.svg";
+import loadingSpinner from "../../../assets/images/loader/load.png";
 
 const Loader = () => {
   return (
@@ -7,7 +7,7 @@ const Loader = () => {
         <div className="flex items-center justify-center w-[120px] h-[120px] rounded-full">
           <img
             src={loadingSpinner}
-            alt="load spinner not found"
+            alt=""
             className="w-[120px] h-[120px] rounded-full z-[999] animate-spin"
           />
         </div>

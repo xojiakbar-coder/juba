@@ -1,10 +1,10 @@
-import React from "react";
 import Title from "../Title/Title";
 import useSize from "../../../hooks/useSize";
 import aboutUS from "../../../assets/images/home/about-us.svg";
 
 const About = ({ data, bottomPage }) => {
   const { width } = useSize();
+  const aboutData = data[0] ? data[0] : data;
 
   return (
     <div className="mt-[150px] w-full bg-light pb-[100px] pt-[150px] px-[5%] h-max">
@@ -24,30 +24,16 @@ const About = ({ data, bottomPage }) => {
           >
             <div className="w-full">
               <img
-                src={data[0].photo ? data[0].photo : aboutUS}
+                src={aboutData?.photo ? aboutData?.photo : aboutUS}
                 alt="about icon not found"
                 className="w-full rounded-lg h-full cursor-pointer"
               />
             </div>
             <div className="flex flex-col justify-between h-full w-full">
               <p className="text-gray-color font-[400] text-[16px] leading-[26px]">
-                {data[0]?.description ||
-                  `Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Doloribus similique numquam culpa vel, sit doloremque explicabo
-                illo non voluptatum dolorem aliquam impedit nobis repellendus
-                earum placeat tempore aut voluptas soluta eius laudantium amet.
-                Facere eligendi, aspernatur quibusdam non atque nobis vitae
-                delectus mollitia laboriosam distinctio tempore adipisci
-                similique, sint quidem enim explicabo iste tenetur suscipit
-                nihil veritatis optio, quam illo sed? Temporibus consequuntur
-                itaque quis assumenda! Placeat, numquam eos. Qui animi quibusdam
-                aperiam enim officiis commodi veniam eos aliquid dolores ullam
-                consequatur, ratione maxime odio, ipsa incidunt consectetur
-                labore voluptatem nisi repellendus? Quod rem eum, commodi unde
-                doloremque officiis obcaecati possimus ratione doloribus? Porro
-                debitis dolorum a odio quia aspernatur laudantium cum, magnam
-                optio ipsa soluta, alias inventore tenetur eos aut libero
-                eligendi perferendis placeat?`}
+                {aboutData?.description
+                  ? aboutData?.description
+                  : `some text data`}
               </p>
             </div>
           </div>

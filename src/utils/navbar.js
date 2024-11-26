@@ -4,23 +4,27 @@ const navbar_items_data = [
     title: "Главная",
     path: "/",
     to: "/",
+    children: [],
   },
   {
     id: 2,
     title: "О компании",
     path: "/about",
     to: "/about",
+    children: [],
   },
   {
     id: 3,
     title: "Проекты",
     path: "/clients",
+    children: [],
   },
   {
     id: 4,
     title: "Команда",
     path: "/our-team",
     to: "/our-team",
+    children: [],
   },
   {
     id: 5,
@@ -44,6 +48,7 @@ const navbar_items_data = [
     title: "Контакты",
     path: "/contact",
     to: "/contact",
+    children: [],
   },
 ];
 

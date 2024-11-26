@@ -1,14 +1,17 @@
 import axios from "axios";
-import Headers from "./Smm/Headers";
-import GenericElement from "../../view";
-import About from "./../Generic/About/About";
+import About from "../Generic/About/About";
+import Contact from "./../Contact/Contact";
 import { Loader, PhotoCard } from "../Generic";
 import ENDPOINTURL from "../../config/endpoint";
 import OurPrice from "./../Generic/Price/Price";
+import Headers from "../Generic/Headers/Headers";
+import Projects from "../Generic/Projects/Projects";
 import navbar_items_data from "./../../utils/navbar";
 import { Suspense, useEffect, useState } from "react";
 import { useDetailContext } from "../../context/DetailContext";
 import useFindItemIdByPath from "./../../hooks/useFindItemIdByPath";
+import TopDisc from "../Generic/TopDisc";
+import Layout from "./Layout";
 
 const Detail = () => {
   const [data, setData] = useState({});
@@ -24,11 +27,12 @@ const Detail = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [solo, pricing, works, bottom] = await Promise.all([
+        const [solo, pricing, works, bottom, disc] = await Promise.all([
           axios.get(`${ENDPOINTURL}/service/solo/${itemId}`),
           axios.get(`${ENDPOINTURL}/service/pricing/${itemId}`),
           axios.get(`${ENDPOINTURL}/service/${itemId}/works/`),
           axios.get(`${ENDPOINTURL}/service/type/${itemId}/bottom/`),
+          axios.get(`${ENDPOINTURL}/service/type/${itemId}/top/`),
         ]);
 
         setData({
@@ -36,6 +40,7 @@ const Detail = () => {
           pricing: pricing.data,
           works: works.data,
           cases: bottom.data,
+          disc: disc.data,
         });
       } catch (error) {
         console.error("Malumotlar yuklanmadi:", error);
@@ -50,23 +55,28 @@ const Detail = () => {
   const component = [
     {
       id: 1,
+      data: data.disc || [],
+      Section: TopDisc,
+    },
+    {
+      id: 2,
       data: data.about || [],
       Section: About,
     },
     {
-      id: 2,
+      id: 3,
       data: data.pricing || [],
       Section: OurPrice,
     },
+    // {
+    //   id: 4,
+    //   data: data.works || [],
+    //   Section: About,
+    // },
     {
-      id: 3,
-      data: data.works || [],
-      Section: About,
-    },
-    {
-      id: 4,
+      id: 5,
       data: data.cases || [],
-      Section: PhotoCard,
+      Section: Projects,
     },
   ];
 
@@ -74,17 +84,17 @@ const Detail = () => {
 
   return (
     <Suspense fallback={<Loader />}>
-      <div className="w-full">
-        <Headers data={sectionTitleData} />
+      <Layout>
+        {!titleError && <Headers data={sectionTitleData} />}
         <div>
-          {/* component map data goes here */}
           {component.map(({ id, data, Section }) => (
             <div key={id} className="mb-[50px]">
               <Section data={data} />
             </div>
           ))}
         </div>
-      </div>
+        <Contact />
+      </Layout>
     </Suspense>
   );
 };

@@ -55,9 +55,7 @@ const Items = ({
             <div className="flex flex-col gap-y-[4px] w-full bg-light">
               <div
                 className={`flex flex-col gap-3 p-2 ${
-                  width > 1020
-                    ? "w-[400px]"
-                    : "w-full h-[320px] overflow-y-auto"
+                  width > 1020 ? "w-[400px]" : "w-full h-max overflow-y-auto"
                 }`}
               >
                 {dropdownItems.map((child) => (

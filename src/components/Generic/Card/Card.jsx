@@ -1,9 +1,21 @@
 import React from "react";
 import rightIcon from "../../../assets/icons/right-arrow.svg";
 
-const DataCard = ({ title, text, href, type = "data", res, resText }) => {
+const DataCard = ({
+  title,
+  text,
+  href,
+  subtitle,
+  type = "data",
+  res,
+  resText,
+  onClick,
+}) => {
   return (
-    <div className="flex flex-col bg-dark rounded-[20px] cursor-pointer pb-[50px] w-full min-h-[200px] px-[20px] pt-[30px] font-body-font hover:bg-hover-card-bg transition duration-[180] ease-in">
+    <div
+      className="flex flex-col bg-dark rounded-[20px] cursor-pointer pb-[50px] w-full min-h-[200px] px-[20px] pt-[30px] font-body-font hover:bg-hover-card-bg transition duration-[180] ease-in"
+      onClick={onClick}
+    >
       <div
         className={`${
           type === "res"
@@ -12,6 +24,11 @@ const DataCard = ({ title, text, href, type = "data", res, resText }) => {
         } text-yellow font-body-font`}
       >
         {type === "res" ? res : title}
+      </div>
+      <div className="my-[20px]">
+        <p className="text-light font-[400] font-body-font leading-[26px]">
+          {subtitle}
+        </p>
       </div>
       <p
         className={`my-[20px] text-light font-[400] font-body-font leading-[26px] ${

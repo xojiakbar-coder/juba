@@ -1,6 +1,5 @@
-import Layout from "./Layout";
-import Home from "../components/Home/index";
 import Detail from "../components/Detail";
+import Home from "../components/Home/index";
 import { Navigate, Route, Routes } from "react-router-dom";
 
 const Root = () => {
@@ -10,14 +9,7 @@ const Root = () => {
       <Route path="/" element={<Home />} />
 
       {/* Detail pages */}
-      <Route
-        path="/detail/:name"
-        element={
-          <Layout page={true}>
-            <Detail />
-          </Layout>
-        }
-      />
+      <Route path="/detail/:name" element={<Detail />} />
 
       {/* 404 Not Found page */}
       <Route path="*" element={<Navigate to="/" />} />

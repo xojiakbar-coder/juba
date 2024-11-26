@@ -1,12 +1,30 @@
 import axios from "axios";
-import { useState } from "react";
-import { Button } from "../Generic";
+import { useEffect, useState } from "react";
+import { Button, Loader } from "../Generic";
 import Profiles from "../Home/Profiles";
 import useSize from "../../hooks/useSize";
 import ENDPOINTURL from "../../config/endpoint";
 
-const Contact = ({ data }) => {
+const Contact = () => {
   const { width } = useSize();
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const getData = async () => {
+    try {
+      const res = await axios(`${ENDPOINTURL}/our-contact/`);
+      setData(res.data);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
   const [userData, setUserData] = useState({
     userName: "",
     phoneNumber: "",
@@ -20,30 +38,35 @@ const Contact = ({ data }) => {
   const phoneNumberRegex = /^\+?\d{1,14}$/;
   const userNameRegex = /^[a-zA-Zа-яА-ЯёЁ\s]{1,50}$/;
 
-  const {
-    latitude: lat,
-    longitude: long,
-    facebook_url,
-    instagram_url,
-    email,
-    phone_number,
-    telegram_url,
-  } = data[0];
+  let lat = "";
+  let long = "";
+  let facebook_url, instagram_url, email, phone_number, telegram_url;
+
+  if (data[0]) {
+    ({
+      latitude: lat,
+      longitude: long,
+      facebook_url,
+      instagram_url,
+      email,
+      phone_number,
+      telegram_url,
+    } = data[0]);
+  }
 
   const onSubmit = async () => {
     const { userName, phoneNumber } = userData;
 
-    // Validation
     let errors = {};
-    if (!userNameRegex.test(userName)) {
-      errors.userNameWrong = "Неверный формат имени.";
-    } else if (userName === "") {
+    if (!userName) {
       errors.userNameWrong = "пожалуйста, введите имя";
+    } else if (!userNameRegex.test(userName)) {
+      errors.userNameWrong = "Неверный формат имени.";
     }
-    if (!phoneNumberRegex.test(phoneNumber)) {
-      errors.phoneNumberWrong = "Неверный формат номера телефона.";
-    } else if (phoneNumber === "") {
+    if (!phoneNumber) {
       errors.phoneNumberWrong = "пожалуйста, введите свой номер телефона";
+    } else if (!phoneNumberRegex.test(phoneNumber)) {
+      errors.phoneNumberWrong = "Неверный формат номера телефона.";
     }
 
     setWrongValue(errors);
@@ -58,12 +81,18 @@ const Contact = ({ data }) => {
         if (response.status === 200 || response.status === 201) {
           alert("Успешно отправлено!");
           setUserData({ userName: "", phoneNumber: "" });
+        } else {
+          alert("Ошибка при отправке данных. Попробуйте снова.");
         }
       } catch (error) {
         alert("Ошибка при отправке данных. Попробуйте снова.");
       }
     }
   };
+
+  if (loading) {
+    return <Loader />;
+  }
 
   return (
     <div>

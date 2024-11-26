@@ -1,7 +1,10 @@
 import axios from "axios";
+import Layout from "./Layout";
+import { Loader } from "../Generic";
+import Works from "../Generic/Works";
+import TopDisc from "../Generic/TopDisc";
 import About from "../Generic/About/About";
 import Contact from "./../Contact/Contact";
-import { Loader, PhotoCard } from "../Generic";
 import ENDPOINTURL from "../../config/endpoint";
 import OurPrice from "./../Generic/Price/Price";
 import Headers from "../Generic/Headers/Headers";
@@ -10,8 +13,6 @@ import navbar_items_data from "./../../utils/navbar";
 import { Suspense, useEffect, useState } from "react";
 import { useDetailContext } from "../../context/DetailContext";
 import useFindItemIdByPath from "./../../hooks/useFindItemIdByPath";
-import TopDisc from "../Generic/TopDisc";
-import Layout from "./Layout";
 
 const Detail = () => {
   const [data, setData] = useState({});
@@ -65,14 +66,14 @@ const Detail = () => {
     },
     {
       id: 3,
+      data: data.works || [],
+      Section: Works,
+    },
+    {
+      id: 4,
       data: data.pricing || [],
       Section: OurPrice,
     },
-    // {
-    //   id: 4,
-    //   data: data.works || [],
-    //   Section: About,
-    // },
     {
       id: 5,
       data: data.cases || [],

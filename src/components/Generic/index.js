@@ -5,4 +5,4 @@ export { default as Button } from "./Button/Button";
 export { default as Loader } from "./Loader/Loader";
 export { default as About } from "./About/About.jsx";
 export { default as PhotoCard } from "./Card/PhotoCard";
-export { default as DatailCard } from "./DatailCard/index";
+export { default as DatailCard } from "./TopCard/index";

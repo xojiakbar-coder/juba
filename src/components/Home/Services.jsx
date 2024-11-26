@@ -2,6 +2,7 @@ import Title from "../Generic/Title/Title";
 import DataCard from "../Generic/Card/Card";
 import { useNavigate } from "react-router-dom";
 import navbar_items_data from "../../utils/navbar";
+import { Element } from "react-scroll";
 
 const Services = ({ data }) => {
   const navigate = useNavigate();
@@ -26,7 +27,7 @@ const Services = ({ data }) => {
   return (
     <>
       {data && (
-        <div className="flex flex-col mt-[100px] w-full">
+        <Element name="/service" className="flex flex-col mt-[100px] w-full">
           <div className="w-full">
             <Title variant="title">Маркетинговые услуги в Ташкенте</Title>
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 custom:grid-cols-4 xxl:grid-cols-4 gap-[20px] mt-[50px]">
@@ -45,7 +46,7 @@ const Services = ({ data }) => {
                 })}
             </div>
           </div>
-        </div>
+        </Element>
       )}
     </>
   );

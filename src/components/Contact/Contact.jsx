@@ -4,6 +4,7 @@ import { Button, Loader } from "../Generic";
 import Profiles from "../Home/Profiles";
 import useSize from "../../hooks/useSize";
 import ENDPOINTURL from "../../config/endpoint";
+import { Element } from "react-scroll";
 
 const Contact = () => {
   const { width } = useSize();
@@ -95,7 +96,7 @@ const Contact = () => {
   }
 
   return (
-    <div>
+    <Element name="/contact">
       <div className="flex items-center flex-col w-full bg-white py-20 justify-center pt-[120px]">
         <h2 className="text-4xl font-bold text-center">Контакты</h2>
         <div
@@ -191,7 +192,7 @@ const Contact = () => {
           </form>
         </div>
       </div>
-    </div>
+    </Element>
   );
 };
 

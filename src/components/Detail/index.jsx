@@ -64,11 +64,11 @@ const Detail = () => {
       data: data.about || [],
       Section: About,
     },
-    {
-      id: 3,
-      data: data.works || [],
-      Section: Works,
-    },
+    // {
+    //   id: 3,
+    //   data: data.works || [],
+    //   Section: Works,
+    // },
     {
       id: 4,
       data: data.pricing || [],

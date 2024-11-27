@@ -19,9 +19,10 @@ import "swiper/css/scrollbar";
 import useSize from "../../../hooks/useSize";
 
 const Works = ({ data }) => {
+  console.log(data);
   const { width } = useSize();
-  const titleData = data.find((item) => item.id === 1);
-  const centerItem = data.find((item) => item.id === 2).id;
+  // const titleData = data?.find((item) => item.id === 1);
+  // const centerItem = data?.find((item) => item.id === 2).id;
 
   return (
     <>

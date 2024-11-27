@@ -5,6 +5,7 @@ import Footer from "../Footer";
 import Clients from "./Clients";
 import Service from "./Services";
 import HomePage from "./HomePage";
+import Form from "../Contact/Form";
 import OurResault from "./Resault";
 import { Loader } from "../Generic";
 import Contact from "../Contact/Contact";
@@ -105,18 +106,13 @@ const Home = () => {
             <div key={id} className={padding ? "px-[5%] py-[25px]" : ""}>
               <Component
                 data={data}
-                bottomPage={
-                  bottomPage && (
-                    <div className="w-full mt-[100px] h-max">
-                      <OurResault data={data.ourResault} />
-                    </div>
-                  )
-                }
+                bottomPage={bottomPage && <OurResault data={data.ourResault} />}
               />
             </div>
           ))}
         </div>
         <Contact />
+        <Form />
         <Footer />
       </Suspense>
     </>

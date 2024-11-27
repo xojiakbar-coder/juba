@@ -6,7 +6,7 @@ const OurResault = ({ data }) => {
   return (
     <>
       {data && (
-        <div className="w-full h-max">
+        <div className="w-full h-max pt-[100px]">
           <Title variant="section-name" className="text-center">
             Наши результаты в цифрах
           </Title>

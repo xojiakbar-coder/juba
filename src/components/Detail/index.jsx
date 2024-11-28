@@ -4,7 +4,6 @@ import { Loader } from "../Generic";
 import Works from "../Generic/Works";
 import TopDisc from "../Generic/TopDisc";
 import About from "../Generic/About/About";
-import Contact from "./../Contact/Contact";
 import ENDPOINTURL from "../../config/endpoint";
 import OurPrice from "./../Generic/Price/Price";
 import Headers from "../Generic/Headers/Headers";
@@ -94,7 +93,6 @@ const Detail = () => {
             </div>
           ))}
         </div>
-        <Contact />
       </Layout>
     </Suspense>
   );

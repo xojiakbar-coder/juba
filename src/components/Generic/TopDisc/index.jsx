@@ -22,10 +22,10 @@ const TopDisc = ({ data }) => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 xxl:grid-cols-3 gap-x-[20px] gap-y-[40px] mt-[50px]">
             {data &&
-              data.map((itm) => (
+              data.map((itm, indx) => (
                 <TopCard
                   key={itm.id}
-                  num={itm.id}
+                  num={indx + 1}
                   title={itm.title}
                   services={itm.services}
                   description={itm.description}

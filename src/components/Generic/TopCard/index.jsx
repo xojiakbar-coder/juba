@@ -10,7 +10,7 @@ const TopCard = ({
   return (
     <div
       {...args}
-      className={`flex flex-col bg-light rounded-[20px] h-max cursor-pointer pb-[50px] w-full min-h-max px-[20px] pt-[30px] font-body-font transition duration-[180] ease-in`}
+      className={`flex flex-col bg-light rounded-[20px] h-full cursor-pointer pb-[50px] w-full min-h-max px-[20px] pt-[30px] font-body-font transition duration-[180] ease-in`}
     >
       <div className="font-body-font text-light py-[10px] px-[20px] bg-yellow rounded-xl w-max">
         {num}

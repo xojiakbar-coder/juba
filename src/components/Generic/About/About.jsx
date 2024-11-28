@@ -19,6 +19,8 @@ const About = ({ data, bottomPage }) => {
   };
 
   const aboutData = Array.isArray(data) && data[0] ? data[0] : data;
+  // console.log(aboutData.description);
+
   const aboutDesc = aboutData?.description?.split(" ");
 
   return (
@@ -33,7 +35,7 @@ const About = ({ data, bottomPage }) => {
               width <= 1400 && width > 1200
                 ? "grid-cols-[50%_50%] gap-[30px] items-start"
                 : "grid-cols-2 gap-[50px] items-start"
-            } mt-[50px] border`}
+            } mt-[50px]`}
           >
             <div className="w-full">
               <img
@@ -43,18 +45,19 @@ const About = ({ data, bottomPage }) => {
               />
             </div>
             <div className="flex flex-col justify-between h-full w-full">
-              <p className="flex justify-between flex-wrap text-gray-color font-[400] text-[24px] leading-[33px] w-full">
+              <p className="text-gray-color font-[400] text-[24px] leading-[33px] w-full">
+                {aboutData?.description || ""}
+              </p>
+              {/* <div className="flex justify-between flex-wrap text-gray-color font-[400] text-[24px] leading-[33px] w-full">
                 {aboutDesc.length &&
                   aboutDesc.map((item, index) => {
                     return (
-                      <div key={index} className="">
-                        <p key={index} className="w-full">
-                          {item}
-                        </p>
-                      </div>
+                      <p key={index} className="w-max">
+                        {item}
+                      </p>
                     );
                   })}
-              </p>
+              </div> */}
             </div>
           </div>
         </div>

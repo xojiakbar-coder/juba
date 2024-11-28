@@ -5,9 +5,9 @@ import Footer from "../Footer";
 import Clients from "./Clients";
 import Service from "./Services";
 import HomePage from "./HomePage";
+import Form from "../Contact/Form";
 import OurResault from "./Resault";
 import { Loader } from "../Generic";
-import { Element } from "react-scroll";
 import Contact from "../Contact/Contact";
 import About from "../Generic/About/About";
 import ENDPOINTURL from "../../config/endpoint";
@@ -22,7 +22,6 @@ const Home = () => {
     ourResault: null,
     clients: null,
     team: null,
-    ourContact: null,
   });
 
   useEffect(() => {
@@ -35,7 +34,6 @@ const Home = () => {
           ourResaultResponse,
           clientsResponse,
           teamResponse,
-          ourContactResponse,
         ] = await Promise.all([
           axios.get(`${ENDPOINTURL}/slider/`),
           axios.get(`${ENDPOINTURL}/service/`),
@@ -43,7 +41,6 @@ const Home = () => {
           axios.get(`${ENDPOINTURL}/result/`),
           axios.get(`${ENDPOINTURL}/client-photo/`),
           axios.get(`${ENDPOINTURL}/team-photo/`),
-          axios.get(`${ENDPOINTURL}/our-contact/`),
         ]);
 
         setData({
@@ -53,7 +50,6 @@ const Home = () => {
           ourResault: ourResaultResponse.data,
           clients: clientsResponse.data,
           team: teamResponse.data,
-          ourContact: ourContactResponse.data,
         });
       } catch (error) {
         console.error("Malumotlar yuklanmadi:", error);
@@ -73,20 +69,17 @@ const Home = () => {
       Component: HomePage,
       data: data.slider,
       padding: true,
-      path: "/",
     },
     {
       id: 2,
       Component: Service,
       data: data.service,
       padding: true,
-      path: "/sevice",
     },
     {
       id: 3,
       Component: About,
       data: data.soloMain,
-      path: "/about",
       padding: false,
       bottomPage: true,
     },
@@ -94,7 +87,6 @@ const Home = () => {
       id: 4,
       Component: Clients,
       data: data.clients,
-      path: "/clients",
       padding: false,
     },
     {
@@ -102,14 +94,6 @@ const Home = () => {
       Component: Team,
       data: data.team,
       padding: false,
-      path: "/our-team",
-    },
-    {
-      id: 6,
-      Component: Contact,
-      data: data.ourContact,
-      padding: false,
-      path: "/contact",
     },
   ];
 
@@ -118,27 +102,17 @@ const Home = () => {
       <Suspense>
         <Navbar />
         <div className="w-full">
-          {components.map(
-            ({ id, Component, data, bottomPage, padding, path }) => (
-              <Element
-                key={id}
-                className={padding ? "px-[5%] py-[25px]" : ""}
-                name={path}
-              >
-                <Component
-                  data={data}
-                  bottomPage={
-                    bottomPage && (
-                      <div className="w-full mt-[100px] h-max">
-                        <OurResault data={data.ourResault} />
-                      </div>
-                    )
-                  }
-                />
-              </Element>
-            )
-          )}
+          {components.map(({ id, Component, data, bottomPage, padding }) => (
+            <div key={id} className={padding ? "px-[5%] py-[25px]" : ""}>
+              <Component
+                data={data}
+                bottomPage={bottomPage && <OurResault data={data.ourResault} />}
+              />
+            </div>
+          ))}
         </div>
+        <Contact />
+        <Form />
         <Footer />
       </Suspense>
     </>

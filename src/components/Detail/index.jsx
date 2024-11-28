@@ -1,57 +1,103 @@
 import axios from "axios";
-import SMM from "./Smm/index";
-import WEB from "./Smm/index";
+import Layout from "./Layout";
 import { Loader } from "../Generic";
+import Works from "../Generic/Works";
+import TopDisc from "../Generic/TopDisc";
+import About from "../Generic/About/About";
+import Contact from "./../Contact/Contact";
 import ENDPOINTURL from "../../config/endpoint";
-import { Fragment, Suspense, useEffect, useState } from "react";
+import OurPrice from "./../Generic/Price/Price";
+import Headers from "../Generic/Headers/Headers";
+import Projects from "../Generic/Projects/Projects";
+import navbar_items_data from "./../../utils/navbar";
+import { Suspense, useEffect, useState } from "react";
+import { useDetailContext } from "../../context/DetailContext";
+import useFindItemIdByPath from "./../../hooks/useFindItemIdByPath";
 
-const DetailRoot = () => {
-  const [data, setData] = useState();
+const Detail = () => {
+  const [data, setData] = useState({});
   const [loading, setLoading] = useState(true);
-
-  const getData = async () => {
-    try {
-      const response = await axios(`${ENDPOINTURL}/service/1/detail/`);
-      setData(response.data);
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const {
+    data: titleData,
+    loading: titleLoading,
+    error: titleError,
+  } = useDetailContext();
+  const itemId = useFindItemIdByPath(navbar_items_data);
+  const sectionTitleData = titleData.find(({ id }) => id === itemId);
 
   useEffect(() => {
-    getData();
-  }, []);
+    const fetchData = async () => {
+      try {
+        const [solo, pricing, works, bottom, disc] = await Promise.all([
+          axios.get(`${ENDPOINTURL}/service/solo/${itemId}`),
+          axios.get(`${ENDPOINTURL}/service/pricing/${itemId}`),
+          axios.get(`${ENDPOINTURL}/service/${itemId}/works/`),
+          axios.get(`${ENDPOINTURL}/service/type/${itemId}/bottom/`),
+          axios.get(`${ENDPOINTURL}/service/type/${itemId}/top/`),
+        ]);
 
-  const components = [
+        setData({
+          about: solo.data,
+          pricing: pricing.data,
+          works: works.data,
+          cases: bottom.data,
+          disc: disc.data,
+        });
+      } catch (error) {
+        console.error("Malumotlar yuklanmadi:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [itemId]);
+
+  const component = [
     {
       id: 1,
-      Component: SMM,
-      data,
-      path: "/smm",
+      data: data.disc || [],
+      Section: TopDisc,
     },
     {
       id: 2,
-      Component: WEB,
-      data,
-      path: "/web-development",
+      data: data.about || [],
+      Section: About,
+    },
+    // {
+    //   id: 3,
+    //   data: data.works || [],
+    //   Section: Works,
+    // },
+    {
+      id: 4,
+      data: data.pricing || [],
+      Section: OurPrice,
+    },
+    {
+      id: 5,
+      data: data.cases || [],
+      Section: Projects,
     },
   ];
 
-  if (loading) return <Loader />;
+  if (titleLoading || loading) return <Loader />;
 
   return (
     <Suspense fallback={<Loader />}>
-      <div className="w-full">
-        {components.map(({ id, Component, data }) => (
-          <Fragment key={id}>
-            <Component data={data} />
-          </Fragment>
-        ))}
-      </div>
+      <Layout>
+        {!titleError && <Headers data={sectionTitleData} />}
+        <div>
+          {component.map(({ id, data, Section }) => (
+            <div key={id} className="mb-[50px]">
+              <Section data={data} />
+            </div>
+          ))}
+        </div>
+        <Contact />
+      </Layout>
     </Suspense>
   );
 };
 
-export default DetailRoot;
+export default Detail;

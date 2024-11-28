@@ -9,7 +9,10 @@ const HomeContent = ({ title, short_description }) => {
   return (
     <div className="flex flex-col h-full">
       <div>
-        <Title variant="secondary" className="w-[70%] animate-character">
+        <Title
+          variant="secondary"
+          className={`${width > 1200 ? "w-[70%]" : "w-[80$]"}`}
+        >
           {title && title}
         </Title>
       </div>

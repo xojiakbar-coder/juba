@@ -1,26 +1,30 @@
-const navbar_itmes_data = [
+const navbar_items_data = [
   {
     id: 1,
     title: "Главная",
     path: "/",
     to: "/",
+    children: [],
   },
   {
     id: 2,
     title: "О компании",
     path: "/about",
     to: "/about",
+    children: [],
   },
   {
     id: 3,
     title: "Проекты",
     path: "/clients",
+    children: [],
   },
   {
     id: 4,
     title: "Команда",
     path: "/our-team",
     to: "/our-team",
+    children: [],
   },
   {
     id: 5,
@@ -30,57 +34,12 @@ const navbar_itmes_data = [
       {
         id: 1,
         title: "SMM продвижение",
-        path: "/smm",
+        path: "/detail/smm",
       },
       {
         id: 2,
         title: "Разработка сайтов",
-        path: "/website-development",
-      },
-      {
-        id: 3,
-        title: "Контекстаная реклама",
-        path: "/contextual-advertising",
-      },
-      {
-        id: 4,
-        title: "SEO оптимизация",
-        path: "/seo-optimization",
-      },
-      {
-        id: 5,
-        title: "Разработка-ботов",
-        path: "bot-development",
-      },
-      {
-        id: 6,
-        title: "CRM",
-        path: "/crm",
-      },
-      {
-        id: 7,
-        title: "Брендинг",
-        path: "/branding",
-      },
-      {
-        id: 8,
-        title: "Интеграция с блогерами",
-        path: "integration-with-bloggers",
-      },
-      {
-        id: 9,
-        title: "Таргет",
-        path: "/target",
-      },
-      {
-        id: 10,
-        title: "Наружная реклама",
-        path: "outdoor-advertising",
-      },
-      {
-        id: 11,
-        title: "Видео",
-        path: "/video",
+        path: "/detail/web-development",
       },
     ],
   },
@@ -89,7 +48,8 @@ const navbar_itmes_data = [
     title: "Контакты",
     path: "/contact",
     to: "/contact",
+    children: [],
   },
 ];
 
-export default navbar_itmes_data;
+export default navbar_items_data;

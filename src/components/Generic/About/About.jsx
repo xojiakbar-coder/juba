@@ -19,9 +19,6 @@ const About = ({ data, bottomPage }) => {
   };
 
   const aboutData = Array.isArray(data) && data[0] ? data[0] : data;
-  // console.log(aboutData.description);
-
-  const aboutDesc = aboutData?.description?.split(" ");
 
   return (
     <div className="mt-[150px] w-full bg-light pb-[100px] pt-[150px] px-[5%] h-max">
@@ -45,19 +42,11 @@ const About = ({ data, bottomPage }) => {
               />
             </div>
             <div className="flex flex-col justify-between h-full w-full">
-              <p className="text-gray-color font-[400] text-[24px] leading-[33px] w-full">
-                {aboutData?.description || ""}
-              </p>
-              {/* <div className="flex justify-between flex-wrap text-gray-color font-[400] text-[24px] leading-[33px] w-full">
-                {aboutDesc.length &&
-                  aboutDesc.map((item, index) => {
-                    return (
-                      <p key={index} className="w-max">
-                        {item}
-                      </p>
-                    );
-                  })}
-              </div> */}
+              <div className="flex justify-between flex-col text-gray-color font-[400] text-[24px] leading-[37px] w-full border">
+                <p className="w-full break-words hyphens-auto overflow-hidden">
+                  {aboutData?.description}
+                </p>
+              </div>
             </div>
           </div>
         </div>

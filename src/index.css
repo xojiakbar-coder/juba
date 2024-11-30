@@ -13,6 +13,7 @@
   box-sizing: border-box;
   scrollbar-width: thin;
   scroll-behavior: smooth;
+  hyphens: auto;
 }
 
 /* root variables */
@@ -33,4 +34,10 @@ body {
   overflow-x: hidden;
   font-family: var(--bodyFont);
   background-color: var(--darkTextColor);
+}
+
+@layer utilities {
+  .hyphens-auto {
+    hyphens: auto;
+  }
 }

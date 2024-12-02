@@ -1,7 +1,7 @@
 import axios from "axios";
 import Layout from "./Layout";
 import { Loader } from "../Generic";
-import Works from "../Generic/Works";
+// import Works from "../Generic/Works";
 import TopDisc from "../Generic/TopDisc";
 import About from "../Generic/About/About";
 import ENDPOINTURL from "../../config/endpoint";
@@ -73,11 +73,11 @@ const Detail = () => {
       data: data.pricing || [],
       Section: OurPrice,
     },
-    {
-      id: 5,
-      data: data.cases || [],
-      Section: Projects,
-    },
+    // {
+    //   id: 5,
+    //   data: data.cases || [],
+    //   Section: Projects,
+    // },
   ];
 
   if (titleLoading || loading) return <Loader />;

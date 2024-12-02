@@ -4,7 +4,6 @@ import rightIcon from "../../../assets/icons/right-arrow.svg";
 const DataCard = ({
   title,
   text,
-  href,
   subtitle,
   type = "data",
   res,
@@ -25,11 +24,13 @@ const DataCard = ({
       >
         {type === "res" ? res : title}
       </div>
-      <div className="my-[20px]">
-        <p className="text-light font-[400] font-body-font leading-[26px]">
-          {subtitle}
-        </p>
-      </div>
+      {subtitle && (
+        <div className="my-[20px]">
+          <p className="text-light font-[400] font-body-font leading-[26px]">
+            {subtitle}
+          </p>
+        </div>
+      )}
       <p
         className={`my-[20px] text-light font-[400] font-body-font leading-[26px] ${
           resText && "capitalize text-[24px] leading-[36px] md:text-[20px]"
@@ -37,15 +38,18 @@ const DataCard = ({
       >
         {resText ? resText : text}
       </p>
-      {href && (
-        <div className="flex flex-row items-center">
-          <a href={href} className="text-gray-color font-body-font">
+      {onClick && (
+        <div className="flex flex-row items-center mt-auto">
+          <div
+            onClick={onClick}
+            className="text-gray-color hover:text-light font-body-font"
+          >
             Подробнее
-          </a>
+          </div>
           <img
             src={rightIcon}
             alt="right arrow icon not found"
-            className="w-[23px] h-[23px] min-h-[20px] mt-[1px] mx-[8px]"
+            className="w-[23px] h-[23px] min-h-[20px] mt-[1px] mx-[2px]"
           />
         </div>
       )}

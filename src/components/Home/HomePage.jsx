@@ -1,7 +1,7 @@
+import { Element } from "react-scroll";
 import HomeContent from "./HomeContent";
 import useSize from "../../hooks/useSize";
 import homeImage from "../../assets/images/home/home.png";
-import { Element } from "react-scroll";
 
 const HomePage = ({ data }) => {
   const { width } = useSize();
@@ -19,7 +19,7 @@ const HomePage = ({ data }) => {
     <Element name="/">
       <>
         {data && (
-          <div className="flex flex-col w-full">
+          <div className="relative flex flex-col w-full">
             <div
               className={`w-full min-h-[200px] ${
                 width > 1020
@@ -33,7 +33,7 @@ const HomePage = ({ data }) => {
               style={backgroundImage}
             />
             {width > 1020 ? (
-              <div className="absolute w-[90%] top-[33%] z-10">
+              <div className="absolute w-[90%] top-[20%] z-10">
                 <div className="h-max pl-[50px]">
                   <HomeContent
                     title={title}

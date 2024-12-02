@@ -77,6 +77,8 @@ const Contact = () => {
 
         {/* Social profile links */}
         <Profiles
+          land="contact"
+          profilesDir="col"w
           facebook_url={facebook_url}
           instagram_url={instagram_url}
           email={email}

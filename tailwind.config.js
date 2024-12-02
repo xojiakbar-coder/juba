@@ -19,6 +19,7 @@ module.exports = {
         "gray-color": "var(--grayColor)",
         "dark-text": "var(--darkTextColor)",
         "danger-color": "var(--dangerColor)",
+        "modal-bg-color": "var(--modalBgColor)",
         "hover-card-bg": "var(--hoverCardBg)",
         "dark-gray-color": "var(--darkGrayColor)",
       },

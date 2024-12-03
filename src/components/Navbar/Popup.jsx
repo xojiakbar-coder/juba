@@ -1,49 +1,106 @@
-import React from "react";
-import { Popover } from "antd";
-import useSize from "../../hooks/useSize";
+import axios from "axios";
+import { Button } from "../ui/button";
 import { NavLink } from "react-router-dom";
-import { DownOutlined } from "@ant-design/icons";
+import { useEffect, useState } from "react";
+import ENDPOINTURL from "../../config/endpoint";
+import {
+  PopoverArrow,
+  PopoverBody,
+  PopoverContent,
+  PopoverRoot,
+  PopoverTrigger,
+} from "../ui/popover";
 
-const Popup = ({ trigger, placement, title, id, dir, content }) => {
-  const { width } = useSize();
+const Menu = ({ navbarTitle }) => {
+  const [loading, setLoading] = useState(true);
+  const [detailData, setDetailData] = useState([]);
+  const [serviceData, setServiceData] = useState([]);
 
-  const resolvedPlacement = dir === "col" ? "top" : "bottomLeft";
+  const getServiceData = async () => {
+    try {
+      const res = await axios.get(`${ENDPOINTURL}/service/`);
+      setServiceData(res?.data || []);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const getDetailData = async () => {
+    try {
+      const details = await Promise.all(
+        serviceData.map(async (item) => {
+          const res = await axios.get(
+            `${ENDPOINTURL}/service/${item.id}/detail/`
+          );
+          return { serviceId: item.id, ...res?.data };
+        })
+      );
+      setDetailData(details);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  useEffect(() => {
+    const fetchServiceData = async () => {
+      await getServiceData();
+    };
+    fetchServiceData();
+  }, []);
+
+  useEffect(() => {
+    if (serviceData.length > 0) {
+      const fetchDetailData = async () => {
+        await getDetailData();
+        setLoading(false);
+      };
+      fetchDetailData();
+    }
+  }, [serviceData]);
+
+  if (loading) {
+    return <div>{navbarTitle}</div>;
+  }
+
+  if (detailData.length === 0) {
+    return <div>No data available</div>;
+  }
 
   return (
-    <div key={id} className="relative w-full flex justify-center">
-      <Popover
-        className="flex flex-row gap-x-[2px] items-center bg-transparent hover:bg-transparent outline-none group"
-        trigger={trigger}
-        content={content}
-        placement={resolvedPlacement}
-      >
-        <div
-          className={`font-body-font whitespace-nowrap font-[400] ${
-            dir === "col"
-              ? "text-[20px]"
-              : width <= 1390
-              ? "text-[14px]"
-              : "text-[16px]"
-          } text-light hover:text-yellow select-none transition duration-150 ease-out cursor-pointer`}
-        >
-          {title}
-          <DownOutlined className="group-hover:text-yellow mt-[1.5px] text-[14.5px]" />
-        </div>
-      </Popover>
+    <div>
+      <PopoverRoot positioning={{ placement: "bottom-start" }}>
+        <PopoverTrigger asChild>
+          <Button
+            size="sm"
+            variant="outline"
+            className="font-body-font whitespace-nowrap font-[400] w-full text-center text-light hover:text-yellow select-none transition duration-150 ease-out cursor-pointer"
+          >
+            {navbarTitle}
+          </Button>
+        </PopoverTrigger>
+        <PopoverContent>
+          <PopoverArrow />
+          <PopoverBody>
+            <div className="flex flex-col w-max bg-light border py-[20px] px-[24px] rounded-[20px] gap-[12px]">
+              {serviceData.map((detail) => {
+                const menuTitle = detail.title;
+
+                return (
+                  <NavLink
+                    // key={detail.serviceId}
+                    key={detail.id}
+                    className="font-[500] font-body-font text-gray-color group-hover:text-yellow group-hover:cursor-pointer text-[16px] transition duration-150 ease-in-out w-full hover:text-yellow"
+                  >
+                    {menuTitle}
+                  </NavLink>
+                );
+              })}
+            </div>
+          </PopoverBody>
+        </PopoverContent>
+      </PopoverRoot>
     </div>
   );
 };
 
-export default Popup;
-
-export const Content = ({ id, path, dir, onClose, title }) => (
-  <div key={id} className="group w-full">
-    <NavLink
-      to={path}
-      onClick={dir === "col" ? () => onClose() : null}
-      className="font-[500] font-body-font text-dark group-hover:text-yellow group-hover:cursor-pointer text-[16px] transition duration-150 ease-in-out w-full"
-    >
-      {title}
-    </NavLink>
-  </div>
-);
+export default Menu;

@@ -1,8 +1,8 @@
+import { Element } from "react-scroll";
 import Title from "../Generic/Title/Title";
 import DataCard from "../Generic/Card/Card";
 import { useNavigate } from "react-router-dom";
 import navbar_items_data from "../../utils/navbar";
-import { Element } from "react-scroll";
 
 const Services = ({ data }) => {
   const navigate = useNavigate();

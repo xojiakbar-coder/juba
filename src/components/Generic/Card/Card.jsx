@@ -19,7 +19,7 @@ const DataCard = ({
         className={`${
           type === "res"
             ? "text-[56px] font-[700] md:text-[45px]"
-            : "text-[24px] font-[700] leading-[100%]"
+            : "text-[24px] font-[700] leading-[30px]"
         } text-yellow font-body-font`}
       >
         {type === "res" ? res : title}

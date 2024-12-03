@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 const Lang = () => {
-  const [lang, setLang] = useState("ru");
+  const [lang, setLang] = useState("uz");
   const langStyle = `font-[400] text-[16px] font-body text-light hover:text-yellow`;
   return (
     <div className="flex flex-row gap-x-[15px]">

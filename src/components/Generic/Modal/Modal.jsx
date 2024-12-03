@@ -6,8 +6,8 @@ const Modal = ({ isOpen, onClose, text }) => {
     <>
       {isOpen && (
         <div className="flex flex-col fixed px-[5%] py-[45px] h-screen min-h-screen top-0 bg-modal-bg-color z-[999] overflow-auto">
-          <div className="w-full">
-            <p className="w-full h-max text-light md:text-[24px] sm:text-[20px] text-[18px] md:leading-[42px]">
+          <div className="w-[95%]">
+            <p className="w-full h-max text-light md:text-[18px] sm:text-[16px] text-[16px] md:leading-[35px]">
               {text}
             </p>
           </div>

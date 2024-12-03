@@ -10,7 +10,7 @@ const About = ({ data, bottomPage }) => {
   const { width } = useSize();
   const location = useLocation();
   const [openModal, setModalToggle] = useState(false);
-  useLockBodyScroll(width > 1190 && openModal);
+  useLockBodyScroll(width > 1190 && width < 1700 && openModal);
 
   const toggleModal = () => {
     setModalToggle(!openModal);
@@ -37,17 +37,17 @@ const About = ({ data, bottomPage }) => {
     return text;
   };
 
-  let descriptionLimit = 680;
-  if (width < 1300) {
+  let descriptionLimit = aboutData?.description;
+  if (width < 1000) {
     descriptionLimit = 320;
-  } else if (width < 1470) {
-    descriptionLimit = 380;
-  } else if (width < 1550) {
-    descriptionLimit = 400;
-  } else if (width < 1670) {
+  } else if (width < 1170) {
     descriptionLimit = 480;
-  } else if (width < 1770) {
-    descriptionLimit = 580;
+  } else if (width < 1330) {
+    descriptionLimit = 790;
+  } else if (width < 1520) {
+    descriptionLimit = 900;
+  } else if (width < 1700) {
+    descriptionLimit = 1100;
   }
 
   const shortDescription = getShortDescription(
@@ -78,14 +78,16 @@ const About = ({ data, bottomPage }) => {
                 <img
                   src={aboutData?.photo ? aboutData.photo : aboutUS}
                   alt="about icon not found"
-                  className="w-full rounded-lg cursor-pointer"
+                  className={`w-full ${
+                    width < 1250 && "h-[100%]"
+                  } rounded-lg cursor-pointer"`}
                 />
               </div>
               <div className="flex flex-col justify-between h-full w-full">
-                <div className="flex justify-between flex-col text-gray-color overflow-hidden font-[400] text-[24px] leading-[37px] w-full">
+                <div className="flex justify-between flex-col text-gray-color mt-[-3px] overflow-hidden font-[400] text-[16px] leading-[25px] w-full">
                   <p className="w-full overflow-hidden text-ellipsis">
                     {width > 1190 ? shortDescription : aboutData?.description}
-                    {width > 1190 && (
+                    {width > 1190 && width < 1700 && (
                       <button
                         className="ml-2 text-dark-gray-color"
                         onClick={toggleModal}
@@ -102,7 +104,7 @@ const About = ({ data, bottomPage }) => {
           {bottomPage}
         </div>
       </div>
-      {width > 1190 && (
+      {width > 1190 && width < 1700 && (
         <Modal
           isOpen={openModal}
           onClose={toggleModal}

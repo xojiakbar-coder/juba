@@ -9,7 +9,7 @@ const OurPrice = ({ data }) => {
   return (
     <>
       {data && (
-        <div className="w-full pb-[100px] pt-[100px] px-[5%] h-max border">
+        <div className="w-full pb-[100px] pt-[100px] px-[5%] h-max">
           <div className="w-full h-max">
             <div className="flex flex-col justify-center items-center">
               <Title variant="section-name" className="text-light">

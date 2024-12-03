@@ -16,12 +16,12 @@ const TopCard = ({
         {num}
       </div>
       <div>
-        <div className="mt-[22px] text-[24px] font-[700] leading-[100%] text-yellow font-body-font">
+        <div className="mt-[22px] text-[24px] font-[700] leading-[100%] text-dark font-body-font">
           {title}
         </div>
         <div>
           <div className="my-[20px]">
-            <p className="text-dark font-[400] font-body-font leading-[26px]">
+            <p className="text-dark font-[400] font-body-font font-[500] leading-[26px]">
               {services}
             </p>
           </div>

@@ -1,54 +1,44 @@
 const navbar_items_data = [
   {
     id: 1,
-    title: "Главная",
+    title: "Asosiy",
     path: "/",
     to: "/",
-    children: [],
+    children: false,
   },
   {
     id: 2,
-    title: "О компании",
+    title: "Biz haqimizda",
     path: "/about",
     to: "/about",
-    children: [],
+    children: false,
   },
   {
     id: 3,
-    title: "Проекты",
+    title: "Loyihalar",
     path: "/clients",
-    children: [],
+    children: false,
   },
   {
     id: 4,
-    title: "Команда",
+    title: "Jamoa",
     path: "/our-team",
     to: "/our-team",
-    children: [],
+    children: false,
   },
   {
     id: 5,
-    title: "Услуги",
+    title: "Xizmatlarimiz",
     path: "/",
-    children: [
-      {
-        id: 1,
-        title: "SMM продвижение",
-        path: "/detail/smm",
-      },
-      {
-        id: 2,
-        title: "Разработка сайтов",
-        path: "/detail/web-development",
-      },
-    ],
+    children: true,
+    childrenUrl: "/detail/",
   },
   {
     id: 6,
-    title: "Контакты",
+    title: "Kontakt",
     path: "/contact",
     to: "/contact",
-    children: [],
+    children: false,
   },
 ];
 

@@ -14,7 +14,7 @@ const Clients = ({ data }) => {
             <div className="bg-yellow w-full mt-[35px]">
               <div className="py-12 relative w-full">
                 <div className="relative flex max-w-[100vw] overflow-hidden py-5">
-                  <div className="flex items-center justify-between gap-[100px] whitespace-nowrap w-max animate-marquee [--duration:30s] hover:[animation-play-state:paused]">
+                  <div className="flex items-center justify-between gap-[40px] whitespace-nowrap w-max animate-marquee [--duration:60s] hover:[animation-play-state:paused]">
                     {data.concat(data, data).map((i, id) => (
                       <div key={id} className="flex items-center h-full px-2.5">
                         <img

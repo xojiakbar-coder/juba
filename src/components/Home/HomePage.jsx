@@ -1,4 +1,3 @@
-import { Element } from "react-scroll";
 import HomeContent from "./HomeContent";
 import useSize from "../../hooks/useSize";
 import homeImage from "../../assets/images/home/home.png";
@@ -8,11 +7,10 @@ const HomePage = ({ data }) => {
   const { title, short_description, photo } = data[0];
 
   const backgroundImage = {
-    // backgroundSize: "cover",
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
-    backgroundSize: `${width > 1020 ? "cover" : "100% 100%"}`,
     backgroundImage: `url(${photo ? photo : homeImage})`,
+    backgroundSize: `${width > 1020 ? "cover" : "100% 100%"}`,
   };
 
   return (
@@ -32,7 +30,7 @@ const HomePage = ({ data }) => {
             style={backgroundImage}
           />
           {width > 1020 ? (
-            <div className="absolute w-[90%] top-[20%] z-10">
+            <div className="absolute w-[90%] top-[27%] z-10">
               <div className="h-max pl-[50px]">
                 <HomeContent
                   title={title}

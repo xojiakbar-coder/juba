@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Button, Popover } from "antd";
+import { Popover } from "antd";
 import useSize from "../../hooks/useSize";
 import { NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -10,8 +10,6 @@ const Menu = ({ navbarTitle, dir }) => {
   const [loading, setLoading] = useState(true);
   const [detailData, setDetailData] = useState([]);
   const [serviceData, setServiceData] = useState([]);
-
-  const placement = width > 1140 ? "bottom-start" : "bottom-end";
 
   const getServiceData = async () => {
     try {
@@ -64,7 +62,7 @@ const Menu = ({ navbarTitle, dir }) => {
   }
 
   const content = (
-    <div className="w-full bg-light py-[8px] px-[10px] rounded-[20px] w-max">
+    <div className="bg-light py-[8px] px-[10px] rounded-[20px]">
       <div className="flex flex-col gap-[10px]">
         {detailData.map((detail) => {
           // const menuTitle = detail.title;
@@ -73,9 +71,9 @@ const Menu = ({ navbarTitle, dir }) => {
           return (
             <NavLink
               // key={detail.id}
-              to={"/detail/" + String(detailTitle).split("").join("")}
+              to={`/detail/${detail.serviceId}`}
               key={detail.serviceId}
-              className="font-[500] font-body-font text-gray-color group-hover:text-yellow group-hover:cursor-pointer text-[14px] transition duration-150 ease-in-out w-full hover:text-yellow"
+              className="flex flex-wrap font-[500] font-body-font text-gray-color group-hover:text-yellow group-hover:cursor-pointer text-[14px] transition duration-150 ease-in-out w-max hover:text-yellow"
             >
               {detailTitle}
             </NavLink>
@@ -86,7 +84,7 @@ const Menu = ({ navbarTitle, dir }) => {
   );
 
   return (
-    <div className="text-light">
+    <div className="text-light w-full">
       <Popover
         content={content}
         placement={width > 1140 ? "bottomLeft" : "top"}

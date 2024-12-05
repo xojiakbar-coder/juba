@@ -17,7 +17,7 @@ const Headers = ({ data }) => {
               <Desc className="w-[70%]">
                 {detail_description || "Description not found"}
               </Desc>
-              <Button variant={"primary"}>Обсудить проект</Button>
+              <Button variant={"primary"}>Loyihani muhokama qiling</Button>
             </div>
           </header>
         </div>

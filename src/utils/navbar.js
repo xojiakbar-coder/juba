@@ -4,6 +4,7 @@ const navbar_items_data = [
     title: "Asosiy",
     path: "/",
     to: "/",
+    
     children: false,
   },
   {

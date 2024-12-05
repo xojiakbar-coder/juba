@@ -10,7 +10,7 @@ import menuIcon from "../../assets/icons/menu.svg";
 
 const Navbar = () => {
   const { width } = useSize();
-  const numberButton = `+998 90 047 22 20`;
+  const numberButton = `+998 71 200 03 21`;
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   const toggleDrawer = () => {

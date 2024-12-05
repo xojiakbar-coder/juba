@@ -1,16 +1,9 @@
 import axios from "axios";
-import { Button } from "../ui/button";
+import { Button, Popover } from "antd";
 import useSize from "../../hooks/useSize";
 import { NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
 import ENDPOINTURL from "../../config/endpoint";
-import {
-  PopoverArrow,
-  PopoverBody,
-  PopoverContent,
-  PopoverRoot,
-  PopoverTrigger,
-} from "../ui/popover";
 
 const Menu = ({ navbarTitle, dir }) => {
   const { width } = useSize();
@@ -70,44 +63,46 @@ const Menu = ({ navbarTitle, dir }) => {
     return <div>No data available</div>;
   }
 
-  return (
-    <div>
-      <PopoverRoot positioning={{ placement: placement }}>
-        <PopoverTrigger asChild>
-          <Button
-            size="sm"
-            variant="outline"
-            className={`font-body-font whitespace-nowrap font-[400] w-full text-center text-light hover:text-yellow select-none transition duration-150 ease-out cursor-pointer ${
-              dir === "col"
-                ? "text-[20px]"
-                : width <= 1390
-                ? "text-[14px]"
-                : "text-[16px]"
-            }`}
-          >
-            {navbarTitle}
-          </Button>
-        </PopoverTrigger>
-        <PopoverContent className="bg-light py-[20px] px-[24px] rounded-[20px] w-max">
-          <PopoverArrow />
-          <PopoverBody className="flex flex-col gap-[14px]">
-            {detailData.map((detail) => {
-              const menuTitle = detail.title;
-              const detailTitle = detail[0].detail_title;
+  const content = (
+    <div className="w-full bg-light py-[8px] px-[10px] rounded-[20px] w-max">
+      <div className="flex flex-col gap-[10px]">
+        {detailData.map((detail) => {
+          // const menuTitle = detail.title;
+          const detailTitle = detail[0].detail_title;
 
-              return (
-                <NavLink
-                  key={detail.serviceId}
-                  // key={detail.id}
-                  className="font-[500] font-body-font text-gray-color group-hover:text-yellow group-hover:cursor-pointer text-[16px] transition duration-150 ease-in-out w-full hover:text-yellow"
-                >
-                  {detailTitle}
-                </NavLink>
-              );
-            })}
-          </PopoverBody>
-        </PopoverContent>
-      </PopoverRoot>
+          return (
+            <NavLink
+              // key={detail.id}
+              to={"/detail/" + String(detailTitle).split("").join("")}
+              key={detail.serviceId}
+              className="font-[500] font-body-font text-gray-color group-hover:text-yellow group-hover:cursor-pointer text-[14px] transition duration-150 ease-in-out w-full hover:text-yellow"
+            >
+              {detailTitle}
+            </NavLink>
+          );
+        })}
+      </div>
+    </div>
+  );
+
+  return (
+    <div className="text-light">
+      <Popover
+        content={content}
+        placement={width > 1140 ? "bottomLeft" : "top"}
+      >
+        <div
+          className={`font-body-font whitespace-nowrap font-[400] w-full text-center text-light hover:text-yellow select-none transition duration-150 ease-out cursor-pointer ${
+            dir === "col"
+              ? "text-[20px]"
+              : width <= 1390
+              ? "text-[14px]"
+              : "text-[16px]"
+          } text-light`}
+        >
+          {navbarTitle}
+        </div>
+      </Popover>
     </div>
   );
 };

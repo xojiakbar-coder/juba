@@ -30,7 +30,7 @@ const Services = ({ data }) => {
         <Element name="/service" className="flex flex-col mt-[100px] w-full">
           <div className="w-full">
             <Title variant="title">Маркетинговые услуги в Ташкенте</Title>
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 custom:grid-cols-4 xxl:grid-cols-4 gap-[20px] mt-[50px]">
+            <div className="grid grid-cols-1 grid-rows-3 md:grid-cols-2 xl:grid-cols-3 custom:grid-cols-4 xxl:grid-cols-4 gap-[20px] mt-[50px]">
               {data &&
                 data.length > 0 &&
                 data.map((item) => {

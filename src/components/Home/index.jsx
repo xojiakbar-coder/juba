@@ -12,6 +12,7 @@ import Contact from "../Contact/Contact";
 import About from "../Generic/About/About";
 import ENDPOINTURL from "../../config/endpoint";
 import { Suspense, useEffect, useState } from "react";
+import { Element } from "react-scroll";
 
 const Home = () => {
   const [loading, setLoading] = useState(true);

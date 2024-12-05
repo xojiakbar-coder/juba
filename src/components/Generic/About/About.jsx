@@ -5,6 +5,7 @@ import useSize from "../../../hooks/useSize";
 import { useLocation } from "react-router-dom";
 import useLockBodyScroll from "../../../hooks/useLayoutEffect";
 import aboutUS from "../../../assets/images/home/about-us.svg";
+import { Element } from "react-scroll";
 
 const About = ({ data, bottomPage }) => {
   const { width } = useSize();
@@ -56,7 +57,7 @@ const About = ({ data, bottomPage }) => {
   );
 
   return (
-    <>
+    <Element name="/about">
       <div
         className={`mt-[150px] w-full bg-light pb-[100px] py-[150px] px-[5%] ${
           openModal && "pointer-events-none"
@@ -111,7 +112,7 @@ const About = ({ data, bottomPage }) => {
           text={aboutData.description}
         />
       )}
-    </>
+    </Element>
   );
 };
 

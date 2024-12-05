@@ -36,8 +36,8 @@ const navbar_items_data = [
   {
     id: 6,
     title: "Aloqa",
-    path: "/contact",
-    to: "/contact",
+    path: "/aloqa",
+    to: "/aloqa",
     children: false,
   },
 ];

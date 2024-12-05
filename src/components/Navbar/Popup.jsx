@@ -12,7 +12,7 @@ import {
   PopoverTrigger,
 } from "../ui/popover";
 
-const Menu = ({ navbarTitle }) => {
+const Menu = ({ navbarTitle, dir }) => {
   const { width } = useSize();
   const [loading, setLoading] = useState(true);
   const [detailData, setDetailData] = useState([]);
@@ -71,13 +71,19 @@ const Menu = ({ navbarTitle }) => {
   }
 
   return (
-    <div className="border">
+    <div>
       <PopoverRoot positioning={{ placement: placement }}>
         <PopoverTrigger asChild>
           <Button
             size="sm"
             variant="outline"
-            className="font-body-font whitespace-nowrap font-[400] w-full text-center text-light hover:text-yellow select-none transition duration-150 ease-out cursor-pointer"
+            className={`font-body-font whitespace-nowrap font-[400] w-full text-center text-light hover:text-yellow select-none transition duration-150 ease-out cursor-pointer ${
+              dir === "col"
+                ? "text-[20px]"
+                : width <= 1390
+                ? "text-[14px]"
+                : "text-[16px]"
+            }`}
           >
             {navbarTitle}
           </Button>

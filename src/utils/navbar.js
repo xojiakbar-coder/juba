@@ -35,7 +35,7 @@ const navbar_items_data = [
   },
   {
     id: 6,
-    title: "Kontakt",
+    title: "Aloqa",
     path: "/contact",
     to: "/contact",
     children: false,

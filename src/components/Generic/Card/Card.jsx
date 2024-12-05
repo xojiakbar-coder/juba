@@ -1,5 +1,4 @@
 import React from "react";
-import rightIcon from "../../../assets/icons/right-arrow.svg";
 
 const DataCard = ({
   title,
@@ -51,21 +50,21 @@ const DataCard = ({
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
-            <g id="SVGRepo_bgCarrier" stroke-width="0" />
+            <g id="SVGRepo_bgCarrier" strokeWidth="0" />
 
             <g
               id="SVGRepo_tracerCarrier"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
 
             <g id="SVGRepo_iconCarrier">
               <path
                 d="M10 7L15 12L10 17"
                 stroke="currentColor"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
             </g>
           </svg>

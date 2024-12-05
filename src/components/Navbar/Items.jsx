@@ -45,7 +45,9 @@ const Items = ({
         const { id, title, path, children, childrenUrl } = item;
 
         if (children && childrenUrl.length > 0) {
-          return <Popup key={id} navbarTitle={title} url={childrenUrl} />;
+          return (
+            <Popup key={id} navbarTitle={title} dir={dir} url={childrenUrl} />
+          );
         }
 
         return (

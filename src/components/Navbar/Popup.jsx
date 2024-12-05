@@ -1,5 +1,6 @@
 import axios from "axios";
 import { Button } from "../ui/button";
+import useSize from "../../hooks/useSize";
 import { NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
 import ENDPOINTURL from "../../config/endpoint";
@@ -12,9 +13,12 @@ import {
 } from "../ui/popover";
 
 const Menu = ({ navbarTitle }) => {
+  const { width } = useSize();
   const [loading, setLoading] = useState(true);
   const [detailData, setDetailData] = useState([]);
   const [serviceData, setServiceData] = useState([]);
+
+  const placement = width > 1140 ? "bottom-start" : "bottom-end";
 
   const getServiceData = async () => {
     try {
@@ -67,8 +71,8 @@ const Menu = ({ navbarTitle }) => {
   }
 
   return (
-    <div>
-      <PopoverRoot positioning={{ placement: "bottom-start" }}>
+    <div className="border">
+      <PopoverRoot positioning={{ placement: placement }}>
         <PopoverTrigger asChild>
           <Button
             size="sm"
@@ -78,24 +82,23 @@ const Menu = ({ navbarTitle }) => {
             {navbarTitle}
           </Button>
         </PopoverTrigger>
-        <PopoverContent>
+        <PopoverContent className="bg-light py-[20px] px-[24px] rounded-[20px] w-max">
           <PopoverArrow />
-          <PopoverBody>
-            <div className="flex flex-col w-max bg-light border py-[20px] px-[24px] rounded-[20px] gap-[12px]">
-              {serviceData.map((detail) => {
-                const menuTitle = detail.title;
+          <PopoverBody className="flex flex-col gap-[14px]">
+            {detailData.map((detail) => {
+              const menuTitle = detail.title;
+              const detailTitle = detail[0].detail_title;
 
-                return (
-                  <NavLink
-                    // key={detail.serviceId}
-                    key={detail.id}
-                    className="font-[500] font-body-font text-gray-color group-hover:text-yellow group-hover:cursor-pointer text-[16px] transition duration-150 ease-in-out w-full hover:text-yellow"
-                  >
-                    {menuTitle}
-                  </NavLink>
-                );
-              })}
-            </div>
+              return (
+                <NavLink
+                  key={detail.serviceId}
+                  // key={detail.id}
+                  className="font-[500] font-body-font text-gray-color group-hover:text-yellow group-hover:cursor-pointer text-[16px] transition duration-150 ease-in-out w-full hover:text-yellow"
+                >
+                  {detailTitle}
+                </NavLink>
+              );
+            })}
           </PopoverBody>
         </PopoverContent>
       </PopoverRoot>

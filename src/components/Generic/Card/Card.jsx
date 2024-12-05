@@ -12,7 +12,7 @@ const DataCard = ({
 }) => {
   return (
     <div
-      className="flex flex-col bg-dark rounded-[20px] cursor-pointer pb-[50px] w-full min-h-[200px] px-[20px] pt-[30px] font-body-font hover:bg-hover-card-bg transition duration-[180] ease-in"
+      className="flex flex-col bg-dark rounded-[20px] group cursor-pointer pb-[50px] w-full min-h-[200px] px-[20px] pt-[30px] font-body-font hover:bg-hover-card-bg transition duration-[180] ease-in"
       onClick={onClick}
     >
       <div
@@ -39,18 +39,36 @@ const DataCard = ({
         {resText ? resText : text}
       </p>
       {onClick && (
-        <div className="flex flex-row items-center mt-auto">
-          <div
-            onClick={onClick}
-            className="text-gray-color hover:text-light font-body-font"
-          >
+        <div className="flex flex-row items-center mt-auto text-gray-color group-hover:text-yellow">
+          <div onClick={onClick} className="text-inherit font-body-font">
             Подробнее
           </div>
-          <img
-            src={rightIcon}
-            alt="right arrow icon not found"
-            className="w-[23px] h-[23px] min-h-[20px] mt-[1px] mx-[2px]"
-          />
+          <svg
+            width="23px"
+            height="23px"
+            className="min-h-[20px] mx-[3px]"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g id="SVGRepo_bgCarrier" stroke-width="0" />
+
+            <g
+              id="SVGRepo_tracerCarrier"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+
+            <g id="SVGRepo_iconCarrier">
+              <path
+                d="M10 7L15 12L10 17"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </g>
+          </svg>
         </div>
       )}
     </div>

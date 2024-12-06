@@ -1,10 +1,8 @@
 import React from "react";
-import rightIcon from "../../../assets/icons/right-arrow.svg";
 
 const DataCard = ({
   title,
   text,
-  href,
   subtitle,
   type = "data",
   res,
@@ -13,23 +11,25 @@ const DataCard = ({
 }) => {
   return (
     <div
-      className="flex flex-col bg-dark rounded-[20px] cursor-pointer pb-[50px] w-full min-h-[200px] px-[20px] pt-[30px] font-body-font hover:bg-hover-card-bg transition duration-[180] ease-in"
+      className="flex flex-col bg-dark rounded-[20px] group cursor-pointer pb-[50px] w-full min-h-[200px] px-[20px] pt-[30px] font-body-font hover:bg-hover-card-bg transition duration-[180] ease-in"
       onClick={onClick}
     >
       <div
         className={`${
           type === "res"
             ? "text-[56px] font-[700] md:text-[45px]"
-            : "text-[24px] font-[700] leading-[100%]"
+            : "text-[24px] font-[700] leading-[30px]"
         } text-yellow font-body-font`}
       >
         {type === "res" ? res : title}
       </div>
-      <div className="my-[20px]">
-        <p className="text-light font-[400] font-body-font leading-[26px]">
-          {subtitle}
-        </p>
-      </div>
+      {subtitle && (
+        <div className="my-[20px]">
+          <p className="text-light font-[400] font-body-font leading-[26px]">
+            {subtitle}
+          </p>
+        </div>
+      )}
       <p
         className={`my-[20px] text-light font-[400] font-body-font leading-[26px] ${
           resText && "capitalize text-[24px] leading-[36px] md:text-[20px]"
@@ -37,16 +37,37 @@ const DataCard = ({
       >
         {resText ? resText : text}
       </p>
-      {href && (
-        <div className="flex flex-row items-center">
-          <a href={href} className="text-gray-color font-body-font">
+      {onClick && (
+        <div className="flex flex-row items-center mt-auto text-gray-color group-hover:text-yellow">
+          <div onClick={onClick} className="text-inherit font-body-font">
             Подробнее
-          </a>
-          <img
-            src={rightIcon}
-            alt="right arrow icon not found"
-            className="w-[23px] h-[23px] min-h-[20px] mt-[1px] mx-[8px]"
-          />
+          </div>
+          <svg
+            width="23px"
+            height="23px"
+            className="min-h-[20px] mx-[3px]"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g id="SVGRepo_bgCarrier" strokeWidth="0" />
+
+            <g
+              id="SVGRepo_tracerCarrier"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+
+            <g id="SVGRepo_iconCarrier">
+              <path
+                d="M10 7L15 12L10 17"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </g>
+          </svg>
         </div>
       )}
     </div>

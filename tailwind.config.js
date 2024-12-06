@@ -3,6 +3,14 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
+      animation: {
+        marquee: "marquee var(--duration, 60s) linear infinite",
+      },
+      keyframes: {
+        marquee: {
+          to: { transform: "translateX(-50%)" },
+        },
+      },
       screens: {
         sm: "640px",
         md: "790px",
@@ -19,6 +27,7 @@ module.exports = {
         "gray-color": "var(--grayColor)",
         "dark-text": "var(--darkTextColor)",
         "danger-color": "var(--dangerColor)",
+        "modal-bg-color": "var(--modalBgColor)",
         "hover-card-bg": "var(--hoverCardBg)",
         "dark-gray-color": "var(--darkGrayColor)",
       },

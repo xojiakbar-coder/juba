@@ -1,0 +1,8 @@
+[[redirects]]
+from = "/*"
+to = "/index.html"
+status = 200
+
+[build]
+  publish = "build" # Or "dist" for Vite
+  command = "npm run build"

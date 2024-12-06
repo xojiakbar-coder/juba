@@ -1,27 +1,23 @@
 import axios from "axios";
 import Layout from "./Layout";
 import { Loader } from "../Generic";
-import Works from "../Generic/Works";
+// import Works from "../Generic/Works";
 import TopDisc from "../Generic/TopDisc";
 import About from "../Generic/About/About";
+import { useLocation } from "react-router-dom";
 import ENDPOINTURL from "../../config/endpoint";
 import OurPrice from "./../Generic/Price/Price";
 import Headers from "../Generic/Headers/Headers";
-import Projects from "../Generic/Projects/Projects";
-import navbar_items_data from "./../../utils/navbar";
 import { Suspense, useEffect, useState } from "react";
+// import Projects from "../Generic/Projects/Projects";
 import { useDetailContext } from "../../context/DetailContext";
-import useFindItemIdByPath from "./../../hooks/useFindItemIdByPath";
 
 const Detail = () => {
+  const location = useLocation();
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(true);
-  const {
-    data: titleData,
-    loading: titleLoading,
-    error: titleError,
-  } = useDetailContext();
-  const itemId = useFindItemIdByPath(navbar_items_data);
+  const itemId = Number(location.pathname[location.pathname.length - 1]);
+
   const sectionTitleData = titleData.find(({ id }) => id === itemId);
 
   useEffect(() => {
@@ -73,12 +69,14 @@ const Detail = () => {
       data: data.pricing || [],
       Section: OurPrice,
     },
-    {
-      id: 5,
-      data: data.cases || [],
-      Section: Projects,
-    },
+    // {
+    //   id: 5,
+    //   data: data.cases || [],
+    //   Section: Projects,
+    // },
   ];
+
+  console.log(data);
 
   if (titleLoading || loading) return <Loader />;
 

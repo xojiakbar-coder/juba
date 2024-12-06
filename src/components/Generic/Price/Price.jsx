@@ -26,7 +26,7 @@ const OurPrice = ({ data }) => {
               {data.map(({ id, price, title, description }) => {
                 return (
                   <div
-                    className={`border w-full p-[30px] border-light rounded-[30px] text-light h-max flex md:justify-center items-center flex-col`}
+                    className={`flex border w-full p-[30px] border-light rounded-[30px] text-light h-full flex md:justify-center items-center flex-col`}
                     key={id}
                   >
                     <div className="md:text-[24px] sm:text-[18px] text-[16px] font-[700] font-body-font">
@@ -40,7 +40,7 @@ const OurPrice = ({ data }) => {
                       className="pt-[30px] px-[10px] w-full"
                       dangerouslySetInnerHTML={{ __html: description }}
                     ></div>
-                    <div className="w-full pt-[40px]">
+                    <div className="w-full pt-[40px] mt-auto">
                       <Button variant="primary" className="w-full">
                         Buy
                       </Button>
@@ -49,8 +49,6 @@ const OurPrice = ({ data }) => {
                 );
               })}
             </div>
-            <div></div>
-            {/* body */}
           </div>
         </div>
       )}

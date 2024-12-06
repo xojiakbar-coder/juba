@@ -1,15 +1,15 @@
 import { Link } from "react-scroll";
-import Popup, { Content } from "./Popup";
+import Popup from "./Popup";
 import useSize from "../../hooks/useSize";
 import navbar_items_data from "../../utils/navbar";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const Items = ({
-  dir = "row",
-  w = "full",
   onClose,
-  paddingX = "",
+  w = "full",
+  dir = "row",
   gapY = "0px",
+  paddingX = "",
   gapX = "24px",
 }) => {
   const { width } = useSize();
@@ -42,45 +42,11 @@ const Items = ({
       }}
     >
       {navbar_items_data.map((item) => {
-        const { id, title, path, children } = item;
+        const { id, title, path, children, childrenUrl } = item;
 
-        if (children?.length) {
-          const dropdownItems = children.map((child) => ({
-            id: child.id,
-            title: child.title,
-            path: child.path,
-          }));
-
-          const content = (
-            <div className="flex flex-col gap-y-[4px] w-full bg-light">
-              <div
-                className={`flex flex-col gap-3 p-2 ${
-                  width > 1020 ? "w-[400px]" : "w-full h-max overflow-y-auto"
-                }`}
-              >
-                {dropdownItems.map((child) => (
-                  <Content
-                    key={child.id}
-                    dir={dir}
-                    onClose={onClose}
-                    path={child.path}
-                    title={child.title}
-                  />
-                ))}
-              </div>
-            </div>
-          );
-
+        if (children && childrenUrl.length > 0) {
           return (
-            <Popup
-              id={id}
-              key={id}
-              dir={dir}
-              title={title}
-              content={content}
-              placement={"bottomLeft"}
-              trigger={["hover", "click"]}
-            />
+            <Popup key={id} navbarTitle={title} dir={dir} url={childrenUrl} />
           );
         }
 

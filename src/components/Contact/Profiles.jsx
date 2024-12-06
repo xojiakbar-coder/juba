@@ -6,6 +6,8 @@ const Profiles = ({
   email,
   phone_number,
   telegram_url,
+  land = "",
+  profilesDir = "",
 }) => {
   const { width } = useSize();
   const socialLinkStyle = `cursor-pointer leading-[24px] text-[24px] underline py-[6px] transition duration-105 ease-in-out w-max rounded-lg hover:text-yellow`;
@@ -15,7 +17,9 @@ const Profiles = ({
         width > 1020 ? "w-full" : "w-full px-[3%]"
       }`}
     >
-      <ul className="flex flex-col pt-[1px] gap-[10px]">
+      <ul
+        className={`flex flex-${profilesDir} pt-[1px] gap-y-[12px] gap-x-[30px]`}
+      >
         <li className={socialLinkStyle}>
           <a href={telegram_url}>Telegram</a>
         </li>
@@ -26,12 +30,13 @@ const Profiles = ({
           <a href={instagram_url}>Instagram</a>
         </li>
       </ul>
-
-      <div className="flex flex-col w-full gap-[12px]">
-        <p className="text-[24px]">{email}</p>
-        <p className="text-dark text-[24px]">{phone_number}</p>
-        <p className="leading-7 text-[24px]">Ислам Каримов 49, 10 этаж</p>
-      </div>
+      {land === "contact" && (
+        <div className="flex flex-col w-full gap-[12px]">
+          <p className="text-[24px]">{email}</p>
+          <p className="text-dark text-[24px]">{phone_number}</p>
+          <p className="leading-7 text-[24px]">Ислам Каримов 49, 10 этаж</p>
+        </div>
+      )}
     </div>
   );
 };

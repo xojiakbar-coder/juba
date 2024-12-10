@@ -19,7 +19,7 @@ const Detail = () => {
 
   console.log(itemId);
 
-  // const sectionTitleData = titleData.find(({ id }) => id === itemId);
+  const headerUrl = `${ENDPOINTURL}/service/solo/${itemId}/header/`;
 
   useEffect(() => {
     const fetchData = async () => {

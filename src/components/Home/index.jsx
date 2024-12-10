@@ -24,40 +24,48 @@ const Home = () => {
     team: null,
   });
 
+  const fetchData = async () => {
+    setLoading(true);
+    try {
+      const headerUrl = `${ENDPOINTURL}/slider/`;
+      const serviceUrl = `${ENDPOINTURL}/service/`;
+      const aboutUrl = `${ENDPOINTURL}/solo-main/`;
+      const resaultUrl = `${ENDPOINTURL}/result/`;
+      const clientsUrl = `${ENDPOINTURL}/client-photo/`;
+      const teamUrl = `${ENDPOINTURL}/team-photo/`;
+
+      const [
+        headerResponse,
+        serviceResponse,
+        aboutResponse,
+        resaultResponse,
+        clientsResponse,
+        teamResponse,
+      ] = await axios.all([
+        axios.get(headerUrl),
+        axios.get(serviceUrl),
+        axios.get(aboutUrl),
+        axios.get(resaultUrl),
+        axios.get(clientsUrl),
+        axios.get(teamUrl),
+      ]);
+
+      setData({
+        slider: headerResponse.data,
+        service: serviceResponse.data,
+        soloMain: aboutResponse.data,
+        ourResault: resaultResponse.data,
+        clients: clientsResponse.data,
+        team: teamResponse.data,
+      });
+    } catch (error) {
+      console.error("Xatolik yuz berdi:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const [
-          sliderResponse,
-          serviceResponse,
-          soloMainResponse,
-          ourResaultResponse,
-          clientsResponse,
-          teamResponse,
-        ] = await Promise.all([
-          axios.get(`${ENDPOINTURL}/slider/`),
-          axios.get(`${ENDPOINTURL}/service/`),
-          axios.get(`${ENDPOINTURL}/solo-main/`),
-          axios.get(`${ENDPOINTURL}/result/`),
-          axios.get(`${ENDPOINTURL}/client-photo/`),
-          axios.get(`${ENDPOINTURL}/team-photo/`),
-        ]);
-
-        setData({
-          slider: sliderResponse.data,
-          service: serviceResponse.data,
-          soloMain: soloMainResponse.data,
-          ourResault: ourResaultResponse.data,
-          clients: clientsResponse.data,
-          team: teamResponse.data,
-        });
-      } catch (error) {
-        console.error("Malumotlar yuklanmadi:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
     fetchData();
   }, []);
 

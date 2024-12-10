@@ -49,7 +49,7 @@ const Contact = () => {
   return (
     <Element name="/aloqa">
       <div className="flex items-center flex-col w-full bg-white py-20 justify-center pt-[120px]">
-        <h2 className="text-4xl font-bold text-center">Контакты</h2>
+        <h2 className="text-4xl font-bold text-center">Aloqalar</h2>
         <div
           className={`grid ${
             width > 1020 ? "grid-cols-2 px-[12%]" : "grid-cols-1 px-[20px]"

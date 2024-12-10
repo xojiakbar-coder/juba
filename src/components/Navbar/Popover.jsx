@@ -8,7 +8,6 @@ import navbar_items_data from "../../utils/navbar";
 
 const NavPopover = ({ navbarTitle, dir, url, id }) => {
   const { width } = useSize();
-  const [loading, setLoading] = useState(true);
   const [detailData, setDetailData] = useState([]);
 
   const itemId = navbar_items_data.find((item) => item.id === +id).id;
@@ -35,7 +34,13 @@ const NavPopover = ({ navbarTitle, dir, url, id }) => {
             <NavLink
               key={id}
               to={`/detail/${id}`}
-              className="flex flex-wrap font-[500] font-body-font text-gray-color group-hover:text-yellow group-hover:cursor-pointer text-[14px] transition duration-150 ease-in-out w-max hover:text-yellow"
+              className={`flex flex-wrap font-[500] font-body-font text-gray-color group-hover:text-yellow group-hover:cursor-pointer ${
+                width > 992
+                  ? "text-[14px]"
+                  : width < 850
+                  ? "text-[11px]"
+                  : "text-[10px]"
+              } transition duration-150 ease-in-out w-max hover:text-yellow`}
             >
               {title}
             </NavLink>
@@ -46,13 +51,14 @@ const NavPopover = ({ navbarTitle, dir, url, id }) => {
   );
 
   return (
-    <div className="text-light w-full">
+    <div className="text-light w-max">
       <Popover
         content={content}
+        trigger={["click"]}
         placement={width > 1140 ? "bottomLeft" : "top"}
       >
         <div
-          className={`font-body-font whitespace-nowrap font-[400] w-full text-center text-light hover:text-yellow select-none transition duration-150 ease-out cursor-pointer ${
+          className={`flex items-center font-body-font whitespace-nowrap font-[400] w-full text-center text-light group hover:text-yellow select-none transition duration-150 ease-out cursor-pointer ${
             dir === "col"
               ? "text-[20px]"
               : width <= 1390
@@ -61,6 +67,33 @@ const NavPopover = ({ navbarTitle, dir, url, id }) => {
           } text-light`}
         >
           {navbarTitle}
+          <div className="flex items-center justify-center group-hover:text-yellow">
+            <svg
+              width="17px"
+              height="17px"
+              viewBox="0 0 24.00 24.00"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g id="SVGRepo_bgCarrier" strokeWidth="0" />
+
+              <g
+                id="SVGRepo_tracerCarrier"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+
+              <g id="SVGRepo_iconCarrier">
+                <path
+                  d="M7 10L12 15L17 10"
+                  stroke="currentColor"
+                  strokeWidth="2.04"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </g>
+            </svg>
+          </div>
         </div>
       </Popover>
     </div>

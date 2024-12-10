@@ -5,6 +5,7 @@ import photoCard_data from "../../../utils/photoCard";
 
 const Projects = ({ data }) => {
   const { width } = useSize();
+  console.log(data);
 
   return (
     <>

@@ -23,7 +23,7 @@ const About = ({ data, bottomPage }) => {
     } else if (location.pathname === "/detail/web-development") {
       return "Создание сайтов в Ташкенте";
     } else if (location.pathname === "/") {
-      return "JUBA - маркетинговое агентство в Ташкенте";
+      return "JUBA - Internet marketing agentligi";
     }
     return "Услуга не найдена";
   };

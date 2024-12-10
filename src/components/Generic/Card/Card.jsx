@@ -11,7 +11,7 @@ const DataCard = ({
 }) => {
   return (
     <div
-      className="flex flex-col bg-dark rounded-[20px] group cursor-pointer pb-[50px] w-full min-h-[200px] px-[20px] pt-[30px] font-body-font hover:bg-hover-card-bg transition duration-[180] ease-in"
+      className="flex flex-col bg-dark rounded-[20px] group cursor-pointer pb-[50px] w-full h-full min-h-[200px] px-[20px] pt-[30px] font-body-font hover:bg-hover-card-bg transition duration-[180] ease-in"
       onClick={onClick}
     >
       <div
@@ -40,7 +40,7 @@ const DataCard = ({
       {onClick && (
         <div className="flex flex-row items-center mt-auto text-gray-color group-hover:text-yellow">
           <div onClick={onClick} className="text-inherit font-body-font">
-            Подробнее
+            Batafsil
           </div>
           <svg
             width="23px"

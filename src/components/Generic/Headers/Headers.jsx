@@ -1,9 +1,11 @@
+import { Fragment } from "react";
 import { Button, Desc, Title } from "..";
 
 const Headers = ({ data }) => {
-  const { detail_title, detail_description } = data;
+  const { detail_title, detail_description } = data[0];
+
   return (
-    <>
+    <Fragment>
       {data && (
         <div className="px-[5%]">
           <header className="py-40">
@@ -22,7 +24,7 @@ const Headers = ({ data }) => {
           </header>
         </div>
       )}
-    </>
+    </Fragment>
   );
 };
 

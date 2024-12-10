@@ -1,15 +1,20 @@
-import loadingSpinner from "../../../assets/images/loader/load.png";
+import "./loader.css";
 
 const Loader = () => {
   return (
     <div className="flex items-center justify-center w-full h-screen min-w-full min-h-screen">
-      <div className="flex items-center justify-center w-full h-full cursor-pointer select-noner">
-        <div className="flex items-center justify-center w-[120px] h-[120px] rounded-full">
-          <img
-            src={loadingSpinner}
-            alt=""
-            className="w-[120px] h-[120px] rounded-full z-[999] animate-spin"
-          />
+      <div className="relative flex items-center justify-center w-12 h-12">
+        <div className="relative flex items-center h-full w-1/4 origin-top animate-swing">
+          <div className="w-full h-1/4 bg-yellow rounded-full"></div>
+        </div>
+        <div className="relative flex items-center h-full w-1/4 origin-top">
+          <div className="w-full h-1/4 bg-yellow rounded-full"></div>
+        </div>
+        <div className="relative flex items-center h-full w-1/4 origin-top">
+          <div className="w-full h-1/4 bg-yellow rounded-full"></div>
+        </div>
+        <div className="relative flex items-center h-full w-1/4 origin-top animate-swing2">
+          <div className="w-full h-1/4 bg-yellow rounded-full"></div>
         </div>
       </div>
     </div>

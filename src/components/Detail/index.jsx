@@ -1,51 +1,73 @@
 import axios from "axios";
 import Layout from "./Layout";
 import { Loader } from "../Generic";
-// import Works from "../Generic/Works";
+import Works from "../Generic/Works";
 import TopDisc from "../Generic/TopDisc";
 import About from "../Generic/About/About";
 import { useLocation } from "react-router-dom";
 import ENDPOINTURL from "../../config/endpoint";
-import OurPrice from "./../Generic/Price/Price";
+import OurPrice from "../Generic/Price/Price";
 import Headers from "../Generic/Headers/Headers";
+import Projects from "../Generic/Projects/Projects";
 import { Suspense, useEffect, useState } from "react";
-// import Projects from "../Generic/Projects/Projects";
 
 const Detail = () => {
   const location = useLocation();
-  const [data, setData] = useState({});
   const [loading, setLoading] = useState(true);
-  const itemId = Number(location.pathname[location.pathname.length - 1]);
+  const [data, setData] = useState({
+    title: null,
+    header: null,
+    works: null,
+    disc: null,
+    pricing: null,
+    bottom: null,
+  });
 
+  const itemId = Number(location.pathname.split("/").filter(Boolean).pop());
   console.log(itemId);
 
-  const headerUrl = `${ENDPOINTURL}/service/solo/${itemId}/header/`;
+  const fetchData = async () => {
+    setLoading(true);
+    try {
+      const titleUrl = `${ENDPOINTURL}/service/${itemId}/detail/`;
+      const headerUrl = `${ENDPOINTURL}/service/solo/${itemId}/`;
+      const worksUrl = `${ENDPOINTURL}/service/${itemId}/works/`;
+      const discUrl = `${ENDPOINTURL}/service/type/${itemId}/top/`;
+      const pricingUrl = `${ENDPOINTURL}/service/pricing/${itemId}`;
+      const bottomUrl = `${ENDPOINTURL}/service/type/${itemId}/bottom/`;
+
+      const [
+        titleResponse,
+        headerResponse,
+        worksResponse,
+        discResponse,
+        pricingResponse,
+        bottomResponse,
+      ] = await axios.all([
+        axios.get(titleUrl),
+        axios.get(headerUrl),
+        axios.get(worksUrl),
+        axios.get(discUrl),
+        axios.get(pricingUrl),
+        axios.get(bottomUrl),
+      ]);
+
+      setData({
+        title: titleResponse.data,
+        header: headerResponse.data,
+        works: worksResponse.data,
+        disc: discResponse.data,
+        pricing: pricingResponse.data,
+        bottom: bottomResponse.data,
+      });
+    } catch (error) {
+      console.error("Xatolik yuz berdi:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const [solo, pricing, works, bottom, disc] = await Promise.all([
-          axios.get(`${ENDPOINTURL}/service/solo/${itemId}`),
-          axios.get(`${ENDPOINTURL}/service/pricing/${itemId}`),
-          axios.get(`${ENDPOINTURL}/service/${itemId}/works/`),
-          axios.get(`${ENDPOINTURL}/service/type/${itemId}/bottom/`),
-          axios.get(`${ENDPOINTURL}/service/type/${itemId}/top/`),
-        ]);
-
-        setData({
-          about: solo.data,
-          pricing: pricing.data,
-          works: works.data,
-          cases: bottom.data,
-          disc: disc.data,
-        });
-      } catch (error) {
-        console.error("Malumotlar yuklanmadi:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
     fetchData();
   }, [itemId]);
 
@@ -57,40 +79,42 @@ const Detail = () => {
     },
     {
       id: 2,
-      data: data.about || [],
+      data: data.header || [],
       Section: About,
     },
-    // {
-    //   id: 3,
-    //   data: data.works || [],
-    //   Section: Works,
-    // },
+    {
+      id: 3,
+      data: data.works || [],
+      Section: Works,
+    },
     {
       id: 4,
       data: data.pricing || [],
       Section: OurPrice,
     },
-    // {
-    //   id: 5,
-    //   data: data.cases || [],
-    //   Section: Projects,
-    // },
+    {
+      id: 5,
+      data: data.bottom || [],
+      Section: Projects,
+    },
   ];
 
-  console.log(data);
-
-  // if (titleLoading || loading) return <Loader />;
+  if (loading) return <Loader />;
 
   return (
     <Suspense fallback={<Loader />}>
       <Layout>
-        {/* {!sectionTitleData && <Headers data={sectionTitleData} />} */}
+        <Headers data={data.title} />
         <div>
-          {component.map(({ id, data, Section }) => (
-            <div key={id} className="mb-[50px]">
-              <Section data={data && data} />
-            </div>
-          ))}
+          {component.map(
+            ({ id, data, Section }) =>
+              data &&
+              data.length > 0 && (
+                <div key={id} className="mb-[50px]">
+                  <Section data={data} />
+                </div>
+              )
+          )}
         </div>
       </Layout>
     </Suspense>

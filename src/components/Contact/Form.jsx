@@ -61,9 +61,11 @@ const Contact = () => {
     <Element name="/form">
       <div className="py-[120px] bg-dark-color">
         <h1 className="text-center font-bold text-base md:text-md md:text-3xl sm:text-xl text-[18px] text-white">
-          Заполните форму,
-          <br /> мы перезвоним и обсудим
-          <br /> ваш проект
+          Raqamingizni qoldiring
+          <br />
+          Biz sizga qo'ng'iroq qilamiz
+          <br />
+          va loyihangizni muhokama qilamiz
         </h1>
         <div className="flex justify-center w-full">
           <form

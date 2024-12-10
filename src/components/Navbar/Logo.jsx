@@ -1,6 +1,6 @@
 import { Link } from "react-scroll";
 import { useNavigate } from "react-router-dom";
-import jubaLogo from "../../assets/icons/logo.svg";
+import jubaLogo from "../../assets/images/logo.png";
 
 const Logo = () => {
   const navigate = useNavigate();
@@ -11,7 +11,7 @@ const Logo = () => {
         <img
           src={jubaLogo}
           alt="Juba logo not found"
-          className="w-[76px] h-[76px] min-h-[76px] min-w-[76px] max-md:w-10 max-md:h-10"
+          className="w-[76px] h-[54px] min-h-[54px] min-w-[76px] max-md:w-10 max-md:h-10"
         />
       </div>
     </Link>

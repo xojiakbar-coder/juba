@@ -1,5 +1,5 @@
+import Popover from "./Popover";
 import { Link } from "react-scroll";
-import Popup from "./Popup";
 import useSize from "../../hooks/useSize";
 import navbar_items_data from "../../utils/navbar";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -46,7 +46,13 @@ const Items = ({
 
         if (children && childrenUrl.length > 0) {
           return (
-            <Popup key={id} navbarTitle={title} dir={dir} url={childrenUrl} />
+            <Popover
+              id={id}
+              key={id}
+              dir={dir}
+              url={childrenUrl}
+              navbarTitle={title}
+            />
           );
         }
 

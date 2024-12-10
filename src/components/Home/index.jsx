@@ -106,24 +106,22 @@ const Home = () => {
   ];
 
   return (
-    <>
-      <Suspense>
-        <Navbar />
-        <div className="w-full">
-          {components.map(({ id, Component, data, bottomPage, padding }) => (
-            <div key={id} className={padding ? "px-[5%] py-[25px]" : ""}>
-              <Component
-                data={data}
-                bottomPage={bottomPage && <OurResault data={data.ourResault} />}
-              />
-            </div>
-          ))}
-        </div>
-        <Contact />
-        <Form />
-        <Footer />
-      </Suspense>
-    </>
+    <Suspense>
+      <Navbar />
+      <div className="w-full">
+        {components.map(({ id, Component, data, bottomPage, padding }) => (
+          <div key={id} className={padding ? "px-[5%] py-[25px]" : ""}>
+            <Component
+              data={data}
+              bottomPage={bottomPage && <OurResault data={data.ourResault} />}
+            />
+          </div>
+        ))}
+      </div>
+      <Contact />
+      <Form />
+      <Footer />
+    </Suspense>
   );
 };
 

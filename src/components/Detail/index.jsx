@@ -4,12 +4,12 @@ import { Loader } from "../Generic";
 import Works from "../Generic/Works";
 import TopDisc from "../Generic/TopDisc";
 import About from "../Generic/About/About";
+import OurPrice from "../Generic/Price/Price";
 import { useLocation } from "react-router-dom";
 import ENDPOINTURL from "../../config/endpoint";
-import OurPrice from "../Generic/Price/Price";
 import Headers from "../Generic/Headers/Headers";
 import Projects from "../Generic/Projects/Projects";
-import { Suspense, useEffect, useState } from "react";
+import { Fragment, Suspense, useEffect, useState } from "react";
 
 const Detail = () => {
   const location = useLocation();
@@ -24,7 +24,6 @@ const Detail = () => {
   });
 
   const itemId = Number(location.pathname.split("/").filter(Boolean).pop());
-  console.log(itemId);
 
   const fetchData = async () => {
     setLoading(true);
@@ -105,7 +104,7 @@ const Detail = () => {
     <Suspense fallback={<Loader />}>
       <Layout>
         <Headers data={data.title} />
-        <div>
+        <Fragment>
           {component.map(
             ({ id, data, Section }) =>
               data &&
@@ -115,7 +114,7 @@ const Detail = () => {
                 </div>
               )
           )}
-        </div>
+        </Fragment>
       </Layout>
     </Suspense>
   );

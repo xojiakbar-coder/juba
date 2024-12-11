@@ -1,7 +1,6 @@
 import React from "react";
 import Title from "../Generic/Title/Title";
 import PhotoCard from "../Generic/Card/PhotoCard";
-import photoCard_data from "../../utils/photoCard";
 
 const Case = ({ data }) => {
   return (

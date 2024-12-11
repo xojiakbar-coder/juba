@@ -13,11 +13,10 @@ const OurPrice = ({ data }) => {
           <div className="w-full h-max">
             <div className="flex flex-col justify-center items-center">
               <Title variant="section-name" className="text-light">
-                Тарифы
+                Tariflarimiz
               </Title>
               <Desc className="w-[60%] text-center">
-                Мы рады предоставить вам информацию о наших текущих тарифных
-                планах.
+                Bizning joriy tariflarimiz - o'zingiznikini tanlang!
               </Desc>
             </div>
             <div

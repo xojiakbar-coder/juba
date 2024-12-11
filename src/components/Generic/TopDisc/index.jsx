@@ -8,14 +8,13 @@ const TopDisc = ({ data }) => {
         <section className="px-[5%] py-[25px]">
           <div className="max-w-full px-4 m-auto">
             <div className="max-w-full px-4 m-auto">
-              <Title variant={"title"}>
-                Почему выбирают наше SMM агентство в Ташкенте?
-              </Title>
+              <Title variant={"title"}>SMM agentligimiz</Title>
               <Desc center>
-                Мы понимаем силу социальных медиа в современном цифровом
-                ландшафте. Обладая экспертизой в стратегиях SMM, адаптированных
-                специально для ташкентского рынка, мы предлагаем широкий спектр
-                услуг, чтобы удовлетворить уникальные потребности вашего бренда
+                Bugungi ijtimoiy media kuchi sotuvga juda katta ta’sir
+                ko’rsatishini barchamiz bilamiz . Maxsus ishlab chiqilgan SMM
+                strategiyalari bo'yicha tajribamiz bilan biz brendingizning
+                sotuvi yuksalishi uchun keng ko'lamli xizmatlarni taklif
+                qilamiz.
               </Desc>
             </div>
           </div>

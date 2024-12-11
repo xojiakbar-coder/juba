@@ -1,10 +1,12 @@
 import axios from "axios";
 import Profiles from "./Profiles";
+import { Element } from "react-scroll";
 import useSize from "../../hooks/useSize";
 import { useEffect, useState } from "react";
 import Loader from "../Generic/Loader/Loader";
 import ENDPOINTURL from "./../../config/endpoint";
-import { Element } from "react-scroll";
+
+let phoneNumber = "";
 
 const Contact = () => {
   const { width } = useSize();
@@ -15,6 +17,7 @@ const Contact = () => {
     try {
       const res = await axios.get(`${ENDPOINTURL}/our-contact/`);
       setData(res.data);
+      phoneNumber = res.data[0]?.phone_number || "";
     } catch (err) {
       console.error(err);
     } finally {
@@ -94,4 +97,5 @@ const Contact = () => {
   );
 };
 
+export const number = phoneNumber;
 export default Contact;

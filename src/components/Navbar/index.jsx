@@ -5,12 +5,12 @@ import Items from "./Items";
 import { useState } from "react";
 import NavbarDrawer from "./Drawer";
 import useSize from "../../hooks/useSize";
+import { number } from "../Contact/Contact";
 import Button from "../Generic/Button/Button";
 import menuIcon from "../../assets/icons/menu.svg";
 
 const Navbar = () => {
   const { width } = useSize();
-  const numberButton = `+998 71 200 03 21`;
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   const toggleDrawer = () => {
@@ -31,7 +31,7 @@ const Navbar = () => {
             <Lang />
             <a href="https://t.me/JubaMarketing" target="_blank">
               <Button variant="outline" hover={true}>
-                {numberButton}
+                {number || "our number"}
               </Button>
             </a>
           </div>

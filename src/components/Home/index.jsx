@@ -113,6 +113,7 @@ const Home = () => {
           <div key={id} className={padding ? "px-[5%] py-[25px]" : ""}>
             <Component
               data={data}
+              id={`section-${id}`}
               bottomPage={bottomPage && <OurResault data={data.ourResault} />}
             />
           </div>

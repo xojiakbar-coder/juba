@@ -1,17 +1,32 @@
+import axios from "axios";
 import Logo from "./Logo";
 import Body from "./Body";
 import Lang from "./Lang";
 import Items from "./Items";
-import { useState } from "react";
 import NavbarDrawer from "./Drawer";
 import useSize from "../../hooks/useSize";
-import { number } from "../Contact/Contact";
+import { useEffect, useState } from "react";
 import Button from "../Generic/Button/Button";
 import menuIcon from "../../assets/icons/menu.svg";
+import ENDPOINTURL from "../../config/endpoint";
 
 const Navbar = () => {
+  const [number, setNumber] = useState("");
   const { width } = useSize();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
+  const getData = async () => {
+    try {
+      const res = await axios.get(`${ENDPOINTURL}/our-contact/`);
+      setNumber(res.data[0]?.phone_number || "");
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
 
   const toggleDrawer = () => {
     setIsDrawerOpen(!isDrawerOpen);

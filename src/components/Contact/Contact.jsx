@@ -6,8 +6,6 @@ import { useEffect, useState } from "react";
 import Loader from "../Generic/Loader/Loader";
 import ENDPOINTURL from "./../../config/endpoint";
 
-let phoneNumber = "";
-
 const Contact = () => {
   const { width } = useSize();
   const [data, setData] = useState([]);
@@ -97,5 +95,4 @@ const Contact = () => {
   );
 };
 
-export const number = phoneNumber;
 export default Contact;

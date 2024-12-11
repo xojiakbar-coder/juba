@@ -15,7 +15,6 @@ const Contact = () => {
     try {
       const res = await axios.get(`${ENDPOINTURL}/our-contact/`);
       setData(res.data);
-      phoneNumber = res.data[0]?.phone_number || "";
     } catch (err) {
       console.error(err);
     } finally {

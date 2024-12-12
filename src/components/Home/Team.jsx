@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { memo, useState } from "react";
 import Title from "../Generic/Title/Title";
 import { Element } from "react-scroll";
 
-const Team = ({ data }) => {
+const Team = memo(({ data }) => {
   const [hoveredMember, setHoveredMember] = useState(null);
 
   return (
@@ -54,6 +54,6 @@ const Team = ({ data }) => {
       </div>
     </Element>
   );
-};
+});
 
 export default Team;

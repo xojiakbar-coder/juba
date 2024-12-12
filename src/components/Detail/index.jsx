@@ -10,7 +10,6 @@ import OurPrice from "./../Generic/Price/Price";
 import Headers from "../Generic/Headers/Headers";
 import { Suspense, useEffect, useState } from "react";
 // import Projects from "../Generic/Projects/Projects";
-import { useDetailContext } from "../../context/DetailContext";
 
 const Detail = () => {
   const location = useLocation();
@@ -18,7 +17,7 @@ const Detail = () => {
   const [loading, setLoading] = useState(true);
   const itemId = Number(location.pathname[location.pathname.length - 1]);
 
-  const sectionTitleData = titleData.find(({ id }) => id === itemId);
+  // const sectionTitleData = titleData.find(({ id }) => id === itemId);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -78,12 +77,12 @@ const Detail = () => {
 
   console.log(data);
 
-  if (titleLoading || loading) return <Loader />;
+  // if (titleLoading || loading) return <Loader />;
 
   return (
     <Suspense fallback={<Loader />}>
       <Layout>
-        {!titleError && <Headers data={sectionTitleData} />}
+        {/* {!titleError && <Headers data={sectionTitleData} />} */}
         <div>
           {component.map(({ id, data, Section }) => (
             <div key={id} className="mb-[50px]">

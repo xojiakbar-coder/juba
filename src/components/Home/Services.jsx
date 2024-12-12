@@ -3,8 +3,9 @@ import Title from "../Generic/Title/Title";
 import DataCard from "../Generic/Card/Card";
 import { useNavigate } from "react-router-dom";
 import navbar_items_data from "../../utils/navbar";
+import { memo } from "react";
 
-const Services = ({ data }) => {
+const Services = memo(({ data }) => {
   const navigate = useNavigate();
 
   const handleCardClick = (id) => {
@@ -50,6 +51,6 @@ const Services = ({ data }) => {
       )}
     </>
   );
-};
+});
 
 export default Services;

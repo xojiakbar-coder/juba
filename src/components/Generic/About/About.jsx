@@ -31,11 +31,14 @@ const About = ({ data, bottomPage }) => {
   const aboutData = Array.isArray(data) && data[0] ? data[0] : data;
 
   const getShortDescription = (text, limit) => {
-    if (text.length > limit) {
-      const trimmedText = text.slice(0, limit).trim();
+    if (text?.length > limit) { 
+      const trimmedText = text?.slice(0, limit)?.trim();
       return `${trimmedText}...`;
     }
-    return text;
+
+    if (text) {
+      return text;
+    }
   };
 
   let descriptionLimit = aboutData?.description;

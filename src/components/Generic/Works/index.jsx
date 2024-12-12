@@ -6,17 +6,17 @@ import "slick-carousel/slick/slick-theme.css";
 
 const Works = ({ data }) => {
   const settings = {
-    dots: false,
-    infinite: true,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    autoplay: true,
     speed: 1000,
-    autoplaySpeed: 3000,
-    cssEase: "linear",
-    centerMode: true,
-    centerPadding: "0",
+    dots: false,
     arrows: false,
+    infinite: true,
+    autoplay: true,
+    slidesToShow: 3,
+    centerMode: true,
+    slidesToScroll: 1,
+    cssEase: "linear",
+    centerPadding: "0",
+    autoplaySpeed: 2000,
   };
 
   return (

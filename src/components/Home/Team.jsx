@@ -9,7 +9,7 @@ const Team = memo(({ data }) => {
     <Element name="/our-team">
       <div className="flex flex-col py-[150px] pt-[120px] px-[16px]">
         <Title variant="section-name" className="text-light">
-          Наша команда
+          Bizning jamoa
         </Title>
         <div className="flex justify-center w-full pt-[100px]">
           <div className="flex flex-col overflow-x-auto w-full">

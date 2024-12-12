@@ -10,6 +10,7 @@ const HomePage = memo(({ data }) => {
   const backgroundImage = {
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
+    backgroundAttachment: `${width > 1140 ? "fixed" : "scroll"}`,
     backgroundImage: `url(${photo ? photo : homeImage})`,
     backgroundSize: `${width > 1020 ? "cover" : "100% 100%"}`,
   };
@@ -26,7 +27,7 @@ const HomePage = memo(({ data }) => {
                 ? "h-[400px]"
                 : width > 700
                 ? "h-[300px]"
-                : "h-[200px]"
+                : "h-[250px]"
             } relative rounded-[30px]`}
             style={backgroundImage}
           />

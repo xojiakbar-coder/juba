@@ -1,11 +1,11 @@
 import { useState } from "react";
 import Title from "../Title/Title";
 import Modal from "../Modal/Modal";
+import { Element } from "react-scroll";
 import useSize from "../../../hooks/useSize";
 import { useLocation } from "react-router-dom";
 import useLockBodyScroll from "../../../hooks/useLayoutEffect";
 import aboutUS from "../../../assets/images/home/about-us.svg";
-import { Element } from "react-scroll";
 
 const About = ({ data, bottomPage }) => {
   const { width } = useSize();
@@ -18,21 +18,26 @@ const About = ({ data, bottomPage }) => {
   };
 
   const getTitle = () => {
-    if (location.pathname === "/detail/smm") {
-      return "SMM продвижение в Ташкенте";
-    } else if (location.pathname === "/detail/web-development") {
-      return "Создание сайтов в Ташкенте";
+    if (location.pathname === "/detail/1") {
+      return "Smm xizmati ijtimoiy media marketingi";
+    } else if (location.pathname === "/detail/2") {
+      return " Veb-sayt yaratish";
     } else if (location.pathname === "/") {
-      return "JUBA - маркетинговое агентство в Ташкенте";
+      return "JUBA - Internet marketing agentligi";
     }
-    return "Услуга не найдена";
+    return "Sarlavha topilmadi";
   };
 
   const aboutData = Array.isArray(data) && data[0] ? data[0] : data;
 
   const getShortDescription = (text, limit) => {
+<<<<<<< HEAD
     if (text?.length > limit) { 
       const trimmedText = text?.slice(0, limit)?.trim();
+=======
+    if (text?.length > limit) {
+      const trimmedText = text?.slice(0, limit).trim();
+>>>>>>> e074ada16623a22afae1bcca3dfdfa9ab4a08811
       return `${trimmedText}...`;
     }
 

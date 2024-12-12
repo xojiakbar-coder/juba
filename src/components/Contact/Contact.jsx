@@ -1,10 +1,10 @@
 import axios from "axios";
 import Profiles from "./Profiles";
+import { Element } from "react-scroll";
 import useSize from "../../hooks/useSize";
 import { useEffect, useState } from "react";
 import Loader from "../Generic/Loader/Loader";
 import ENDPOINTURL from "./../../config/endpoint";
-import { Element } from "react-scroll";
 
 const Contact = () => {
   const { width } = useSize();
@@ -42,14 +42,12 @@ const Contact = () => {
     } = data[0]);
   }
 
-  if (loading) {
-    return <Loader />;
-  }
+  if (loading) return <Loader />;
 
   return (
     <Element name="/aloqa">
       <div className="flex items-center flex-col w-full bg-white py-20 justify-center pt-[120px]">
-        <h2 className="text-4xl font-bold text-center">Контакты</h2>
+        <h2 className="text-4xl font-bold text-center">Aloqalar</h2>
         <div
           className={`grid ${
             width > 1020 ? "grid-cols-2 px-[12%]" : "grid-cols-1 px-[20px]"

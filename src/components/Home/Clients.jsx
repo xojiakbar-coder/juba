@@ -9,7 +9,7 @@ const Clients = memo(({ data }) => {
         <Element name="/clients">
           <div className="flex flex-col my-[100px] pt-[120px]">
             <Title variant="section-name" className="text-white">
-              Наши клиенты
+              Bizning mijozlar
             </Title>
             <div className="bg-yellow w-full mt-[35px]">
               <div className="py-12 relative w-full">

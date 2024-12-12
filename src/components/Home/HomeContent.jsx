@@ -11,7 +11,7 @@ const HomeContent = ({ title, short_description }) => {
       <div>
         <Title
           variant="primary"
-          className={`${width > 1200 ? "w-[70%]" : "w-[80$]"}`}
+          className={`${width > 1200 ? "w-[%]" : "w-[95$]"}`}
         >
           {title && title}
         </Title>

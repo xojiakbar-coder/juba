@@ -42,9 +42,7 @@ const Contact = () => {
     } = data[0]);
   }
 
-  if (loading) {
-    return <Loader />;
-  }
+  if (loading) return <Loader />;
 
   return (
     <Element name="/aloqa">

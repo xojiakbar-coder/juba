@@ -1,23 +1,28 @@
-import React from "react";
+import React, { memo } from "react";
 import useSize from "../../hooks/useSize";
 import Title from "../Generic/Title/Title";
 import Button from "../Generic/Button/Button";
 
-const HomeContent = ({ title, short_description }) => {
+const HomeContent = memo(({ title, short_description }) => {
   const { width } = useSize();
 
   return (
     <div className="flex flex-col h-full">
       <div>
         <Title
+<<<<<<< HEAD
+          variant="secondary"
+          className={`${width > 1200 ? "w-max" : "w-[80$]"}`}
+=======
           variant="primary"
           className={`${width > 1200 ? "w-[%]" : "w-[95$]"}`}
+>>>>>>> e074ada16623a22afae1bcca3dfdfa9ab4a08811
         >
           {title && title}
         </Title>
       </div>
       {width > 1020 && (
-        <p className="text-light w-full mt-[30px] md:w-[70%] xl:w-[60%] lg:w-[80%] w-full h-max text-[20px] leading-[26px]">
+        <p className="text-light mt-[30px] md:w-[70%] xl:w-[60%] lg:w-[80%] w-full h-max text-[20px] leading-[26px]">
           {short_description && short_description}
         </p>
       )}
@@ -39,6 +44,6 @@ const HomeContent = ({ title, short_description }) => {
       </div>
     </div>
   );
-};
+});
 
 export default HomeContent;

@@ -1,8 +1,9 @@
 import HomeContent from "./HomeContent";
 import useSize from "../../hooks/useSize";
 import homeImage from "../../assets/images/home/home.png";
+import { memo } from "react";
 
-const HomePage = ({ data }) => {
+const HomePage = memo(({ data }) => {
   const { width } = useSize();
   const { title, short_description, photo } = data[0];
 
@@ -54,6 +55,6 @@ const HomePage = ({ data }) => {
       )}
     </>
   );
-};
+});
 
 export default HomePage;

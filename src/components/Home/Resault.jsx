@@ -1,8 +1,8 @@
-import React from "react";
+import React, { memo } from "react";
 import Title from "../Generic/Title/Title";
 import DataCard from "../Generic/Card/Card";
 
-const OurResault = ({ data }) => {
+const OurResault = memo(({ data }) => {
   return (
     <>
       {data && (
@@ -27,6 +27,6 @@ const OurResault = ({ data }) => {
       )}
     </>
   );
-};
+});
 
 export default OurResault;

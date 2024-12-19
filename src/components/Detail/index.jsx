@@ -8,8 +8,13 @@ import OurPrice from "../Generic/Price/Price";
 import { useLocation } from "react-router-dom";
 import ENDPOINTURL from "../../config/base_url";
 import Headers from "../Generic/Headers/Headers";
+<<<<<<< HEAD
+import { Suspense, useEffect, useState } from "react";
+// import Projects from "../Generic/Projects/Projects";
+=======
 import Projects from "../Generic/Projects/Projects";
 import { Fragment, Suspense, useEffect, useState } from "react";
+>>>>>>> e074ada16623a22afae1bcca3dfdfa9ab4a08811
 
 const Detail = () => {
   const location = useLocation();
@@ -23,6 +28,9 @@ const Detail = () => {
     bottom: null,
   });
 
+<<<<<<< HEAD
+  // const sectionTitleData = titleData.find(({ id }) => id === itemId);
+=======
   const itemId = Number(location.pathname.split("/").filter(Boolean).pop());
 
   const fetchData = async () => {
@@ -65,6 +73,7 @@ const Detail = () => {
       setLoading(false);
     }
   };
+>>>>>>> e074ada16623a22afae1bcca3dfdfa9ab4a08811
 
   useEffect(() => {
     fetchData();
@@ -98,11 +107,27 @@ const Detail = () => {
     },
   ];
 
+<<<<<<< HEAD
+  console.log(data);
+
+  // if (titleLoading || loading) return <Loader />;
+=======
   if (loading) return <Loader />;
+>>>>>>> e074ada16623a22afae1bcca3dfdfa9ab4a08811
 
   return (
     <Suspense fallback={<Loader />}>
       <Layout>
+<<<<<<< HEAD
+        {/* {!titleError && <Headers data={sectionTitleData} />} */}
+        <div>
+          {component.map(({ id, data, Section }) => (
+            <div key={id} className="mb-[50px]">
+              <Section data={data} />
+            </div>
+          ))}
+        </div>
+=======
         <Headers data={data.title} />
         <Fragment>
           {component.map(
@@ -115,6 +140,7 @@ const Detail = () => {
               )
           )}
         </Fragment>
+>>>>>>> e074ada16623a22afae1bcca3dfdfa9ab4a08811
       </Layout>
     </Suspense>
   );

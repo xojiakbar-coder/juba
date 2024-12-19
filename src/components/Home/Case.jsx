@@ -1,8 +1,8 @@
-import React from "react";
+import React, { memo } from "react";
 import Title from "../Generic/Title/Title";
 import PhotoCard from "../Generic/Card/PhotoCard";
 
-const Case = ({ data }) => {
+const Case = memo(({ data }) => {
   return (
     <div className="mt-[150px] text-center">
       <Title variant="title">Наши кейсы</Title>
@@ -15,6 +15,6 @@ const Case = ({ data }) => {
       </div>
     </div>
   );
-};
+});
 
 export default Case;

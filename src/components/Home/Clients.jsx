@@ -1,8 +1,8 @@
-import React from "react";
+import React, { memo } from "react";
 import { Element } from "react-scroll";
 import Title from "../Generic/Title/Title";
 
-const Clients = ({ data }) => {
+const Clients = memo(({ data }) => {
   return (
     <>
       {data && (
@@ -31,6 +31,6 @@ const Clients = ({ data }) => {
       )}
     </>
   );
-};
+});
 
 export default Clients;

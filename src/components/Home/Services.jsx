@@ -3,8 +3,13 @@ import { Element } from "react-scroll";
 import Title from "../Generic/Title/Title";
 import DataCard from "../Generic/Card/Card";
 import { useNavigate } from "react-router-dom";
+<<<<<<< HEAD
+import navbar_items_data from "../../utils/navbar";
+import { memo } from "react";
+=======
+>>>>>>> e074ada16623a22afae1bcca3dfdfa9ab4a08811
 
-const Services = ({ data }) => {
+const Services = memo(({ data }) => {
   const navigate = useNavigate();
 
   const getDetailData = async ({ id }) => {
@@ -37,6 +42,6 @@ const Services = ({ data }) => {
       )}
     </Fragment>
   );
-};
+});
 
 export default Services;

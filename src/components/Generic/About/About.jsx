@@ -31,13 +31,8 @@ const About = ({ data, bottomPage }) => {
   const aboutData = Array.isArray(data) && data[0] ? data[0] : data;
 
   const getShortDescription = (text, limit) => {
-<<<<<<< HEAD
-    if (text?.length > limit) { 
-      const trimmedText = text?.slice(0, limit)?.trim();
-=======
     if (text?.length > limit) {
       const trimmedText = text?.slice(0, limit).trim();
->>>>>>> e074ada16623a22afae1bcca3dfdfa9ab4a08811
       return `${trimmedText}...`;
     }
 

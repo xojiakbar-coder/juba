@@ -10,13 +10,8 @@ const HomeContent = memo(({ title, short_description }) => {
     <div className="flex flex-col h-full">
       <div>
         <Title
-<<<<<<< HEAD
-          variant="secondary"
-          className={`${width > 1200 ? "w-max" : "w-[80$]"}`}
-=======
           variant="primary"
           className={`${width > 1200 ? "w-[%]" : "w-[95$]"}`}
->>>>>>> e074ada16623a22afae1bcca3dfdfa9ab4a08811
         >
           {title && title}
         </Title>

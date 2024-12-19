@@ -3,7 +3,7 @@ import { Popover } from "antd";
 import useSize from "../../hooks/useSize";
 import { NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
-import ENDPOINTURL from "../../config/endpoint";
+import ENDPOINTURL from "../../config/base_url";
 import navbar_items_data from "../../utils/navbar";
 
 const NavPopover = ({ navbarTitle, dir, url, id }) => {

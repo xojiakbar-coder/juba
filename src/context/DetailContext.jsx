@@ -1,5 +1,5 @@
 import axios from "axios";
-import ENDPOINTURL from "../config/endpoint";
+import ENDPOINTURL from "../config/base_url";
 import { createContext, useContext, useEffect, useState } from "react";
 
 const DetailContext = createContext();

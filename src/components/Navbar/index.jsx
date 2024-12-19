@@ -8,7 +8,7 @@ import useSize from "../../hooks/useSize";
 import { useEffect, useState } from "react";
 import Button from "../Generic/Button/Button";
 import menuIcon from "../../assets/icons/menu.svg";
-import ENDPOINTURL from "../../config/endpoint";
+import ENDPOINTURL from "../../config/base_url";
 
 const Navbar = () => {
   const [number, setNumber] = useState("");

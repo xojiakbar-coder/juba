@@ -6,7 +6,7 @@ import TopDisc from "../Generic/TopDisc";
 import About from "../Generic/About/About";
 import OurPrice from "../Generic/Price/Price";
 import { useLocation } from "react-router-dom";
-import ENDPOINTURL from "../../config/endpoint";
+import ENDPOINTURL from "../../config/base_url";
 import Headers from "../Generic/Headers/Headers";
 import Projects from "../Generic/Projects/Projects";
 import { Fragment, Suspense, useEffect, useState } from "react";

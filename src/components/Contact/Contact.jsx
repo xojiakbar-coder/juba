@@ -4,7 +4,7 @@ import { Element } from "react-scroll";
 import useSize from "../../hooks/useSize";
 import { useEffect, useState } from "react";
 import Loader from "../Generic/Loader/Loader";
-import ENDPOINTURL from "./../../config/endpoint";
+import ENDPOINTURL from "./../../config/base_url";
 
 const Contact = () => {
   const { width } = useSize();

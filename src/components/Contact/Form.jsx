@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Button } from "../Generic";
 import { Element } from "react-scroll";
 import useSize from "../../hooks/useSize";
-import ENDPOINTURL from "../../config/endpoint";
+import ENDPOINTURL from "../../config/base_url";
 
 const Contact = () => {
   const { width } = useSize();

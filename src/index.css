@@ -36,9 +36,3 @@ body {
   font-family: var(--bodyFont);
   background-color: var(--darkTextColor);
 }
-
-@layer utilities {
-  .hyphens-auto {
-    hyphens: auto;
-  }
-}

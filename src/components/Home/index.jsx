@@ -10,7 +10,7 @@ import OurResault from "./Resault";
 import { Loader } from "../Generic";
 import Contact from "../Contact/Contact";
 import About from "../Generic/About/About";
-import ENDPOINTURL from "../../config/endpoint";
+import ENDPOINTURL from "../../config/base_url";
 import { Suspense, useEffect, useState } from "react";
 
 const Home = () => {

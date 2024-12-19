@@ -6,8 +6,8 @@ import closeIcon from "../../assets/icons/close.svg";
 import useLockBodyScroll from "../../hooks/useLayoutEffect";
 
 const NavbarDrawer = ({ isOpen, onClose }) => {
-  const { width } = useSize();
   useLockBodyScroll(isOpen);
+  const { width } = useSize();
   const numberButton = `+998 90 047 22 20`;
   return (
     <div

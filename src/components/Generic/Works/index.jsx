@@ -1,22 +1,28 @@
+import "./style.css";
 import Desc from "../Desc";
 import Slider from "react-slick";
 import Title from "../Title/Title";
 import "slick-carousel/slick/slick.css";
+import useSize from "../../../hooks/useSize";
 import "slick-carousel/slick/slick-theme.css";
+import { memo } from "react";
 
 const Works = ({ data }) => {
+  const { width } = useSize();
+  const centerPadding = width > 1880 ? "600px" : "500px";
   const settings = {
-    speed: 1000,
-    dots: false,
+    speed: 300,
+    dots: true,
     arrows: false,
     infinite: true,
     autoplay: true,
-    slidesToShow: 3,
+    slidesToShow: 1,
     centerMode: true,
     slidesToScroll: 1,
-    cssEase: "linear",
-    centerPadding: "0",
+    pauseOnHover: true,
     autoplaySpeed: 2000,
+    focusOnSelect: true,
+    centerPadding: "600px",
   };
 
   return (
@@ -29,18 +35,18 @@ const Works = ({ data }) => {
           Biz tajribamiz, ijodkorligimiz va samaradorligimizni aks ettiruvchi
           ishimizni taqdim etishdan faxrlanamiz.
         </Desc>
-        <div className="flex flex-col">
+        <div className="flex flex-col border overflow-x-hidden">
           <Slider {...settings}>
             {data &&
               data.map((item) => {
                 const { id, photo } = item;
                 return (
-                  <div key={id} className="w-full px-4">
+                  <div key={id} className="w-full px-4 overflow-x-hidden">
                     <div className="flex justify-center py-16 text-center">
                       <img
                         src={photo}
                         alt="image not found"
-                        className="cursor-pointer"
+                        className="object-contain cursor-pointer"
                       />
                     </div>
                   </div>
@@ -53,4 +59,4 @@ const Works = ({ data }) => {
   );
 };
 
-export default Works;
+export default memo(Works);

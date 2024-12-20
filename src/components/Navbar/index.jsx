@@ -7,12 +7,12 @@ import NavbarDrawer from "./Drawer";
 import useSize from "../../hooks/useSize";
 import { useEffect, useState } from "react";
 import Button from "../Generic/Button/Button";
-import menuIcon from "../../assets/icons/menu.svg";
 import ENDPOINTURL from "../../config/base_url";
+import menuIcon from "../../assets/icons/menu.svg";
 
 const Navbar = () => {
-  const [number, setNumber] = useState("");
   const { width } = useSize();
+  const [number, setNumber] = useState("");
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   const getData = async () => {

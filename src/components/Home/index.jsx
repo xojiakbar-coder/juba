@@ -6,7 +6,6 @@ import Clients from "./Clients";
 import Service from "./Services";
 import HomePage from "./HomePage";
 import Form from "../Contact/Form";
-import OurResault from "./Resault";
 import { Loader } from "../Generic";
 import Contact from "../Contact/Contact";
 import About from "../Generic/About/About";
@@ -89,7 +88,6 @@ const Home = () => {
       Component: About,
       data: data.soloMain,
       padding: false,
-      bottomPage: true,
     },
     {
       id: 4,
@@ -109,13 +107,9 @@ const Home = () => {
     <Suspense>
       <Navbar />
       <div className="w-full">
-        {components.map(({ id, Component, data, bottomPage, padding }) => (
+        {components.map(({ id, Component, data, padding }) => (
           <div key={id} className={padding ? "px-[5%] py-[25px]" : ""}>
-            <Component
-              data={data}
-              id={`section-${id}`}
-              bottomPage={bottomPage && <OurResault data={data.ourResault} />}
-            />
+            <Component data={data} />
           </div>
         ))}
       </div>

@@ -1,5 +1,4 @@
 import React, { memo } from "react";
-import { Element } from "react-scroll";
 import Title from "../Generic/Title/Title";
 
 const Clients = memo(({ data }) => {

@@ -1,13 +1,12 @@
 import { useState } from "react";
 import Title from "../Title/Title";
 import Modal from "../Modal/Modal";
-import { Element } from "react-scroll";
 import useSize from "../../../hooks/useSize";
 import { useLocation } from "react-router-dom";
 import useLockBodyScroll from "../../../hooks/useLayoutEffect";
 import aboutUS from "../../../assets/images/home/about-us.svg";
 
-const About = ({ data, bottomPage }) => {
+const About = ({ data }) => {
   const { width } = useSize();
   const location = useLocation();
   const [openModal, setModalToggle] = useState(false);
@@ -45,7 +44,7 @@ const About = ({ data, bottomPage }) => {
   if (width < 1000) {
     descriptionLimit = 320;
   } else if (width < 1170) {
-    descriptionLimit = 480;
+    descriptionLimit = 680;
   } else if (width < 1330) {
     descriptionLimit = 790;
   } else if (width < 1520) {
@@ -60,7 +59,7 @@ const About = ({ data, bottomPage }) => {
   );
 
   return (
-    <Element name="/about">
+    <div id="/about">
       <div
         className={`mt-[150px] w-full bg-light pb-[100px] py-[150px] px-[5%] ${
           openModal && "pointer-events-none"
@@ -89,7 +88,7 @@ const About = ({ data, bottomPage }) => {
               </div>
               <div className="flex flex-col justify-between h-full w-full">
                 <div className="flex justify-between flex-col text-gray-color mt-[-3px] overflow-hidden font-[400] text-[16px] leading-[25px] w-full">
-                  <p className="w-full overflow-hidden text-ellipsis">
+                  <p className="w-full overflow-hidden text-ellipsis text-justify">
                     {width > 1190 ? shortDescription : aboutData?.description}
                     {width > 1190 && width < 1700 && (
                       <button
@@ -104,8 +103,6 @@ const About = ({ data, bottomPage }) => {
               </div>
             </div>
           </div>
-          {/* bottom min page */}
-          {bottomPage}
         </div>
       </div>
       {width > 1190 && width < 1700 && (
@@ -115,7 +112,7 @@ const About = ({ data, bottomPage }) => {
           text={aboutData.description}
         />
       )}
-    </Element>
+    </div>
   );
 };
 

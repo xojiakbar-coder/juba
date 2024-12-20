@@ -1,12 +1,11 @@
 import { memo, useState } from "react";
 import Title from "../Generic/Title/Title";
-import { Element } from "react-scroll";
 
 const Team = memo(({ data }) => {
   const [hoveredMember, setHoveredMember] = useState(null);
 
   return (
-    <Element name="/our-team">
+    <div id="/our-team">
       <div className="flex flex-col py-[150px] pt-[120px] px-[16px]">
         <Title variant="section-name" className="text-light">
           Bizning jamoa
@@ -52,7 +51,7 @@ const Team = memo(({ data }) => {
           </div>
         </div>
       </div>
-    </Element>
+    </div>
   );
 });
 

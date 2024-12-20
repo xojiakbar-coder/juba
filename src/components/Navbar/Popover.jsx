@@ -1,51 +1,57 @@
 import axios from "axios";
 import { Popover } from "antd";
+import { Loader } from "../Generic";
 import useSize from "../../hooks/useSize";
 import { NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
 import ENDPOINTURL from "../../config/base_url";
-import navbar_items_data from "../../utils/navbar";
+import { uz_endpoints } from "../../config/endpoints";
 
-const NavPopover = ({ navbarTitle, dir, url, id }) => {
+const NavPopover = ({ navbarTitle, dir }) => {
   const { width } = useSize();
-  const [detailData, setDetailData] = useState([]);
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const itemId = navbar_items_data.find((item) => item.id === +id).id;
-  const getDetailData = async () => {
+  const getData = async () => {
     try {
-      const res = (await axios.get(`${ENDPOINTURL}/service/`)).data;
-      setDetailData(res);
+      const res = await axios.get(`${ENDPOINTURL}/service/`);
+      setData(res.data);
     } catch (err) {
       console.error(err);
+    } finally {
+      setLoading(false);
     }
   };
 
   useEffect(() => {
-    getDetailData();
-  }, [itemId]);
+    getData();
+  }, []);
+
+  if (loading) return <Loader />;
 
   const content = (
     <div className="bg-light py-[8px] px-[10px] rounded-[20px]">
       <div className="flex flex-col gap-[10px]">
-        {detailData.map((detail) => {
-          const { id, title } = detail;
-
-          return (
-            <NavLink
-              key={id}
-              to={`/detail/${id}`}
-              className={`flex flex-wrap font-[500] font-body-font text-gray-color group-hover:text-yellow group-hover:cursor-pointer ${
-                width > 992
-                  ? "text-[14px]"
-                  : width < 850
-                  ? "text-[11px]"
-                  : "text-[10px]"
-              } transition duration-150 ease-in-out w-max hover:text-yellow`}
-            >
-              {title}
-            </NavLink>
-          );
-        })}
+        {data &&
+          data.map((detail, index) => {
+            const { id, title } = detail;
+            // console.log(uz_endpoints[index]);
+            return (
+              <NavLink
+                key={id}
+                to={uz_endpoints[index]}
+                className={`flex flex-wrap font-[500] font-body-font text-gray-color group-hover:text-yellow group-hover:cursor-pointer ${
+                  width > 992
+                    ? "text-[14px]"
+                    : width < 850
+                    ? "text-[11px]"
+                    : "text-[10px]"
+                } transition duration-150 ease-in-out w-max hover:text-yellow`}
+              >
+                {title}
+              </NavLink>
+            );
+          })}
       </div>
     </div>
   );

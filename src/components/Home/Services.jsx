@@ -1,5 +1,4 @@
 import { Fragment, memo } from "react";
-import { Element } from "react-scroll";
 import Title from "../Generic/Title/Title";
 import DataCard from "../Generic/Card/Card";
 import { useNavigate } from "react-router-dom";
@@ -14,7 +13,7 @@ const Services = memo(({ data }) => {
   return (
     <Fragment>
       {data && (
-        <Element name="/service" className="flex flex-col mt-[100px] w-full">
+        <div id="/service" className="flex flex-col mt-[100px] w-full">
           <div className="w-full">
             <Title variant="title">
               Biznesingiz uchun marketing xizmatlari
@@ -33,7 +32,7 @@ const Services = memo(({ data }) => {
               })}
             </div>
           </div>
-        </Element>
+        </div>
       )}
     </Fragment>
   );

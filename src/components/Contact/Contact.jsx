@@ -1,6 +1,5 @@
 import axios from "axios";
 import Profiles from "./Profiles";
-import { Element } from "react-scroll";
 import useSize from "../../hooks/useSize";
 import { useEffect, useState } from "react";
 import Loader from "../Generic/Loader/Loader";
@@ -45,7 +44,7 @@ const Contact = () => {
   if (loading) return <Loader />;
 
   return (
-    <Element name="/aloqa">
+    <div id="/aloqa">
       <div className="flex items-center flex-col w-full bg-white py-20 justify-center pt-[120px]">
         <h2 className="text-4xl font-bold text-center">Aloqalar</h2>
         <div
@@ -79,7 +78,6 @@ const Contact = () => {
           <Profiles
             land="contact"
             profilesDir="col"
-            w
             facebook_url={facebook_url}
             instagram_url={instagram_url}
             email={email}
@@ -88,7 +86,7 @@ const Contact = () => {
           />
         </div>
       </div>
-    </Element>
+    </div>
   );
 };
 

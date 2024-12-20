@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
 import { Button } from "../Generic";
-import { Element } from "react-scroll";
 import useSize from "../../hooks/useSize";
 import ENDPOINTURL from "../../config/base_url";
 
@@ -58,7 +57,7 @@ const Contact = () => {
   };
 
   return (
-    <Element name="/form">
+    <div id="/form">
       <div className="py-[120px] bg-dark-color">
         <h1 className="text-center font-bold text-base md:text-md md:text-3xl sm:text-xl text-[18px] text-white">
           Raqamingizni qoldiring
@@ -123,7 +122,7 @@ const Contact = () => {
           </form>
         </div>
       </div>
-    </Element>
+    </div>
   );
 };
 

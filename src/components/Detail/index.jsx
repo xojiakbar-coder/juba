@@ -10,6 +10,7 @@ import ENDPOINTURL from "../../config/base_url";
 import Headers from "../Generic/Headers/Headers";
 import Projects from "../Generic/Projects/Projects";
 import { Fragment, Suspense, useEffect, useState } from "react";
+import { uz_endpoints } from "../../config/endpoints";
 
 const Detail = () => {
   const location = useLocation();
@@ -23,7 +24,8 @@ const Detail = () => {
     bottom: null,
   });
 
-  const itemId = Number(location.pathname.split("/").filter(Boolean).pop());
+  const findItem = uz_endpoints.findIndex((item) => item === location.pathname);
+  const itemId = Number(findItem + 1);
 
   const fetchData = async () => {
     setLoading(true);

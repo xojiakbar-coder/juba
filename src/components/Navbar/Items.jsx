@@ -1,5 +1,4 @@
 import Popover from "./Popover";
-import { Link } from "react-scroll";
 import useSize from "../../hooks/useSize";
 import navbar_items_data from "../../utils/navbar";
 import useSmoothScroll from "../../hooks/useSmoothScroll";
@@ -18,9 +17,9 @@ const Items = ({
   const navigate = useNavigate();
   const scrollToSection = useSmoothScroll();
 
-  const handleItemClick = ({ id }) => {
+  const handleItemClick = ({ path }) => {
     if (location.pathname === "/") {
-      scrollToSection(`section-${id}`);
+      scrollToSection(path);
       if (dir === "col") onClose();
     } else {
       navigate("/");
@@ -37,26 +36,15 @@ const Items = ({
       }}
     >
       {navbar_items_data.map((item) => {
-        const { id, title, path, children, childrenUrl } = item;
+        const { id, title, path, children } = item;
 
-        if (children && childrenUrl.length > 0) {
-          return (
-            <Popover
-              id={id}
-              key={id}
-              dir={dir}
-              url={childrenUrl}
-              navbarTitle={title}
-            />
-          );
+        if (children) {
+          return <Popover id={id} key={id} dir={dir} navbarTitle={title} />;
         }
 
         return (
-          <Link
+          <div
             key={id}
-            to={path}
-            smooth={true}
-            duration={800}
             className={`font-body-font whitespace-nowrap font-[400] ${
               dir === "col"
                 ? "text-[20px]"
@@ -64,10 +52,10 @@ const Items = ({
                 ? "text-[14px]"
                 : "text-[16px]"
             } w-full text-center text-light hover:text-yellow select-none transition duration-150 ease-out cursor-pointer`}
-            onClick={() => handleItemClick(id)}
+            onClick={() => handleItemClick(path)}
           >
             {title}
-          </Link>
+          </div>
         );
       })}
     </div>

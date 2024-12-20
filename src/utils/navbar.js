@@ -4,7 +4,7 @@ const navbar_items_data = [
     title: "Asosiy",
     path: "/",
     to: "/",
-    
+
     children: false,
   },
   {
@@ -32,7 +32,6 @@ const navbar_items_data = [
     title: "Xizmatlarimiz",
     path: "/",
     children: true,
-    childrenUrl: "/detail/",
   },
   {
     id: 6,

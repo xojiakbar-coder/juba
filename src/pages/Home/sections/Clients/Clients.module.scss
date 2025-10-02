@@ -1,0 +1,76 @@
+.clients {
+  display: flex;
+  flex-direction: column;
+  margin: 100px 0;
+  padding-top: 120px;
+
+  .title {
+    color: #fff;
+  }
+
+  .container {
+    background-color: var(--color-primary);
+    width: 100%;
+    margin-top: 35px;
+
+    .wrapper {
+      padding: 48px 0; // py-12
+      position: relative;
+      width: 100%;
+
+      .scroller {
+        position: relative;
+        display: flex;
+        max-width: 100vw;
+        overflow: hidden;
+        padding: 20px 0; // py-5
+
+        .marquee {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 40px;
+          white-space: nowrap;
+          width: max-content;
+          animation: marquee var(--duration, 20s) linear infinite;
+
+          &:hover {
+            animation-play-state: paused;
+          }
+
+          .item {
+            display: flex;
+            align-items: center;
+            height: 100%;
+            padding: 0 10px; // px-2.5
+
+            img {
+              min-width: 150px;
+              padding: 0 20px; // px-5
+              object-fit: cover;
+              flex-shrink: 0;
+              cursor: pointer;
+
+              @media (min-width: 640px) {
+                min-width: 200px;
+              }
+
+              @media (min-width: 768px) {
+                min-width: 250px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}

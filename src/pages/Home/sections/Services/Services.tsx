@@ -1,0 +1,33 @@
+import { useNavigate } from 'react-router-dom';
+
+import { useServices } from '@/modules/services/hooks';
+
+import { Title } from '@/interface/components/Title';
+import { Data } from '@/interface/components/Cards/Data';
+
+// styles
+import styles from './Services.module.scss';
+
+const Services = () => {
+  const navigate = useNavigate();
+  const { services } = useServices();
+
+  const getDetailData = (id: number) => {
+    navigate(`/detail/${id}`);
+  };
+
+  return (
+    <div id="/service" className={styles.container}>
+      <div className={styles.inner}>
+        <Title variant="title">Biznesingiz uchun marketing xizmatlari</Title>
+        <div className={styles.grid}>
+          {services.map(item => (
+            <Data key={item.id} title={item.title} text={item.description} onClick={() => getDetailData(item.id)} />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Services;

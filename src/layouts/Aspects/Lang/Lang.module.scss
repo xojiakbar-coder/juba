@@ -1,0 +1,24 @@
+.langContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+}
+
+.langBtn {
+  font-family: var(--font-body, Arial, sans-serif);
+  font-weight: 400;
+  font-size: 16px;
+  color: var(--color-light, #ccc);
+  cursor: pointer;
+  background: none;
+  border: none;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: var(--color-primary);
+  }
+}
+
+.active {
+  color: var(--color-primary);
+}

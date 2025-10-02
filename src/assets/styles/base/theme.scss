@@ -1,0 +1,52 @@
+@mixin dark-theme {
+  --color-primary: #f9af09;
+  --color-primary-dark: #e8a10a;
+  --color-primary-60: #f9af0960;
+  --color-primary-40: #f9af0940;
+
+  --color-secondary: #ffffff;
+  --color-secondary-dark: #f6f1f1;
+  --color-secondary-60: #ffffff60;
+
+  --color-accent: #0b8cf5;
+
+  --color-info: #3b82f6;
+  --color-info-60: #3b83f660;
+
+  --color-success: #16a34a;
+  --color-success-60: #16a34a60;
+
+  --color-warning: #eab308;
+  --color-warning-60: #eab20860;
+
+  --color-danger: #dc2626;
+  --color-danger-60: #dc262660;
+
+  --color-black: #000000;
+  --color-white: #ffffff;
+
+  // gray
+  --Gray-1000: #737687;
+  --Gray-800: #8f919f;
+  --Gray-900: #818493;
+  --Gray-600: #abadb7;
+
+  --color-gray-100: #f3f4f6;
+  --color-gray-200: #e1e2e3;
+  --color-gray-500: #6b7280;
+  --color-gray-400: #575e6a;
+  --color-gray-800: #5c6069;
+  --color-gray-900: #1e2124;
+
+  --main-gray-color: #8e8e93;
+  --yellowColor: #faaf0a;
+  --dangerColor: #ff0000;
+  --darkGrayColor: #424242;
+  --darkColor: rgb(26, 26, 26);
+  --hoverCardBg: rgb(32, 32, 32);
+  --lightColor: rgb(255, 255, 255);
+  --darkTextColor: rgb(20, 20, 20);
+  --modalBgColor: rgba(32, 32, 32, 0.959);
+
+  --main-bg-color: #141414;
+}

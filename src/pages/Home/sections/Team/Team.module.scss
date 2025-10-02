@@ -1,0 +1,32 @@
+.team {
+  padding: 120px 16px 150px 16px;
+  display: flex;
+  flex-direction: column;
+
+  .title {
+    color: #f5f5f5;
+  }
+
+  .wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding-top: 100px;
+
+    .inner {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      overflow-x: auto;
+
+      .list {
+        display: flex;
+        gap: 20px;
+        width: 100%;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        justify-content: space-between;
+      }
+    }
+  }
+}

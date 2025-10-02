@@ -1,7 +1,7 @@
 import { PhotoCard } from "..";
 import { Desc, Title } from "..";
 import useSize from "../../../hooks/useSize";
-import photoCard_data from "../../../utils/photoCard";
+import photoCard_data from "../../../core/utils/photoCard";
 
 const Projects = ({ data }) => {
   const { width } = useSize();

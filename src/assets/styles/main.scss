@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Unbounded:wght@200..900&display=swap');
+@import './base/theme.scss';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+:root {
+  @include dark-theme;
+
+  --font-family: 'Unbounded', sans-serif;
+}
+
+::selection {
+  color: var(--color-white);
+  background-color: var(--color-gray-800);
+}
+
+body {
+  font-family: 'Unbounded', sans-serif;
+  background-color: var(--main-bg-color);
+}

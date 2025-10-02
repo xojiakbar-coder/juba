@@ -1,0 +1,60 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 50px;
+  min-height: 100%;
+  height: 100%;
+  width: 100%;
+}
+
+.links {
+  display: flex;
+  padding-top: 1px;
+  gap: 12px 30px;
+  list-style-type: none;
+
+  &.row {
+    flex-direction: row;
+  }
+
+  &.col {
+    flex-direction: column;
+  }
+}
+
+.socialLink {
+  cursor: pointer;
+  padding: 6px 0;
+  font-size: 24px;
+  line-height: 24px;
+  width: max-content;
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--main-bg-color);
+  transition: color 0.15s ease-in-out;
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  &:hover {
+    color: var(--color-primary);
+    text-decoration: underline;
+  }
+}
+
+.contactInfo {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 12px;
+
+  p {
+    font-size: 24px;
+    line-height: 28px;
+    color: #111; // text-dark
+  }
+}

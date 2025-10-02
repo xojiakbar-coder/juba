@@ -1,0 +1,52 @@
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 20px 3%;
+
+  /* tablet */
+  @media (min-width: 1400px) {
+    padding: 20px 2%;
+  }
+
+  /* desktop */
+  @media (min-width: 768px) {
+    padding: 20px 5%;
+  }
+}
+
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  min-height: 200px;
+  border-radius: 30px;
+  position: relative;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-size: cover;
+
+  @media (min-width: 701px) {
+    height: 300px;
+  }
+
+  @media (min-width: 801px) {
+    height: 400px;
+  }
+
+  @media (min-width: 1021px) {
+    flex-direction: column;
+    height: 500px;
+  }
+
+  @media (min-width: 1200px) {
+    height: 500px;
+  }
+  @media (min-width: 1400px) {
+    height: 600px;
+  }
+}

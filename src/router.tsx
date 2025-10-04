@@ -33,6 +33,14 @@ const getRoutesData = (): RouteObject[] => [
 
           return { Component: View };
         }
+      },
+      {
+        path: 'service/:id',
+        async lazy() {
+          const { View } = await import('@/pages/Detail/View');
+
+          return { Component: View };
+        }
       }
     ]
   }

@@ -1,1 +1,10 @@
 export { default as useServices } from './useServices';
+export { default as useServiceSolo } from './useServiceSolo';
+export { default as useServiceKeys } from './useServiceKeys';
+export { default as useServiceWorks } from './useServiceWorks';
+export { default as useServicePricing } from './useServicePricing';
+export { default as useServiceSubDetail } from './useServiceSubDetail';
+export { default as useServiceDetailById } from './useServiceDetailById';
+export { default as useServicePricingById } from './useServicePricingById';
+export { default as useServiceTypeTop } from './useServiceTypeTop';
+export { default as useServiceTypeBottom } from './useServiceTypeBottom';

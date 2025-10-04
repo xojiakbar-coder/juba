@@ -1,26 +1,32 @@
 import { nav_items } from './items';
 import { Link } from 'react-scroll';
 import { Menu } from '@mantine/core';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { animateScroll as scroll } from 'react-scroll';
+import { IconChevronDown } from '@tabler/icons-react';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+
+import { useServices } from '@/modules/services/hooks';
 
 // styles
 import cx from 'clsx';
 import styles from './Navigation.module.scss';
-import { IconChevronDown } from '@tabler/icons-react';
 
 type IProps = {
   onDrawer?: boolean;
   responsible?: boolean;
+  onClose?: () => void;
 };
 
-const Navigation = ({ responsible = true, onDrawer = false }: IProps) => {
+const Navigation = ({ responsible = true, onDrawer = false, onClose }: IProps) => {
   const navigate = useNavigate();
+  const { pathname } = useLocation();
+  const { services } = useServices();
 
   return (
     <nav className={cx(styles.nav, responsible && styles.responsible, onDrawer && styles.drawer)}>
       {nav_items.map(item => {
         // AGAR CHILDREN BO'LSA (masalan Xizmatlarimiz)
-        if (item.children && item.children.length > 0) {
+        if (item.children) {
           return (
             <Menu key={item.id} shadow="md" width={200} withArrow arrowPosition="side" trigger="click">
               <Menu.Target>
@@ -31,13 +37,17 @@ const Navigation = ({ responsible = true, onDrawer = false }: IProps) => {
               </Menu.Target>
 
               <Menu.Dropdown classNames={{ dropdown: styles.dropdown }}>
-                {item.children.map(child => (
+                {services.map((child, i) => (
                   <Menu.Item
                     key={child.id}
-                    onClick={() => navigate(child.path || '/')}
+                    onClick={() => {
+                      onClose?.();
+                      navigate(`service/${child.id}`);
+                      scroll.scrollToTop({ duration: 100, smooth: false });
+                    }}
                     className={styles.dropdown_item}
                   >
-                    {child.title}
+                    {services[i]?.title}
                   </Menu.Item>
                 ))}
               </Menu.Dropdown>
@@ -48,14 +58,22 @@ const Navigation = ({ responsible = true, onDrawer = false }: IProps) => {
         if (item.to) {
           return (
             <Link
+              spy={true}
               key={item.id}
               to={item.to}
               offset={-80}
               smooth={true}
               duration={500}
-              className={cx(styles.link, onDrawer && styles.drawer_link)}
               activeClass={styles.active}
-              spy={true}
+              className={cx(styles.link, onDrawer && styles.drawer_link)}
+              onClick={() => {
+                if (pathname !== '/') {
+                  onClose?.();
+                  navigate('/', { state: { scrollTo: item.to } });
+                } else {
+                  onClose?.();
+                }
+              }}
             >
               {item.title}
             </Link>
@@ -66,6 +84,7 @@ const Navigation = ({ responsible = true, onDrawer = false }: IProps) => {
           <NavLink
             key={item.id}
             to={item.path || '/'}
+            onClick={() => onClose?.()}
             className={({ isActive }) => cx(styles.link, isActive && styles.active, onDrawer && styles.drawer_link)}
           >
             {item.title}

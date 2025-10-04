@@ -56,7 +56,7 @@ const Home = () => {
           </Group>
 
           <div className={styles.navigation}>
-            <Navigation onDrawer />
+            <Navigation onDrawer onClose={close} />
           </div>
 
           <div className={styles.bottom}>

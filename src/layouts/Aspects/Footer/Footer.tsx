@@ -7,7 +7,7 @@ const Footer = () => {
   return (
     <div className={styles.footer}>
       <div className={styles.logo}>
-        <Logo />
+        <Logo event={false} />
       </div>
     </div>
   );

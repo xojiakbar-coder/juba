@@ -11,6 +11,10 @@
 # production
 /build
 
+# nginx
+.nginx
+nginx.conf
+
 # misc
 .DS_Store
 .env

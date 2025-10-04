@@ -10,8 +10,12 @@ import Contact from '@/pages/Contact/Contact';
 
 // styles
 import styles from './View.module.scss';
+import { useSlider } from '@/modules/home/hooks';
+import { Splash } from '@/interface/components/Splash';
 
-const Home = () => {
+const View = () => {
+  const { isLoading, isFetched } = useSlider();
+
   const sections = [
     {
       id: 1,
@@ -47,6 +51,8 @@ const Home = () => {
     }
   ];
 
+  if (isLoading && !isFetched) return <Splash />;
+
   return (
     <div className={styles.container}>
       {sections.map(({ id, element: Element }) => (
@@ -58,4 +64,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default View;

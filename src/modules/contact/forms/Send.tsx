@@ -4,12 +4,12 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { FormProvider, useForm, type UseFormReturn } from 'react-hook-form';
 
 import { keepOptions } from '@/helpers';
-import { useNavigate } from 'react-router-dom';
 
 import * as yup from 'yup';
 import * as Api from '../api';
 import * as Types from '../types';
 import * as Mappers from '../mappers';
+import { message } from '@/interface/components/Message';
 
 interface FormValues extends Types.IForm.Send {}
 
@@ -25,8 +25,7 @@ interface IProps {
   onSuccess?: (value: Types.IEntity.UserContact) => void;
 }
 
-const Create: React.FC<IProps> = ({ children, onError, onSettled, onSuccess, className }) => {
-  const navigate = useNavigate();
+const Send: React.FC<IProps> = ({ children, onError, onSettled, onSuccess, className }) => {
   const queryClient = useQueryClient();
 
   const mutation = useMutation<Types.IEntity.UserContact, string, FormValues, any>({
@@ -41,7 +40,10 @@ const Create: React.FC<IProps> = ({ children, onError, onSettled, onSuccess, cla
         predicate: query => query.queryKey[0] === 'user-contact' && query.queryKey[1] === 'form'
       });
     },
-    onError,
+
+    onError: err => {
+      err && message.error("Xatolik yuz berdi, qayta urinib ko'ring");
+    },
     onSettled
   });
 
@@ -76,4 +78,4 @@ const Create: React.FC<IProps> = ({ children, onError, onSettled, onSuccess, cla
   );
 };
 
-export default Create;
+export default Send;

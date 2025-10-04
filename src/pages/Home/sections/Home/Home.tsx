@@ -1,6 +1,5 @@
 import { Content } from './components';
 import { Element } from 'react-scroll';
-import homeImage from '@/assets/images/home/home.png';
 
 import { useSlider } from '@/modules/home/hooks';
 
@@ -15,7 +14,7 @@ const Home = () => {
       <div
         className={styles.hero}
         style={{
-          backgroundImage: `url(${sliders?.[0]?.photo ? sliders?.[0]?.photo : homeImage})`
+          backgroundImage: `url(${sliders?.[0]?.photo})`
         }}
       >
         <Content title={sliders[0]?.title} description={sliders?.[0]?.description} desktop />

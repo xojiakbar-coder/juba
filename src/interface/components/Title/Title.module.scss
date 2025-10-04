@@ -14,7 +14,7 @@
 }
 
 .secondary {
-  color: var(--color-light, #f5f5f5);
+  color: var(--color-white, #f5f5f5);
   font-size: 56px;
   font-weight: 900;
 
@@ -30,7 +30,7 @@
 .title {
   font-size: 36px;
   font-weight: 700;
-  color: var(--color-light, #f5f5f5);
+  color: var(--color-white, #f5f5f5);
   text-align: center;
 
   @media (max-width: 768px) {
@@ -42,6 +42,7 @@
   font-size: 36px;
   font-weight: 700;
   text-align: center;
+  color: var(--color-white);
   font-family: var(--font-family, sans-serif);
 
   @media (max-width: 768px) {
@@ -50,5 +51,5 @@
 }
 
 .default {
-  color: var(--color-light, #f5f5f5);
+  color: var(--color-white, #f5f5f5);
 }

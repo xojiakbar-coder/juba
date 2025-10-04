@@ -5,17 +5,23 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 import styles from './Logo.module.scss';
 
-const Logo = () => {
+type IProps = {
+  event?: boolean;
+};
+
+const Logo = ({ event = true }: IProps) => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
   const handleClick = () => {
-    if (pathname !== '/') navigate('/');
+    if (pathname !== '/' && event) navigate('/');
 
-    scroll.scrollToTop({
-      duration: 200,
-      smooth: 'easeInOutQuart'
-    });
+    if (event) {
+      scroll.scrollToTop({
+        duration: 200,
+        smooth: 'easeInOutQuart'
+      });
+    }
   };
 
   return (

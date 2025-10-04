@@ -1,8 +1,8 @@
 import { Form } from './components/Form';
 import { Send as SendForm } from '@/modules/contact/forms';
 
-import message from '@/interface/components/Message';
 import { Button } from '@/interface/components/Button';
+import { message } from '@/interface/components/Message';
 
 import styles from './Send.module.scss';
 import { Element } from 'react-scroll';
@@ -20,12 +20,7 @@ const Send = () => {
         </h1>
 
         <div className={styles.wrapper}>
-          <SendForm
-            onSuccess={() => {
-              message.success("Tarifini yangilash uchun so'rov yuborildi !");
-            }}
-            className={styles.form}
-          >
+          <SendForm onSuccess={() => message.success('Yoborildi')} className={styles.form}>
             {({ isLoading }) => (
               <>
                 <Form />

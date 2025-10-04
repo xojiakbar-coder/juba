@@ -1,6 +1,5 @@
 export interface INavChild {
   id: number;
-  title: string;
   path: string;
 }
 
@@ -9,7 +8,7 @@ export interface INavItem {
   title: string;
   to?: string;
   path?: string | null;
-  children?: INavChild[];
+  children?: boolean;
 }
 const nav_items: INavItem[] = [
   {
@@ -35,23 +34,33 @@ const nav_items: INavItem[] = [
   {
     id: 5,
     title: 'Xizmatlarimiz',
-    children: [
-      {
-        id: 51,
-        title: 'SMM',
-        path: '/services/smm'
-      },
-      {
-        id: 52,
-        title: 'Web Dasturlash',
-        path: '/services/web'
-      },
-      {
-        id: 53,
-        title: 'Branding',
-        path: '/services/branding'
-      }
-    ]
+    children: true
+    // children: [
+    //   {
+    //     id: 51,
+    //     path: '/services/smm'
+    //   },
+    //   {
+    //     id: 52,
+    //     path: '/services/web'
+    //   },
+    //   {
+    //     id: 53,
+    //     path: '/services/branding'
+    //   },
+    //   {
+    //     id: 54,
+    //     path: '/services/branding'
+    //   },
+    //   {
+    //     id: 54,
+    //     path: '/services/branding'
+    //   },
+    //   {
+    //     id: 55,
+    //     path: '/services/branding'
+    //   }
+    // ]
   },
   {
     id: 6,

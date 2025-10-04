@@ -7,13 +7,15 @@ import { useCase } from '@/modules/case/hooks';
 // styles
 import styles from './Case.module.scss';
 import { Element } from 'react-scroll';
+import { useTranslation } from 'react-i18next';
 
 const Cases = () => {
   const { data } = useCase();
+  const { t } = useTranslation();
 
   return (
     <Element className={styles.case} name="projects">
-      <Title variant="title">Наши кейсы</Title>
+      <Title variant="title">{t('our_keys')}</Title>
 
       <div className={styles.grid}>
         {data?.map(({ id, title, photo, hashtags }) => (

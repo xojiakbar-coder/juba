@@ -1,6 +1,10 @@
 {
-  "hero_title": "Toshkentda talabalar uchun kvartira toping",
-  "hero_subtitle": "Eng yaxshi narx va shart-sharoitlarda ijara",
-  "filterbar_title": "O'zingizga qulay uyni toping",
-  "all_apartments_list": "Barcha ijaralar ro'yxati"
+  "consultation": "Loyihani muhokama qiling",
+  "commercial_offer": "Tijorat taklifi",
+  "home": "Asosiy",
+  "about_us": "Biz haqimizda",
+  "projects": "Loyihalar",
+  "team": "Jamoa",
+  "services": "Xizmatlarimiz",
+  "contact": "Aloqa"
 }

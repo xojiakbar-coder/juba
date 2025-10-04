@@ -13,58 +13,32 @@ export interface INavItem {
 const nav_items: INavItem[] = [
   {
     id: 1,
-    title: 'Asosiy',
+    title: 'home',
     to: 'home'
   },
   {
     id: 2,
-    title: 'Biz haqimizda',
+    title: 'about_us',
     to: 'about'
   },
   {
     id: 3,
-    title: 'Loyihalar',
+    title: 'projects',
     to: 'projects'
   },
   {
     id: 4,
-    title: 'Jamoa',
+    title: 'team',
     to: 'team'
   },
   {
     id: 5,
-    title: 'Xizmatlarimiz',
+    title: 'services',
     children: true
-    // children: [
-    //   {
-    //     id: 51,
-    //     path: '/services/smm'
-    //   },
-    //   {
-    //     id: 52,
-    //     path: '/services/web'
-    //   },
-    //   {
-    //     id: 53,
-    //     path: '/services/branding'
-    //   },
-    //   {
-    //     id: 54,
-    //     path: '/services/branding'
-    //   },
-    //   {
-    //     id: 54,
-    //     path: '/services/branding'
-    //   },
-    //   {
-    //     id: 55,
-    //     path: '/services/branding'
-    //   }
-    // ]
   },
   {
     id: 6,
-    title: 'Aloqa',
+    title: 'contact',
     to: 'contact'
   }
 ];

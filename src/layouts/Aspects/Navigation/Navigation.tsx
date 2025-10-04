@@ -10,6 +10,7 @@ import { useServices } from '@/modules/services/hooks';
 // styles
 import cx from 'clsx';
 import styles from './Navigation.module.scss';
+import { useTranslation } from 'react-i18next';
 
 type IProps = {
   onDrawer?: boolean;
@@ -21,6 +22,7 @@ const Navigation = ({ responsible = true, onDrawer = false, onClose }: IProps) =
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const { services } = useServices();
+  const { t } = useTranslation('home');
 
   return (
     <nav className={cx(styles.nav, responsible && styles.responsible, onDrawer && styles.drawer)}>
@@ -31,7 +33,7 @@ const Navigation = ({ responsible = true, onDrawer = false, onClose }: IProps) =
             <Menu key={item.id} shadow="md" width={200} withArrow arrowPosition="side" trigger="click">
               <Menu.Target>
                 <div className={cx(styles.link, styles.menu_target, onDrawer && styles.drawer_link)}>
-                  <p>{item.title}</p>
+                  <p>{t(item?.title)}</p>
                   <IconChevronDown stroke={1.5} />
                 </div>
               </Menu.Target>
@@ -75,7 +77,7 @@ const Navigation = ({ responsible = true, onDrawer = false, onClose }: IProps) =
                 }
               }}
             >
-              {item.title}
+              {t(item?.title)}
             </Link>
           );
         }

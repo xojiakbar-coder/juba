@@ -25,10 +25,9 @@
   border-radius: 30px;
   position: relative;
 
+  background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
 
   @media (min-width: 701px) {
     height: 300px;

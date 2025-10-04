@@ -30,7 +30,7 @@ export const ServiceDetailById = (src: Types.IEntity.ServiceDetailById[]): Types
 export const ServicePricing = (src: Types.IEntity.ServicePricing[]): Types.IEntity.ServicePricing[] =>
   src.map(item => ({
     id: get(item, 'id', 0),
-    price: get(item, 'price', 0),
+
     title: get(item, 'title', ''),
     description: get(item, 'description', '')
   }));

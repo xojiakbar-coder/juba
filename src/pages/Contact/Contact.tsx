@@ -6,14 +6,16 @@ import { useContact } from '@/modules/contact/hooks';
 
 // styles
 import styles from './Contact.module.scss';
+import { useTranslation } from 'react-i18next';
 
 const Contact = () => {
   const { data } = useContact();
+  const { t } = useTranslation();
 
   return (
     <Element name="contact" className={styles.contact}>
       <div className={styles.inner}>
-        <h2 className={styles.title}>Aloqalar</h2>
+        <h2 className={styles.title}>{t('contacts')}</h2>
 
         <div className={styles.grid}>
           <div className={styles.mapWrapper}>

@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@gfazioli/mantine-marquee':
+        specifier: ^2.6.1
+        version: 2.6.1(@mantine/core@8.3.2(@mantine/hooks@8.3.2(react@18.3.1))(@types/react@18.3.25)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@mantine/hooks@8.3.2(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@hookform/resolvers':
         specifier: ^5.2.2
         version: 5.2.2(react-hook-form@7.63.0(react@18.3.1))
@@ -480,6 +483,14 @@ packages:
 
   '@floating-ui/utils@0.2.10':
     resolution: {integrity: sha512-aGTxbpbg8/b5JfU1HXSrbH3wXZuLPJcNEcZQFMxLs3oSzgtVu6nFPkbbGGUvBcUjKV2YyB9Wxxabo+HEH9tcRQ==}
+
+  '@gfazioli/mantine-marquee@2.6.1':
+    resolution: {integrity: sha512-ozeBHAkd3jcEbdaFd4mZ1m9YObDdsc5CWGjuM4YhxF7L0MaJG8nnYEkyxCxWPHUKLObbnpBkJgJ8q4af4WwBuQ==}
+    peerDependencies:
+      '@mantine/core': '>=7.0.0'
+      '@mantine/hooks': '>=7.0.0'
+      react: ^18.x || ^19.x
+      react-dom: ^18.x || ^19.x
 
   '@hookform/resolvers@5.2.2':
     resolution: {integrity: sha512-A/IxlMLShx3KjV/HeTcTfaMxdwy690+L/ZADoeaTltLx+CVuzkeVIPuybK3jrRfw7YZnmdKsVVHAlEPIAEUNlA==}
@@ -3061,6 +3072,13 @@ snapshots:
       tabbable: 6.2.0
 
   '@floating-ui/utils@0.2.10': {}
+
+  '@gfazioli/mantine-marquee@2.6.1(@mantine/core@8.3.2(@mantine/hooks@8.3.2(react@18.3.1))(@types/react@18.3.25)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@mantine/hooks@8.3.2(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+    dependencies:
+      '@mantine/core': 8.3.2(@mantine/hooks@8.3.2(react@18.3.1))(@types/react@18.3.25)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@mantine/hooks': 8.3.2(react@18.3.1)
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
 
   '@hookform/resolvers@5.2.2(react-hook-form@7.63.0(react@18.3.1))':
     dependencies:

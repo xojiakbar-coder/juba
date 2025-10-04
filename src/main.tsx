@@ -1,5 +1,9 @@
 import './bootstrap';
 
+// mantine marquee styles
+import '@gfazioli/mantine-marquee/styles.css';
+import '@gfazioli/mantine-marquee/styles.layer.css';
+
 import '@mantine/core/styles.css';
 import '@mantine/notifications/styles.css';
 import '@mantine/core/styles/ModalBase.css';

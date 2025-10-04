@@ -38,6 +38,7 @@ function send<T>(config: Types.Http.RequestConfig): HttpPromise<T> {
     if (withAuth) xhr.setRequestHeader('Authorization', `Bearer ${accessToken}`);
 
     // status tekshirish bilan
+
     xhr.onload = () => {
       let parsed: any;
       try {
@@ -57,13 +58,7 @@ function send<T>(config: Types.Http.RequestConfig): HttpPromise<T> {
         };
         resolve(response);
       } else {
-        // 4xx,5xx bo'lsa shu yerga tushadi
-        reject({
-          data: parsed,
-          status: xhr.status,
-          statusText: xhr.statusText,
-          request: xhr
-        } as HttpError);
+        reject(new HttpError(parsed, xhr.status, xhr.statusText, xhr));
       }
     };
 

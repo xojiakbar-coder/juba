@@ -3,6 +3,7 @@ import { IconChevronRight } from '@tabler/icons-react';
 // styles
 import cx from 'clsx';
 import styles from './Data.module.scss';
+import { useTranslation } from 'react-i18next';
 
 interface IProps {
   text?: string;
@@ -15,6 +16,8 @@ interface IProps {
 }
 
 const Data = ({ title, text, subtitle, type = 'data', res, resText, onClick }: IProps) => {
+  const { t } = useTranslation();
+
   return (
     <div className={cx(styles.card, { [styles.clickable]: !!onClick })} onClick={onClick}>
       <div className={cx(styles.header, type === 'res' ? styles.headerRes : styles.headerData)}>
@@ -37,7 +40,7 @@ const Data = ({ title, text, subtitle, type = 'data', res, resText, onClick }: I
 
       {onClick && (
         <div className={styles.footer}>
-          <span className={styles.footerText}>Batafsil</span>
+          <span className={styles.footerText}>{t('more')}</span>
           <IconChevronRight size={20} className={styles.icon} />
         </div>
       )}

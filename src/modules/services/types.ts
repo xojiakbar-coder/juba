@@ -33,7 +33,7 @@ export declare namespace IEntity {
   export interface ServicePricing {
     id: number;
     title: string;
-    price: number;
+
     description: string;
   }
 

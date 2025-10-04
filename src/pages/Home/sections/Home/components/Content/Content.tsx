@@ -6,6 +6,7 @@ import { Button } from '@/interface/components/Button';
 // styles
 import cx from 'clsx';
 import styles from './Content.module.scss';
+import { useTranslation } from 'react-i18next';
 
 interface IProps {
   title: string;
@@ -14,6 +15,8 @@ interface IProps {
 }
 
 const Content = ({ title, description, desktop }: IProps) => {
+  const { t } = useTranslation();
+
   return (
     <div className={cx(styles.container, desktop ? styles.desktop : styles.mobile)}>
       <Title variant="primary" className={styles.title}>
@@ -24,10 +27,10 @@ const Content = ({ title, description, desktop }: IProps) => {
 
       <div className={styles.buttons}>
         <Button size="xl" onClick={() => scroller.scrollTo('send', {})}>
-          Loyihani muhokama qiling
+          {t('consultation')}
         </Button>
         <Button variant="secondary" size="xl">
-          Tijorat taklifi
+          {t('commercial_offer')}
         </Button>
       </div>
     </div>

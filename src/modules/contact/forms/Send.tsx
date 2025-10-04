@@ -10,6 +10,8 @@ import * as Api from '../api';
 import * as Types from '../types';
 import * as Mappers from '../mappers';
 import { message } from '@/interface/components/Message';
+import { get } from 'radash';
+import { HttpError } from '@/core/types';
 
 interface FormValues extends Types.IForm.Send {}
 
@@ -28,11 +30,17 @@ interface IProps {
 const Send: React.FC<IProps> = ({ children, onError, onSettled, onSuccess, className }) => {
   const queryClient = useQueryClient();
 
-  const mutation = useMutation<Types.IEntity.UserContact, string, FormValues, any>({
+  const mutation = useMutation<
+    Types.IEntity.UserContact, // success type
+    any,
+    FormValues,
+    unknown
+  >({
     mutationFn: async (values: FormValues) => {
       const { data } = await Api.UserContact({ values });
       return Mappers.UserContact(data);
     },
+
     onSuccess: (data: Types.IEntity.UserContact) => {
       onSuccess && onSuccess(data);
 
@@ -42,8 +50,13 @@ const Send: React.FC<IProps> = ({ children, onError, onSettled, onSuccess, class
     },
 
     onError: err => {
-      err && message.error("Xatolik yuz berdi, qayta urinib ko'ring");
+      if (err instanceof HttpError) {
+        console.error('API error:', err.status, err.data);
+      } else {
+        console.error('Unexpected error:', err);
+      }
     },
+
     onSettled
   });
 
@@ -64,7 +77,13 @@ const Send: React.FC<IProps> = ({ children, onError, onSettled, onSuccess, class
   });
 
   const onSubmit = form.handleSubmit(values => {
-    mutation.mutate(values, {
+    let phone = values.phone.trim();
+
+    if (/^[0-9]{7,9}$/.test(phone)) phone = `+998${phone}`;
+    if (/^998/.test(phone)) phone = `+${phone}`;
+
+    const fixedValues = { ...values, phone };
+    mutation.mutate(fixedValues, {
       onSettled: () => form.reset({ ...form.getValues() }, { ...keepOptions })
     });
   });

@@ -7,14 +7,16 @@ import { useTeam } from '@/modules/team/hooks';
 // styles
 import styles from './Team.module.scss';
 import { Element } from 'react-scroll';
+import { useTranslation } from 'react-i18next';
 
 const Team = () => {
   const { data } = useTeam();
+  const { t } = useTranslation();
 
   return (
     <Element name="team" className={styles.team}>
       <Title variant="section-name" className={styles.title}>
-        Bizning jamoa
+        {t('our_team')}
       </Title>
 
       <div className={styles.wrapper}>

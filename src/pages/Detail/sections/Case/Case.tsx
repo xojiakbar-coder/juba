@@ -7,15 +7,17 @@ import { useServiceKeys } from '@/modules/services/hooks';
 
 // styles
 import styles from './Case.module.scss';
+import { useTranslation } from 'react-i18next';
 
 const Cases = () => {
+  const { t } = useTranslation();
   const { id } = useParams();
   const { data } = useServiceKeys(id ? +id : 0);
 
   return (
     <div className={styles.case}>
       <Title variant="title" className={styles.title}>
-        Наши кейсы
+        {t('our_keys')}
       </Title>
 
       <div className={styles.grid}>

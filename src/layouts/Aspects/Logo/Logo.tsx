@@ -1,4 +1,4 @@
-import jubaLogo from '/logo.svg';
+import jubaLogo from '@/assets/images/logo.png';
 
 import { animateScroll as scroll } from 'react-scroll';
 import { useLocation, useNavigate } from 'react-router-dom';

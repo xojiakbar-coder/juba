@@ -5,7 +5,7 @@ import {
   useServiceWorks,
   useServiceSubDetail,
   useServiceTypeBottom,
-  useServicePricingById,
+  useServicePricingById
 } from '@/modules/services/hooks';
 
 // sections
@@ -45,11 +45,11 @@ const View = () => {
       {/* Bottom faqat data bo‘lsa chiqadi */}
       {bottomSuccess && bottomData?.length > 0 && <Bottom />}
       {/* Pricing faqat data bo‘lsa chiqadi */}
+      {worksSuccess && worksData?.length > 0 && <OurWorks />}
+      {/* OurWorks faqat data bo‘lsa chiqadi */}
       {pricingSuccess && pricingData?.length > 0 && <Pricing />}
       {/* Case faqat data bo‘lsa chiqadi */}
       {caseSuccess && caseData?.length > 0 && <Case />}
-      {/* OurWorks faqat data bo‘lsa chiqadi */}
-      {worksSuccess && worksData?.length > 0 && <OurWorks />}
 
       <Contact />
       <Send />

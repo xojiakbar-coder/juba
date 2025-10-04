@@ -1,22 +1,22 @@
 import { Form } from './components/Form';
+import { useTranslation } from 'react-i18next';
 import { Send as SendForm } from '@/modules/contact/forms';
 
+import { Element } from 'react-scroll';
 import { Button } from '@/interface/components/Button';
 import { message } from '@/interface/components/Message';
 
 import styles from './Send.module.scss';
-import { Element } from 'react-scroll';
 
 const Send = () => {
+  const { t } = useTranslation();
   return (
     <Element name="send">
       <div className={styles.container}>
         <h1 className={styles.title}>
-          Raqamingizni qoldiring
+          {t('form_title')},
           <br />
-          Biz sizga qo'ng'iroq qilamiz
-          <br />
-          va loyihangizni muhokama qilamiz
+          {t('form_subtitle')}
         </h1>
 
         <div className={styles.wrapper}>

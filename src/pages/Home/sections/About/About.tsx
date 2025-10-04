@@ -8,21 +8,23 @@ import { useAbout } from '@/modules/about/hooks';
 import styles from './About.module.scss';
 import { Resault } from '../Resault';
 import { Element } from 'react-scroll';
+import { useTranslation } from 'react-i18next';
 
 const About = () => {
   const { data } = useAbout();
+  const { t } = useTranslation();
 
   return (
     <Element className={styles.container} name="about">
       <Title variant="section-name" className={styles.title}>
-        JUBA - маркетинговое агентство в Ташкенте
+        {t('about_us')}
       </Title>
 
       <div className={styles.wrapper}>
         <div>
           <Image src={data[0]?.photo} alt="About image not found" />
         </div>
-        <Spoiler maxHeight={370} showLabel="Batafsil" hideLabel="Berkitish" className={styles.description}>
+        <Spoiler maxHeight={370} showLabel={t('more')} hideLabel={t('hide')} className={styles.description}>
           {data[0]?.description}
         </Spoiler>
       </div>

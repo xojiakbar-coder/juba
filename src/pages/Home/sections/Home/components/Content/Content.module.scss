@@ -9,6 +9,10 @@
   position: absolute;
   z-index: 30;
   top: 0;
+
+  @media (min-width: 1600px) {
+    top: -10%;
+  }
 }
 
 .desktop {

@@ -1,4 +1,7 @@
+import { scroller } from 'react-scroll';
+import { getTextOfHTML } from '@/helpers';
 import { useParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { useServicePricing, useServicePricingById } from '@/modules/services/hooks';
 
 import { Desc } from '../components';
@@ -7,8 +10,6 @@ import { Button } from '@/interface/components/Button';
 
 // styles
 import styles from './Pricing.module.scss';
-import { scroller } from 'react-scroll';
-import { useTranslation } from 'react-i18next';
 
 const Pricing = () => {
   const { t } = useTranslation();
@@ -21,9 +22,9 @@ const Pricing = () => {
       <div className={styles.inner}>
         <div className={styles.header}>
           <Title variant="section-name" className={styles.title}>
-            {pricingData[id ? +id : 0]?.title}
+            {pricingData[0]?.title}
           </Title>
-          <Desc className={styles.desc}>{pricingData[id ? +id : 0]?.description}</Desc>
+          <Desc className={styles.desc}>{getTextOfHTML(pricingData[0]?.description)}</Desc>
         </div>
 
         <div className={styles.grid}>

@@ -3,14 +3,14 @@ import { Link } from 'react-scroll';
 import { Menu } from '@mantine/core';
 import { animateScroll as scroll } from 'react-scroll';
 import { IconChevronDown } from '@tabler/icons-react';
-import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate, useParams } from 'react-router-dom';
 
+import { useTranslation } from 'react-i18next';
 import { useServices } from '@/modules/services/hooks';
 
 // styles
 import cx from 'clsx';
 import styles from './Navigation.module.scss';
-import { useTranslation } from 'react-i18next';
 
 type IProps = {
   onDrawer?: boolean;
@@ -20,6 +20,7 @@ type IProps = {
 
 const Navigation = ({ responsible = true, onDrawer = false, onClose }: IProps) => {
   const navigate = useNavigate();
+  const { lang } = useParams();
   const { pathname } = useLocation();
   const { services } = useServices();
   const { t } = useTranslation('home');
@@ -44,7 +45,7 @@ const Navigation = ({ responsible = true, onDrawer = false, onClose }: IProps) =
                     key={child.id}
                     onClick={() => {
                       onClose?.();
-                      navigate(`service/${child.id}`);
+                      navigate(`${lang}/service/${child.id}`);
                       scroll.scrollToTop({ duration: 100, smooth: false });
                     }}
                     className={styles.dropdown_item}

@@ -38,7 +38,6 @@ function send<T>(config: Types.Http.RequestConfig): HttpPromise<T> {
     if (withAuth) xhr.setRequestHeader('Authorization', `Bearer ${accessToken}`);
 
     // status tekshirish bilan
-
     xhr.onload = () => {
       let parsed: any;
       try {

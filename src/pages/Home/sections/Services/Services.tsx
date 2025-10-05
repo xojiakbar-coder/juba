@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import { useServices } from '@/modules/services/hooks';
 
@@ -12,14 +12,15 @@ import { useTranslation } from 'react-i18next';
 const Services = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
+  const { lang } = useParams();
   const { services } = useServices();
 
   const getDetailData = (id: number) => {
-    navigate(`/detail/${id}`);
+    navigate(`/${lang}/service/${id}`);
   };
 
   return (
-    <div id="/service" className={styles.container}>
+    <div className={styles.container}>
       <div className={styles.inner}>
         <Title variant="title">{t('services_title')}</Title>
         <div className={styles.grid}>

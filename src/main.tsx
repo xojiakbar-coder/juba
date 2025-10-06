@@ -1,6 +1,5 @@
 import './bootstrap';
 
-// mantine marquee styles
 import '@gfazioli/mantine-marquee/styles.css';
 import '@gfazioli/mantine-marquee/styles.layer.css';
 
@@ -15,16 +14,17 @@ import { MutationCache, QueryCache, QueryClient, QueryClientProvider } from '@ta
 
 import App from './App';
 import { message } from '@/interface/components/Message';
+import { useEffect } from 'react';
 
 const queryClient = new QueryClient({
   queryCache: new QueryCache({
     onError: (e: any) => {
-      message.error(e.data.error);
+      message.error(e.data?.error);
     }
   }),
   mutationCache: new MutationCache({
     onError: (e: any) => {
-      message.error(e.data.error);
+      message.error(e.data?.error);
     }
   })
 });

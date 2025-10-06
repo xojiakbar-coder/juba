@@ -1,6 +1,6 @@
 import { http } from '@/core/services';
-import { HttpPromise } from '@/core/types';
+import { AxiosPromise } from 'axios';
 
 import * as Types from './types';
 
-export const Clients = (): HttpPromise<Types.IApi.Response> => http.public.get('/client-photo/');
+export const Clients = (): AxiosPromise<Types.IApi.Response> => http.public.get('/client-photo/');

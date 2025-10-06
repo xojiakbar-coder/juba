@@ -1,38 +1,52 @@
-import React, { useEffect, useMemo } from 'react';
-import { StringParam, useQueryParams, withDefault } from 'use-query-params';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useParams, useNavigate } from 'react-router-dom';
+import { StringParam, useQueryParams, withDefault } from 'use-query-params';
+import { useQueryClient } from '@tanstack/react-query';
 
 import Context from './context.ts';
+import config from '@/config.ts';
+import { setHttpLanguage } from '@/core/services/http/http.ts';
 
 const Provider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const { lang } = useParams(); // URL dan /uz yoki /ru ni olamiz
+  const { lang } = useParams();
   const navigate = useNavigate();
   const { i18n } = useTranslation();
+  const queryClient = useQueryClient();
 
-  // use-query-params structure'ni saqlaymiz (faqat bo‘sh ishlatiladi)
   const [query, setQuery] = useQueryParams({
     contentLang: withDefault(StringParam, lang || 'uz')
   });
 
   useEffect(() => {
-    const currentLang = lang || 'uz';
+    const storedLang = localStorage.getItem(config.language.key) || 'uz';
+    const currentLang = lang || storedLang || 'uz';
 
-    // noto‘g‘ri til bo‘lsa — uz ga qaytamiz
     if (!['uz', 'ru'].includes(currentLang)) {
       navigate('/uz', { replace: true });
       return;
     }
 
-    // i18n tilini va html lang atributini yangilaymiz
     i18n.changeLanguage(currentLang);
     document.documentElement.lang = currentLang;
-  }, [lang, navigate, i18n]);
+
+    localStorage.setItem(config.language.key, currentLang);
+
+    queryClient.invalidateQueries();
+
+    setHttpLanguage(currentLang);
+
+    // console.log('🌍 Provider til o‘rnatildi:', {
+    //   storedLang,
+    //   currentLang,
+    //   httpHeader: currentLang
+    // });
+  }, [lang, navigate, i18n, queryClient]);
 
   const contextValue = useMemo(
     () => ({
-      contentLang: lang || 'uz', // faqat URL asosida
-      setQuery // strukturani saqlash uchun qoldiramiz (lekin ishlatmaymiz)
+      contentLang: lang || 'uz',
+      setQuery
     }),
     [lang, setQuery]
   );

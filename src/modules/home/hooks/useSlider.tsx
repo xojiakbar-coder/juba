@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
+
 import * as Api from '../api';
 import * as Types from '../types';
 import * as Mappers from '../mappers';
@@ -12,7 +13,8 @@ const useSlider = () => {
       const { data } = await Api.Slider();
       return Mappers.Slider(data);
     },
-    initialData
+    initialData,
+    staleTime: 0
   });
 
   return { ...args, sliders: data };

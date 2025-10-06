@@ -1,6 +1,6 @@
 import { http } from '@/core/services';
-import { HttpPromise } from '@/core/types';
+import { AxiosPromise } from 'axios';
 
 import * as Types from './types';
 
-export const Case = (): HttpPromise<Types.IApi.Response> => http.public.get('/keys/');
+export const Case = (): AxiosPromise<Types.IApi.Response> => http.public.get('/keys/');

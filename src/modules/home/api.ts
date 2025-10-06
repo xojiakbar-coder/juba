@@ -1,6 +1,6 @@
 import { http } from '@/core/services';
-import { HttpPromise } from '@/core/types';
+import { AxiosPromise } from 'axios';
 
 import * as Types from './types';
 
-export const Slider = (): HttpPromise<Types.IApi.Response> => http.public.get('/slider/');
+export const Slider = (): AxiosPromise<Types.IApi.Response> => http.public.get('/slider/');

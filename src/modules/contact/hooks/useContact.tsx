@@ -10,7 +10,7 @@ const useContact = () => {
   const { data = initialData, ...args } = useQuery<Types.IQuery.ContactResponse>({
     queryKey: ['contact'],
     queryFn: async () => {
-      const { data } = await Api.Contect();
+      const { data } = await Api.Contact();
       return Mappers.Contect(data);
     },
     initialData

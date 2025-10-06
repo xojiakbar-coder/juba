@@ -34,7 +34,7 @@ const View = () => {
   const { data: caseData, isSuccess: caseSuccess } = useServiceKeys(id ? +id : 0);
   const { data: worksData, isSuccess: worksSuccess } = useServiceWorks(id ? +id : 0);
 
-  if (isSubLoading && !isSubFetched) return <Splash />;
+  // if (isSubLoading && !isSubFetched) return <Splash />;
 
   return (
     <div className={styles.container}>

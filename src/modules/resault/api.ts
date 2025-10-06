@@ -1,6 +1,6 @@
+import { AxiosPromise } from 'axios';
 import { http } from '@/core/services';
-import { HttpPromise } from '@/core/types';
 
 import * as Types from './types';
 
-export const Result = (): HttpPromise<Types.IApi.Response> => http.public.get('/result/');
+export const Result = (): AxiosPromise<Types.IApi.Response> => http.public.get('/result/');

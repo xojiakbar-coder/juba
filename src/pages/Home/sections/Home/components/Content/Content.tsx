@@ -1,12 +1,11 @@
 import { scroller } from 'react-scroll';
+import { useTranslation } from 'react-i18next';
 
 import { Title } from '@/interface/components/Title';
 import { Button } from '@/interface/components/Button';
 
-// styles
 import cx from 'clsx';
 import styles from './Content.module.scss';
-import { useTranslation } from 'react-i18next';
 
 interface IProps {
   title: string;
@@ -16,6 +15,23 @@ interface IProps {
 
 const Content = ({ title, description, desktop }: IProps) => {
   const { t } = useTranslation();
+
+  console.log();
+
+  const fileUrl = `${import.meta.env.VITE_SITE_URL}/files/KP-Juba-Marketing.pdf`;
+
+  const handleDownload = () => {
+    try {
+      const link = document.createElement('a');
+      link.href = fileUrl;
+      link.download = 'KP-Juba-Marketing.pdf';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } catch (error) {
+      console.error('Faylni yuklab olishda xatolik:', error);
+    }
+  };
 
   return (
     <div className={cx(styles.container, desktop ? styles.desktop : styles.mobile)}>
@@ -29,7 +45,8 @@ const Content = ({ title, description, desktop }: IProps) => {
         <Button size="xl" onClick={() => scroller.scrollTo('send', {})}>
           {t('consultation')}
         </Button>
-        <Button variant="secondary" size="xl">
+
+        <Button variant="secondary" size="xl" onClick={handleDownload}>
           {t('commercial_offer')}
         </Button>
       </div>

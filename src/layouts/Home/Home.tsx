@@ -3,12 +3,12 @@ import { useDisclosure } from '@mantine/hooks';
 import config from '@/config';
 import { Outlet } from 'react-router-dom';
 
+import { Lang } from '../Aspects/Lang';
 import { Footer } from '../Aspects/Footer';
 import { Logo } from '@/layouts/Aspects/Logo';
-import { Lang } from '../Aspects/Lang';
-import { AppShell, Burger, Group, Drawer, Center } from '@mantine/core';
 import { Button } from '@/interface/components/Button';
 import { Navigation } from '@/layouts/Aspects/Navigation';
+import { AppShell, Burger, Group, Drawer } from '@mantine/core';
 
 // styles
 import styles from './Home.module.scss';

@@ -10,29 +10,31 @@ import { Button } from '@/interface/components/Button';
 
 // styles
 import styles from './Pricing.module.scss';
+import { useCurrentLang } from '@/core/utils';
 
 const Pricing = () => {
   const { t } = useTranslation();
   const { id } = useParams();
   const { data } = useServicePricingById(id ? +id : 0);
   const { data: pricingData } = useServicePricing(id ? +id : 0);
+  const lang = useCurrentLang();
 
   return (
     <div className={styles.container}>
       <div className={styles.inner}>
         <div className={styles.header}>
           <Title variant="section-name" className={styles.title}>
-            {pricingData[0]?.title}
+            {pricingData[0]?.[lang]?.title}
           </Title>
-          <Desc className={styles.desc}>{getTextOfHTML(pricingData[0]?.description)}</Desc>
+          <Desc className={styles.desc}>{getTextOfHTML(pricingData[0]?.[lang]?.description)}</Desc>
         </div>
 
         <div className={styles.grid}>
-          {data?.map(({ id, price, title, description }) => (
+          {data?.map(item => (
             <div className={styles.card} key={id}>
-              <div className={styles.cardTitle}>{title}</div>
-              <div className={styles.cardPrice}>{price}$</div>
-              <div className={styles.cardDesc} dangerouslySetInnerHTML={{ __html: description }} />
+              <div className={styles.cardTitle}>{item?.[lang]?.title}</div>
+              <div className={styles.cardPrice}>{item?.[lang]?.price}$</div>
+              <div className={styles.cardDesc} dangerouslySetInnerHTML={{ __html: item?.[lang]?.description }} />
               <div className={styles.cardFooter}>
                 <Button
                   size="xl"

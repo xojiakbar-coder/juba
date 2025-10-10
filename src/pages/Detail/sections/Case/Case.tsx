@@ -8,11 +8,13 @@ import { useServiceKeys } from '@/modules/services/hooks';
 // styles
 import styles from './Case.module.scss';
 import { useTranslation } from 'react-i18next';
+import { useCurrentLang } from '@/core/utils';
 
 const Cases = () => {
   const { t } = useTranslation();
   const { id } = useParams();
   const { data } = useServiceKeys(id ? +id : 0);
+  const lang = useCurrentLang();
 
   return (
     <div className={styles.case}>
@@ -21,8 +23,8 @@ const Cases = () => {
       </Title>
 
       <div className={styles.grid}>
-        {data?.map(({ id, title, photo, hashtags }) => (
-          <Case key={id} title={title} photo={photo} hashtags={hashtags} />
+        {data?.map(item => (
+          <Case key={id} title={item?.[lang]?.title} photo={item?.[lang]?.photo} hashtags={item?.[lang]?.hashtags} />
         ))}
       </div>
     </div>

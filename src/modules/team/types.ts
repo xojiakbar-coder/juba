@@ -4,12 +4,22 @@ export declare namespace IApi {
 
 export declare namespace IEntity {
   export interface SingleEmploye {
-    id: number;
-    photo: string;
-    username: string;
-    job_title: string;
-    photo_type: string;
-    background_image: string;
+    uz: {
+      id: number;
+      photo: string;
+      username: string;
+      job_title: string;
+      photo_type: string;
+      background_image: string;
+    };
+    ru: {
+      id: number;
+      photo: string;
+      username: string;
+      job_title: string;
+      photo_type: string;
+      background_image: string;
+    };
   }
 }
 

@@ -9,12 +9,22 @@ export declare namespace IEntity {
   }
 
   export interface Case {
-    id: number;
-    title: string;
-    photo: string;
-    service: string;
-    url: string | null;
-    hashtags: Hashtags[];
+    uz: {
+      id: number;
+      title: string;
+      photo: string;
+      service: string;
+      url: string | null;
+      hashtags: Hashtags[];
+    };
+    ru: {
+      id: number;
+      title: string;
+      photo: string;
+      service: string;
+      url: string | null;
+      hashtags: Hashtags[];
+    };
   }
 }
 

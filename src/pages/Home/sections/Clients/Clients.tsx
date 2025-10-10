@@ -8,6 +8,7 @@ import { useClients } from '@/modules/clients/hooks';
 
 // styles
 import styles from './Clients.module.scss';
+import { useCurrentLang } from '@/core/utils';
 
 function BoxComponent({ children, ...props }: { children: React.ReactNode; [key: string]: any }) {
   return (
@@ -19,6 +20,7 @@ function BoxComponent({ children, ...props }: { children: React.ReactNode; [key:
 
 const Clients = () => {
   const { data } = useClients();
+  const lang = useCurrentLang();
   const { t } = useTranslation();
 
   return (
@@ -40,8 +42,8 @@ const Clients = () => {
             className={styles.marquee_container}
           >
             {data.map(i => (
-              <BoxComponent key={i.id}>
-                <img src={i.photo} alt="clients logos not found" />
+              <BoxComponent key={i[lang]?.id}>
+                <img src={i[lang]?.photo} alt="clients logos not found" />
               </BoxComponent>
             ))}
           </Marquee>

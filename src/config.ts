@@ -1,4 +1,25 @@
-const config = {
+type Config = {
+  api: {
+    accessTokenKey: string;
+    refreshTokenKey: string;
+  };
+
+  language: {
+    key: string;
+    initial: 'uz' | 'ru';
+    list: string[];
+  };
+  list: {
+    perPage: number;
+  };
+
+  support: {
+    email: string;
+    phone: string;
+  };
+};
+
+const config: Config = {
   api: {
     accessTokenKey: 'accessToken',
     refreshTokenKey: 'refereshToken'
@@ -15,7 +36,7 @@ const config = {
 
   support: {
     email: 'info.juba@.uz',
-    phone: '+998 92 143 22 20'
+    phone: '+998 71 200 03 21'
   }
 };
 

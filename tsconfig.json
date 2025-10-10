@@ -21,7 +21,7 @@
     "noFallthroughCasesInSwitch": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"], // umumiy
+      "@/*": ["./src/*"],
       "@core/*": ["./src/core/*"],
       "@modules/*": ["./src/modules/*"],
       "@components/*": ["./src/interface/components/*"],

@@ -14,7 +14,7 @@ import { MutationCache, QueryCache, QueryClient, QueryClientProvider } from '@ta
 
 import App from './App';
 import { message } from '@/interface/components/Message';
-import { useEffect } from 'react';
+import { MantineProvider } from '@mantine/core';
 
 const queryClient = new QueryClient({
   queryCache: new QueryCache({
@@ -30,9 +30,11 @@ const queryClient = new QueryClient({
 });
 
 createRoot(document.getElementById('root')!).render(
-  <ErrorBoundary fallback={<div>Something went wrong</div>}>
-    <QueryClientProvider client={queryClient}>
-      <App />
-    </QueryClientProvider>
-  </ErrorBoundary>
+  <MantineProvider defaultColorScheme="dark">
+    <ErrorBoundary fallback={<div>Something went wrong</div>}>
+      <QueryClientProvider client={queryClient}>
+        <App />
+      </QueryClientProvider>
+    </ErrorBoundary>
+  </MantineProvider>
 );

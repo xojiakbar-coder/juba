@@ -3,10 +3,15 @@ export declare namespace IApi {
 }
 
 export declare namespace IEntity {
-  export interface Result {
+  export interface ResultItem {
     id: number;
     title: string;
     result: number;
+  }
+
+  export interface Result {
+    uz: ResultItem;
+    ru: ResultItem;
   }
 }
 

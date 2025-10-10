@@ -78,12 +78,17 @@
   padding: 0 20px 12px 20px;
 
   z-index: 900 !important;
-  min-width: 200px;
   width: max-content !important;
   border-radius: 20px;
 
   background-color: var(--color-white);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+  @media (max-width: 576px) {
+    gap: 10px;
+    padding: 0 12px 8px 12px;
+    min-width: 100px !important;
+  }
 
   .dropdown_item {
     padding: 0;
@@ -94,6 +99,12 @@
     &:hover {
       color: var(--color-primary);
       background-color: transparent !important;
+    }
+
+    @media (max-width: 576px) {
+      white-space: wrap;
+      text-wrap: ellipsis;
+      font-size: 12px !important;
     }
   }
 }

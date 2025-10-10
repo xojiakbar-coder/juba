@@ -1,5 +1,7 @@
 import axios, { AxiosRequestConfig, AxiosRequestHeaders } from 'axios';
 
+import global_config from '@/config';
+
 let currentLang: string = 'uz';
 
 export const setHttpLanguage = (lang: string) => {
@@ -18,8 +20,8 @@ const http = axios.create({
 
 http.interceptors.request.use(config => {
   if (!config.headers) config.headers = {} as AxiosRequestHeaders;
-  config.headers['Accept-Language'] = currentLang;
-  config.headers['Content-Language'] = currentLang;
+  config.headers['Accept'] = 'application/json';
+  config.headers['Content-Type'] = 'application/json';
   return config;
 });
 

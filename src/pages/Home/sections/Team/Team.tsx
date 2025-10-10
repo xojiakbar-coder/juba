@@ -8,9 +8,11 @@ import { useTeam } from '@/modules/team/hooks';
 import styles from './Team.module.scss';
 import { Element } from 'react-scroll';
 import { useTranslation } from 'react-i18next';
+import { useCurrentLang } from '@/core/utils';
 
 const Team = () => {
   const { data } = useTeam();
+  const lang = useCurrentLang();
   const { t } = useTranslation();
 
   return (
@@ -24,12 +26,12 @@ const Team = () => {
           <div className={styles.list}>
             {data?.map(member => (
               <Item
-                key={member.id}
-                id={member.id}
-                username={member.username}
-                job_title={member.job_title}
-                photo={member.photo}
-                background_image={member.background_image}
+                key={member[lang]?.id}
+                id={member[lang]?.id}
+                username={member[lang]?.username}
+                job_title={member[lang]?.job_title}
+                photo={member[lang]?.photo}
+                background_image={member[lang]?.background_image}
               />
             ))}
           </div>

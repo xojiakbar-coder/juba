@@ -11,7 +11,7 @@ const useContact = () => {
     queryKey: ['contact'],
     queryFn: async () => {
       const { data } = await Api.Contact();
-      return Mappers.Contect(data);
+      return Mappers.ContactList(data);
     },
     initialData
   });

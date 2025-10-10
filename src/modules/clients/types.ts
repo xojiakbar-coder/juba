@@ -4,9 +4,16 @@ export declare namespace IApi {
 
 export declare namespace IEntity {
   export interface Client {
-    id: number;
-    photo: string;
-    photo_type: string;
+    uz: {
+      id: number;
+      photo: string;
+      photo_type: string;
+    };
+    ru: {
+      id: number;
+      photo: string;
+      photo_type: string;
+    };
   }
 }
 

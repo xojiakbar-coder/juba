@@ -11,6 +11,7 @@ import { useServices } from '@/modules/services/hooks';
 // styles
 import cx from 'clsx';
 import styles from './Navigation.module.scss';
+import { useCurrentLang } from '@/core/utils';
 
 type IProps = {
   onDrawer?: boolean;
@@ -23,6 +24,7 @@ const Navigation = ({ responsible = true, onDrawer = false, onClose }: IProps) =
   const { lang } = useParams();
   const { pathname } = useLocation();
   const { services } = useServices();
+  const currentLang = useCurrentLang();
   const { t } = useTranslation('home');
 
   return (
@@ -42,15 +44,15 @@ const Navigation = ({ responsible = true, onDrawer = false, onClose }: IProps) =
               <Menu.Dropdown classNames={{ dropdown: styles.dropdown }}>
                 {services.map((child, i) => (
                   <Menu.Item
-                    key={child.id}
+                    key={child[currentLang]?.id}
                     onClick={() => {
                       onClose?.();
-                      navigate(`${lang}/service/${child.id}`);
+                      navigate(`${lang}/service/${child[currentLang]?.id}`);
                       scroll.scrollToTop({ duration: 100, smooth: false });
                     }}
                     className={styles.dropdown_item}
                   >
-                    {services[i]?.title}
+                    {services[i][currentLang]?.title}
                   </Menu.Item>
                 ))}
               </Menu.Dropdown>

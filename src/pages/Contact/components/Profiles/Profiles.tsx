@@ -43,7 +43,6 @@ const Profiles = ({
         <div className={styles.contactInfo}>
           <p>{email}</p>
           <p>{phone_number}</p>
-          <p>Ислам Каримов 49, 10 этаж</p>
         </div>
       )}
     </div>

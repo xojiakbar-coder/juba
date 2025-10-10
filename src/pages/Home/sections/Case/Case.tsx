@@ -8,9 +8,11 @@ import { useCase } from '@/modules/case/hooks';
 import styles from './Case.module.scss';
 import { Element } from 'react-scroll';
 import { useTranslation } from 'react-i18next';
+import { useCurrentLang } from '@/core/utils';
 
 const Cases = () => {
   const { data } = useCase();
+  const lang = useCurrentLang();
   const { t } = useTranslation();
 
   return (
@@ -18,8 +20,13 @@ const Cases = () => {
       <Title variant="title">{t('our_keys')}</Title>
 
       <div className={styles.grid}>
-        {data?.map(({ id, title, photo, hashtags }) => (
-          <Case key={id} title={title} photo={photo} hashtags={hashtags} />
+        {data?.map(item => (
+          <Case
+            key={item[lang]?.id}
+            title={item[lang]?.title}
+            photo={item[lang]?.photo}
+            hashtags={item[lang]?.hashtags}
+          />
         ))}
       </div>
     </Element>

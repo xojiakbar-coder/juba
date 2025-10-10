@@ -8,10 +8,11 @@ import { Home as HomePage } from '../sections/Home';
 import Send from '@/pages/Send/Send';
 import Contact from '@/pages/Contact/Contact';
 
+// hooks
+import { useSlider } from '@/modules/home/hooks';
+
 // styles
 import styles from './View.module.scss';
-import { useSlider } from '@/modules/home/hooks';
-import { Splash } from '@/interface/components/Splash';
 
 const View = () => {
   const { isLoading, isFetched } = useSlider();
@@ -51,7 +52,7 @@ const View = () => {
     }
   ];
 
-  if (isLoading && !isFetched) return <Splash />;
+  // if (isLoading && !isFetched) return <Splash />;
 
   return (
     <div className={styles.container}>

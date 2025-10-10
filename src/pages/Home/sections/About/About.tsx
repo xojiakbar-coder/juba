@@ -9,9 +9,12 @@ import styles from './About.module.scss';
 import { Resault } from '../Resault';
 import { Element } from 'react-scroll';
 import { useTranslation } from 'react-i18next';
+import { storage } from '@/core/services';
+import { useCurrentLang } from '@/core/utils';
 
 const About = () => {
   const { data } = useAbout();
+  const lang = useCurrentLang();
   const { t } = useTranslation();
 
   return (
@@ -22,10 +25,10 @@ const About = () => {
 
       <div className={styles.wrapper}>
         <div>
-          <Image src={data[0]?.photo} alt="About image not found" />
+          <Image src={data[0]?.[lang]?.photo} alt="About image not found" />
         </div>
         <Spoiler maxHeight={370} showLabel={t('more')} hideLabel={t('hide')} className={styles.description}>
-          {data[0]?.description}
+          {data[0]?.[lang]?.description}
         </Spoiler>
       </div>
 

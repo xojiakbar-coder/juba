@@ -10,6 +10,7 @@ import styles from './Send.module.scss';
 
 const Send = () => {
   const { t } = useTranslation();
+
   return (
     <Element name="send">
       <div className={styles.container}>
@@ -32,7 +33,7 @@ const Send = () => {
                   disabled={isLoading}
                   classNames={{ root: styles.button }}
                 >
-                  Отправить
+                  {isLoading ? t('sending') : t('send')}
                 </Button>
               </>
             )}

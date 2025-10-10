@@ -5,16 +5,17 @@ import { Title } from '@/interface/components/Title';
 
 // hooks
 import { useParams } from 'react-router-dom';
-import { useServiceSubDetail, useServiceWorks } from '@/modules/services/hooks';
+import { useServiceWorks } from '@/modules/services/hooks';
 
 // styles
 import styles from './OurWorks.module.scss';
 import { Desc } from '../components';
+import { useCurrentLang } from '@/core/utils';
 
 const OurWorks = () => {
   const { id } = useParams();
-  const { data: subData } = useServiceSubDetail(id ? +id : 0);
   const { data } = useServiceWorks(id ? +id : 0);
+  const lang = useCurrentLang();
 
   return (
     <div className={styles.container}>
@@ -48,10 +49,10 @@ const OurWorks = () => {
             <SplideSlide key={index}>
               <div className={styles.card}>
                 <div className={styles.imageWrapper}>
-                  <Image src={item.photo} alt={item.services} className={styles.image} />
+                  <Image src={item?.[lang]?.photo} alt={item?.[lang]?.services} className={styles.image} />
                 </div>
                 <div className={styles.content}>
-                  <p className={styles.cardDesc}>{item.description}</p>
+                  <p className={styles.cardDesc}>{item?.[lang]?.description}</p>
                 </div>
               </div>
             </SplideSlide>

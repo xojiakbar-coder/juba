@@ -35,7 +35,7 @@ const Lang = () => {
     if (newPath !== location.pathname) {
       navigate(newPath, { replace: true });
     }
-  }, [lang, location.pathname, i18n, navigate]);
+  }, [lang]);
 
   const handleChange = (lng: LangKey) => {
     if (lng !== lang) {

@@ -8,17 +8,15 @@ import cx from 'clsx';
 import styles from './Content.module.scss';
 
 interface IProps {
-  title: string;
-  desktop?: boolean;
-  description: string;
+  title: any;
+  desktop?: any;
+  description: any;
 }
 
 const Content = ({ title, description, desktop }: IProps) => {
   const { t } = useTranslation();
 
-  console.log();
-
-  const fileUrl = `${import.meta.env.VITE_SITE_URL}/files/KP-Juba-Marketing.pdf`;
+  const fileUrl = import.meta.env.VITE_FILE_NAME;
 
   const handleDownload = () => {
     try {

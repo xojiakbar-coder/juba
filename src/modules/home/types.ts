@@ -1,26 +1,25 @@
-export declare namespace IApi {
-  // API dan keladigan javob — Slider massiv
-  export type Response = IQuery.SliderResponse;
-
-  export namespace Single {
-    // agar faqat bitta obyekt uchun kerak bo‘lsa
-    export type Response = IQuery.Slider;
-  }
-}
-
 export declare namespace IEntity {
-  export interface Slider {
+  export interface SliderContent {
     id: number;
     title: string;
     photo: string;
     description: string;
+    short_description?: string;
+  }
+
+  export interface Slider {
+    uz: SliderContent;
+    ru: SliderContent;
+  }
+}
+
+export declare namespace IApi {
+  export interface Response {
+    uz: IEntity.SliderContent;
+    ru: IEntity.SliderContent;
   }
 }
 
 export declare namespace IQuery {
-  // API dan keladigan javob — massiv
-  export type SliderResponse = IEntity.Slider[];
-
-  // Mapper va UI ishlatadigan bitta element
   export type Slider = IEntity.Slider;
 }

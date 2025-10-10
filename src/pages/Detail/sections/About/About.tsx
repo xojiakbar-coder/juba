@@ -7,23 +7,25 @@ import { useServiceSolo } from '@/modules/services/hooks';
 
 // styles
 import styles from './About.module.scss';
+import { useCurrentLang } from '@/core/utils';
 
 const About = () => {
   const { id } = useParams();
+  const lang = useCurrentLang();
   const { data } = useServiceSolo(id ? +id : 0);
 
   return (
     <div className={styles.container}>
       <Title variant="section-name" className={styles.title}>
-        {data[0]?.title}
+        {data[0]?.[lang]?.title}
       </Title>
 
       <div className={styles.wrapper}>
         <div>
-          <Image src={data[0]?.photo} alt="About image not found" />
+          <Image src={data[0]?.[lang]?.photo} alt="About image not found" />
         </div>
         <Spoiler maxHeight={370} showLabel="Batafsil" hideLabel="Berkitish" className={styles.description}>
-          {data[0]?.description}
+          {data[0]?.[lang]?.description}
         </Spoiler>
       </div>
     </div>

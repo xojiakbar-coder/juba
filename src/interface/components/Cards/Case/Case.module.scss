@@ -8,6 +8,10 @@
   height: max-content;
   min-height: max-content;
   border: 1px solid var(--color-white);
+
+  @media (max-width: 768px) {
+    padding: 20px;
+  }
 }
 
 .title {
@@ -16,6 +20,10 @@
   font-size: 24px;
   font-family: var(--body-font);
   color: var(--light);
+
+  @media (max-width: 576px) {
+    font-size: 16px;
+  }
 }
 
 .imageWrapper {
@@ -29,6 +37,13 @@
   cursor: default;
   border-radius: 30px;
   transition: filter 0.2s ease-in;
+
+  @media (max-width: 768px) {
+    height: 300px;
+  }
+  @media (max-width: 576px) {
+    height: 280px;
+  }
 }
 
 .badges {

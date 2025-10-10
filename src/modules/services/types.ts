@@ -11,43 +11,42 @@ export declare namespace IApi {
 }
 
 export declare namespace IEntity {
-  export interface Services {
+  export interface LangCommon {
     id: number;
     title: string;
-    description: string;
+    description?: string;
+    photo?: string;
+    full_description?: string;
+  }
+
+  export interface Services {
+    uz: { id: number; title: string; description: string };
+    ru: { id: number; title: string; description: string };
   }
 
   export interface ServiceDetail {
-    id: number;
-    title: string;
-    description: string;
-    full_description: string;
+    uz: LangCommon;
+    ru: LangCommon;
   }
+
   export interface ServiceDetailById {
-    id: number;
-    detail_title: string;
-    detail_description: string;
-    tab_title: string;
+    uz: { id: number; detail_title: string; detail_description: string; tab_title: string };
+    ru: { id: number; detail_title: string; detail_description: string; tab_title: string };
   }
 
   export interface ServicePricing {
-    id: number;
-    title: string;
-
-    description: string;
+    uz: { id: number; title: string; description: string };
+    ru: { id: number; title: string; description: string };
   }
 
   export interface ServiceSubDetail {
-    id: number;
-    detail_sub_title: string;
-    detail_sub_description: string;
+    uz: { id: number; detail_sub_title: string; detail_sub_description: string };
+    ru: { id: number; detail_sub_title: string; detail_sub_description: string };
   }
 
   export interface ServiceWorks {
-    id: number;
-    photo: string;
-    services: string;
-    description: string;
+    uz: { id: number; services: string; description: string; photo: string };
+    ru: { id: number; services: string; description: string; photo: string };
   }
 
   export interface Hashtags {
@@ -56,35 +55,23 @@ export declare namespace IEntity {
   }
 
   export interface ServiceKeys {
-    id: number;
-    title: string;
-    photo: string;
-    service: string;
-    url: string | null;
-    hashtags: Hashtags[];
+    uz: { id: number; title: string; photo: string; service: string; url: string | null; hashtags: Hashtags[] };
+    ru: { id: number; title: string; photo: string; service: string; url: string | null; hashtags: Hashtags[] };
   }
 
   export interface ServicePricingById {
-    id: number;
-    title: string;
-    price: number;
-    description: string;
+    uz: { id: number; title: string; price: number; description: string };
+    ru: { id: number; title: string; price: number; description: string };
   }
 
   export interface ServiceSolo {
-    id: number;
-    title: string;
-    description: string;
-    photo: string;
+    uz: { id: number; title: string; description: string; photo: string };
+    ru: { id: number; title: string; description: string; photo: string };
   }
 
   export interface ServiceType {
-    id: number;
-    title: string;
-    is_top: boolean;
-    services: string;
-    description: string;
-    photo?: string;
+    uz: { id: number; title: string; is_top: boolean; services: string; description: string; photo?: string };
+    ru: { id: number; title: string; is_top: boolean; services: string; description: string; photo?: string };
   }
 }
 

@@ -8,21 +8,21 @@ import styles from './Home.module.scss';
 import { Desc } from '../components';
 import { Title } from '@/interface/components/Title';
 import { Button } from '@/interface/components/Button';
-
-// schema: Detail-, Solo- , Works, Top Price/Id, Bottom
+import { useCurrentLang } from '@/core/utils';
 
 const Home = () => {
   const { id } = useParams();
   const { data } = useServiceDetailById(id ? +id : 0);
+  const lang = useCurrentLang();
 
   return (
     <div className={styles.container}>
-      {data.map(({ id, detail_title, detail_description }) => (
+      {data.map(item => (
         <div key={id}>
           <Title variant="secondary" className={styles.title}>
-            {detail_title}
+            {item?.[lang]?.detail_title}
           </Title>
-          <Desc>{detail_description}</Desc>
+          <Desc>{item?.[lang]?.detail_description}</Desc>
           <Button size="xl" className={styles.btn} onClick={() => scroller.scrollTo('send', {})}>
             Loyiha muhokama qilish
           </Button>

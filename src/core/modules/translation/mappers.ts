@@ -6,15 +6,13 @@ export const Translation = (item: any, propName: string, isObject?: boolean): Ty
   if (isObject) {
     return {
       ru: get(item, `${propName}.ru`) || '',
-      uz: get(item, `${propName}.uz`) || '',
-      oz: get(item, `${propName}.oz`) || ''
+      uz: get(item, `${propName}.uz`) || ''
     };
   }
 
   return {
     ru: get(item, `${propName}Ru`) || '',
-    uz: get(item, `${propName}Uz`) || '',
-    oz: get(item, `${propName}UzCryl`) || get(item, `${propName}Cryl`) || ''
+    uz: get(item, `${propName}Uz`) || ''
   };
 };
 

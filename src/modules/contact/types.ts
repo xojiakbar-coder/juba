@@ -8,14 +8,26 @@ export declare namespace IApi {
 
 export declare namespace IEntity {
   export interface Contact {
-    id: number;
-    phoneNumber: string;
-    email: string;
-    longitude: string;
-    latitude: string;
-    telegram: string;
-    instagram: string;
-    facebook: string;
+    uz: {
+      id: number;
+      phoneNumber: string;
+      email: string;
+      longitude: string;
+      latitude: string;
+      telegram: string;
+      instagram: string;
+      facebook: string;
+    };
+    ru: {
+      id: number;
+      phoneNumber: string;
+      email: string;
+      longitude: string;
+      latitude: string;
+      telegram: string;
+      instagram: string;
+      facebook: string;
+    };
   }
 
   export type UserContact = {
@@ -26,7 +38,6 @@ export declare namespace IEntity {
 
 export declare namespace IQuery {
   export type ContactResponse = IEntity.Contact[];
-
   export type Contact = IEntity.Contact;
 }
 

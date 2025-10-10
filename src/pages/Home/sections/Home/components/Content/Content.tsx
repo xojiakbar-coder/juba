@@ -16,18 +16,19 @@ interface IProps {
 const Content = ({ title, description, desktop }: IProps) => {
   const { t } = useTranslation();
 
-  const fileUrl = import.meta.env.VITE_FILE_NAME;
+  console.log(import.meta.env.VITE_FILE_NAME);
 
   const handleDownload = () => {
     try {
       const link = document.createElement('a');
-      link.href = fileUrl;
-      link.download = 'KP-Juba-Marketing.pdf';
+      link.href = import.meta.env.VITE_FILE_NAME;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
     } catch (error) {
-      console.error('Faylni yuklab olishda xatolik:', error);
+      console.error('Faylni ochishda xatolik:', error);
     }
   };
 

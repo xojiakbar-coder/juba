@@ -1,12 +1,6 @@
 // hooks
-import { useParams } from 'react-router-dom';
-import {
-  useServiceKeys,
-  useServiceWorks,
-  useServiceSubDetail,
-  useServiceTypeBottom,
-  useServicePricingById
-} from '@/modules/services/hooks';
+import { useContext } from '@/core/context/servicesContext';
+import { useServiceKeys, useServiceWorks, useServiceTypeBottom, useServicePricingById } from '@/modules/services/hooks';
 
 // sections
 import { Home } from '../sections/Home';
@@ -23,18 +17,14 @@ import Contact from '@/pages/Contact/Contact';
 
 // styles
 import styles from './View.module.scss';
-import { Splash } from '@/interface/components/Splash';
 
 const View = () => {
-  const { id } = useParams();
+  const { service } = useContext();
 
-  const { data: subData, isLoading: isSubLoading, isFetched: isSubFetched } = useServiceSubDetail(id ? +id : 0);
-  const { data: bottomData, isSuccess: bottomSuccess } = useServiceTypeBottom(id ? +id : 0);
-  const { data: pricingData, isSuccess: pricingSuccess } = useServicePricingById(id ? +id : 0);
-  const { data: caseData, isSuccess: caseSuccess } = useServiceKeys(id ? +id : 0);
-  const { data: worksData, isSuccess: worksSuccess } = useServiceWorks(id ? +id : 0);
-
-  // if (isSubLoading && !isSubFetched) return <Splash />;
+  const { data: bottomData, isSuccess: bottomSuccess } = useServiceTypeBottom(service?.id ? +service?.id : 0);
+  const { data: pricingData, isSuccess: pricingSuccess } = useServicePricingById(service?.id ? +service?.id : 0);
+  const { data: caseData, isSuccess: caseSuccess } = useServiceKeys(service?.id ? +service?.id : 0);
+  const { data: worksData, isSuccess: worksSuccess } = useServiceWorks(service?.id ? +service?.id : 0);
 
   return (
     <div className={styles.container}>

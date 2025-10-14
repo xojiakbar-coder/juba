@@ -8,15 +8,10 @@ import { Home as HomePage } from '../sections/Home';
 import Send from '@/pages/Send/Send';
 import Contact from '@/pages/Contact/Contact';
 
-// hooks
-import { useSlider } from '@/modules/home/hooks';
-
 // styles
 import styles from './View.module.scss';
 
 const View = () => {
-  const { isLoading, isFetched } = useSlider();
-
   const sections = [
     {
       id: 1,
@@ -51,8 +46,6 @@ const View = () => {
       element: Send
     }
   ];
-
-  // if (isLoading && !isFetched) return <Splash />;
 
   return (
     <div className={styles.container}>

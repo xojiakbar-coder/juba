@@ -1,10 +1,8 @@
-import type { QueryParamConfig, SetQuery } from 'use-query-params';
-
 export declare namespace IContext {
+  export type Lang = 'uz' | 'ru';
+
   export interface Value {
-    contentLang: string;
-    setQuery: SetQuery<{
-      contentLang: QueryParamConfig<string | null | undefined, string | undefined>;
-    }>;
+    lang: Lang;
+    setLang: (lang: Lang | 'ru') => void;
   }
 }

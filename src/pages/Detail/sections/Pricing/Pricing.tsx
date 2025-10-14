@@ -1,23 +1,23 @@
-import { scroller } from 'react-scroll';
-import { getTextOfHTML } from '@/helpers';
-import { useParams } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import { useServicePricing, useServicePricingById } from '@/modules/services/hooks';
-
 import { Desc } from '../components';
 import { Title } from '@/interface/components/Title';
 import { Button } from '@/interface/components/Button';
 
+import { scroller } from 'react-scroll';
+import { getTextOfHTML } from '@/helpers';
+import { useTranslation } from 'react-i18next';
+import { useContext } from '@/core/context/servicesContext';
+import { useContext as useLangContext } from '@/core/context/contentLanguage';
+import { useServicePricing, useServicePricingById } from '@/modules/services/hooks';
+
 // styles
 import styles from './Pricing.module.scss';
-import { useCurrentLang } from '@/core/utils';
 
 const Pricing = () => {
   const { t } = useTranslation();
-  const { id } = useParams();
-  const { data } = useServicePricingById(id ? +id : 0);
-  const { data: pricingData } = useServicePricing(id ? +id : 0);
-  const lang = useCurrentLang();
+  const { service } = useContext();
+  const { lang } = useLangContext();
+  const { data } = useServicePricingById(service?.id ? +service?.id : 0);
+  const { data: pricingData } = useServicePricing(service?.id ? +service?.id : 0);
 
   return (
     <div className={styles.container}>
@@ -31,7 +31,7 @@ const Pricing = () => {
 
         <div className={styles.grid}>
           {data?.map(item => (
-            <div className={styles.card} key={id}>
+            <div className={styles.card} key={item?.[lang]?.id}>
               <div className={styles.cardTitle}>{item?.[lang]?.title}</div>
               <div className={styles.cardPrice}>{item?.[lang]?.price}$</div>
               <div className={styles.cardDesc} dangerouslySetInnerHTML={{ __html: item?.[lang]?.description }} />

@@ -16,7 +16,7 @@ const Splash = () => {
 
   return (
     <div className={styles.splashWrapper}>
-      <Loader color="var(--color-primary)" type="oval" />
+      <Loader color="var(--color-primary)" type="oval" size="lg" />
     </div>
   );
 };

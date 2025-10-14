@@ -1,24 +1,22 @@
+import { Resault } from '../Resault';
 import { Image, Spoiler } from '@mantine/core';
 import { Title } from '@/interface/components/Title';
 
 // hooks
+import { useTranslation } from 'react-i18next';
 import { useAbout } from '@/modules/about/hooks';
+import { useContext } from '@/core/context/contentLanguage';
 
 // styles
 import styles from './About.module.scss';
-import { Resault } from '../Resault';
-import { Element } from 'react-scroll';
-import { useTranslation } from 'react-i18next';
-import { storage } from '@/core/services';
-import { useCurrentLang } from '@/core/utils';
 
 const About = () => {
   const { data } = useAbout();
-  const lang = useCurrentLang();
+  const { lang } = useContext();
   const { t } = useTranslation();
 
   return (
-    <Element className={styles.container} name="about">
+    <div className={styles.container} id="about">
       <Title variant="section-name" className={styles.title}>
         {t('about_us')}
       </Title>
@@ -33,7 +31,7 @@ const About = () => {
       </div>
 
       <Resault />
-    </Element>
+    </div>
   );
 };
 

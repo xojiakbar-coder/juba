@@ -1,11 +1,16 @@
-import { type RouteObject, Navigate, useParams } from 'react-router-dom';
+import React, { Suspense } from 'react';
 import queryString from 'query-string';
-import { QueryParamProvider } from 'use-query-params';
-import { ReactRouter6Adapter } from 'use-query-params/adapters/react-router-6';
 import { ErrorBoundary } from 'react-error-boundary';
+import { QueryParamProvider } from 'use-query-params';
+import { type RouteObject, Navigate } from 'react-router-dom';
+import { ReactRouter6Adapter } from 'use-query-params/adapters/react-router-6';
+import { Provider as SmoothScrollProvider } from '@/core/context/smoothScroll';
 
 import HomeLayout from '@/layouts/Home/Home';
-import ContentLanguageProvider from '@/core/context/contentLanguage/Provider';
+import { Splash } from './interface/components/Splash';
+
+const HomeView = React.lazy(() => import('@/pages/Home/View').then(m => ({ default: m.View })));
+const DetailView = React.lazy(() => import('@/pages/Detail/View').then(m => ({ default: m.View })));
 
 const getRoutesData = (): RouteObject[] => [
   {
@@ -17,41 +22,32 @@ const getRoutesData = (): RouteObject[] => [
           objectToSearchString: queryString.stringify
         }}
       >
-        <ContentLanguageProvider>
+        <SmoothScrollProvider>
           <HomeLayout />
-        </ContentLanguageProvider>
+        </SmoothScrollProvider>
       </QueryParamProvider>
     ),
     errorElement: <ErrorBoundary fallback={<div>Something went wrong</div>} />,
     children: [
       {
-        path: '/',
-        element: <Navigate to="/uz" replace />
+        index: true,
+        element: (
+          <Suspense fallback={<Splash />}>
+            <HomeView />
+          </Suspense>
+        )
       },
-
       {
-        path: ':lang',
-        children: [
-          {
-            index: true,
-            async lazy() {
-              const { View } = await import('@/pages/Home/View');
-              return { Component: View };
-            }
-          },
-          {
-            path: 'service/:id',
-            async lazy() {
-              const { View } = await import('@/pages/Detail/View');
-              return { Component: View };
-            }
-          }
-        ]
+        path: 'xizmatlar/:slug',
+        element: (
+          <Suspense fallback={<Splash />}>
+            <DetailView />
+          </Suspense>
+        )
       },
-
       {
         path: '*',
-        element: <Navigate to="/uz" replace />
+        element: <Navigate to="/" />
       }
     ]
   }

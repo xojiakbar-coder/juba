@@ -16,8 +16,6 @@ interface IProps {
 const Content = ({ title, description, desktop }: IProps) => {
   const { t } = useTranslation();
 
-  console.log(import.meta.env.VITE_FILE_NAME);
-
   const handleDownload = () => {
     try {
       const link = document.createElement('a');

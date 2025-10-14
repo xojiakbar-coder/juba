@@ -2,17 +2,19 @@ import { Image, Spoiler } from '@mantine/core';
 import { Title } from '@/interface/components/Title';
 
 // hooks
-import { useParams } from 'react-router-dom';
 import { useServiceSolo } from '@/modules/services/hooks';
+import { useContext } from '@/core/context/servicesContext';
+import { useContext as useLangContext } from '@/core/context/contentLanguage';
 
 // styles
 import styles from './About.module.scss';
-import { useCurrentLang } from '@/core/utils';
+import { useTranslation } from 'react-i18next';
 
 const About = () => {
-  const { id } = useParams();
-  const lang = useCurrentLang();
-  const { data } = useServiceSolo(id ? +id : 0);
+  const { t } = useTranslation();
+  const { service } = useContext();
+  const { lang } = useLangContext();
+  const { data } = useServiceSolo(service?.id ? +service?.id : 0);
 
   return (
     <div className={styles.container}>
@@ -24,7 +26,7 @@ const About = () => {
         <div>
           <Image src={data[0]?.[lang]?.photo} alt="About image not found" />
         </div>
-        <Spoiler maxHeight={370} showLabel="Batafsil" hideLabel="Berkitish" className={styles.description}>
+        <Spoiler maxHeight={370} showLabel={t('more')} hideLabel={t('hide')} className={styles.description}>
           {data[0]?.[lang]?.description}
         </Spoiler>
       </div>

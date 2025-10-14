@@ -1,24 +1,28 @@
-import { useNavigate, useParams } from 'react-router-dom';
-
-import { useServices } from '@/modules/services/hooks';
+import * as Types from '@/modules/services/types';
 
 import { Title } from '@/interface/components/Title';
 import { Data } from '@/interface/components/Cards/Data';
 
+import { toSlug } from '@/helpers';
+import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
+import { useServices } from '@/modules/services/hooks';
+import { useContext } from '@/core/context/contentLanguage';
+import { useContext as useServiceContext } from '@/core/context/servicesContext';
+
 // styles
 import styles from './Services.module.scss';
-import { useTranslation } from 'react-i18next';
-import { useCurrentLang } from '@/core/utils';
 
 const Services = () => {
+  const { lang } = useContext();
   const navigate = useNavigate();
   const { t } = useTranslation();
-  const { lang } = useParams();
   const { services } = useServices();
-  const currentLang = useCurrentLang();
+  const { setService } = useServiceContext();
 
-  const getDetailData = (id: number) => {
-    navigate(`/${lang}/service/${id}`);
+  const getDetailData = (item: Types.IEntity.SingleSerivce) => {
+    navigate(`/xizmatlar/${toSlug(item.title)}`);
+    setService(item);
   };
 
   return (
@@ -26,12 +30,12 @@ const Services = () => {
       <div className={styles.inner}>
         <Title variant="title">{t('services_title')}</Title>
         <div className={styles.grid}>
-          {services.map((item, i) => (
+          {services.map(item => (
             <Data
-              key={i + 1}
-              title={item[currentLang].title}
-              text={item[currentLang].description}
-              onClick={() => getDetailData(item[currentLang].id)}
+              key={item[lang].id}
+              title={item[lang].title}
+              text={item[lang].description}
+              onClick={() => getDetailData(item['uz'])}
             />
           ))}
         </div>

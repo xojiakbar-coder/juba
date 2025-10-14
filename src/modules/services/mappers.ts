@@ -1,7 +1,6 @@
 import { get } from 'radash';
 import * as Types from './types';
 
-// ✅ service list
 export const Service = (src: any): Types.IEntity.Services => ({
   uz: {
     id: get(src, 'uz.id', 0),
@@ -17,7 +16,6 @@ export const Service = (src: any): Types.IEntity.Services => ({
 
 export const Services = (src: any[]): Types.IEntity.Services[] => src.map(item => Service(item));
 
-// ✅ service detail
 export const ServiceDetail = (src: any): Types.IEntity.ServiceDetail => ({
   uz: {
     id: get(src, 'uz.id', 0),
@@ -33,7 +31,6 @@ export const ServiceDetail = (src: any): Types.IEntity.ServiceDetail => ({
   }
 });
 
-// ✅ detail by id
 export const ServiceDetailById = (src: any[]): Types.IEntity.ServiceDetailById[] =>
   src.map(item => ({
     uz: {
@@ -50,7 +47,6 @@ export const ServiceDetailById = (src: any[]): Types.IEntity.ServiceDetailById[]
     }
   }));
 
-// ✅ pricing
 export const ServicePricing = (src: any[]): Types.IEntity.ServicePricing[] =>
   src.map(item => ({
     uz: {
@@ -65,7 +61,6 @@ export const ServicePricing = (src: any[]): Types.IEntity.ServicePricing[] =>
     }
   }));
 
-// ✅ sub-detail
 export const ServiceSubDetail = (src: any): Types.IEntity.ServiceSubDetail => ({
   uz: {
     id: get(src, 'uz.id', 0),
@@ -79,7 +74,6 @@ export const ServiceSubDetail = (src: any): Types.IEntity.ServiceSubDetail => ({
   }
 });
 
-// ✅ works
 export const ServiceWorks = (src: any[]): Types.IEntity.ServiceWorks[] =>
   src.map(item => ({
     uz: {
@@ -96,7 +90,6 @@ export const ServiceWorks = (src: any[]): Types.IEntity.ServiceWorks[] =>
     }
   }));
 
-// ✅ keys
 export const ServiceKeys = (src: any[]): Types.IEntity.ServiceKeys[] =>
   (src ?? []).map(item => ({
     uz: {
@@ -123,7 +116,6 @@ export const ServiceKeys = (src: any[]): Types.IEntity.ServiceKeys[] =>
     }
   }));
 
-// ✅ pricing/{id}
 export const ServicePricingById = (src: any[]): Types.IEntity.ServicePricingById[] =>
   src.map(item => ({
     uz: {
@@ -140,7 +132,6 @@ export const ServicePricingById = (src: any[]): Types.IEntity.ServicePricingById
     }
   }));
 
-// ✅ solo
 export const ServiceSolo = (src: any[]): Types.IEntity.ServiceSolo[] =>
   src.map(item => ({
     uz: {
@@ -157,7 +148,6 @@ export const ServiceSolo = (src: any[]): Types.IEntity.ServiceSolo[] =>
     }
   }));
 
-// ✅ type (bottom/top)
 export const ServiceType = (src: any[]): Types.IEntity.ServiceType[] =>
   src.map(item => ({
     uz: {

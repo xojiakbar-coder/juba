@@ -5,10 +5,10 @@ import { Title } from '@/interface/components/Title';
 // hooks
 import { useTranslation } from 'react-i18next';
 import { useClients } from '@/modules/clients/hooks';
+import { useContext } from '@/core/context/contentLanguage';
 
 // styles
 import styles from './Clients.module.scss';
-import { useCurrentLang } from '@/core/utils';
 
 function BoxComponent({ children, ...props }: { children: React.ReactNode; [key: string]: any }) {
   return (
@@ -20,7 +20,7 @@ function BoxComponent({ children, ...props }: { children: React.ReactNode; [key:
 
 const Clients = () => {
   const { data } = useClients();
-  const lang = useCurrentLang();
+  const { lang } = useContext();
   const { t } = useTranslation();
 
   return (
@@ -38,12 +38,12 @@ const Clients = () => {
             pauseOnHover
             duration={30.2}
             fadeEdgesSize="sm"
-            fadeEdgesColor="var(--color-primary)"
             className={styles.marquee_container}
+            fadeEdgesColor="var(--color-primary)"
           >
             {data.map(i => (
               <BoxComponent key={i[lang]?.id}>
-                <img src={i[lang]?.photo} alt="clients logos not found" />
+                <img src={i[lang]?.photo} alt="clients logos not found" loading="lazy" />
               </BoxComponent>
             ))}
           </Marquee>

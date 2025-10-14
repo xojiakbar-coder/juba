@@ -1,21 +1,18 @@
-import { useParams } from 'react-router-dom';
-import { useServiceSubDetail } from '@/modules/services/hooks';
-
 import { TopCard } from '../TopCard';
-
 import { Desc } from '../components';
 import { Title } from '@/interface/components/Title';
 
+import { useContext } from '@/core/context/servicesContext';
+import { useServiceSubDetail } from '@/modules/services/hooks';
+import { useContext as useLangContext } from '@/core/context/contentLanguage';
+
 // styles
 import styles from './SubDetail.module.scss';
-import { useCurrentLang } from '@/core/utils';
-
-// schema: Detail, Solo, Works, Top Price/Id, Bottom
 
 const SubDetail = () => {
-  const { id } = useParams();
-  const { data } = useServiceSubDetail(id ? +id : 0);
-  const lang = useCurrentLang();
+  const { service } = useContext();
+  const { lang } = useLangContext();
+  const { data } = useServiceSubDetail(service?.id ? +service?.id : 0);
 
   return (
     <div className={styles.container}>

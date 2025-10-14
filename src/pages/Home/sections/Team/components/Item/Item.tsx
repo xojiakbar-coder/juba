@@ -12,8 +12,8 @@ const Item = ({ username, job_title, photo, background_image }: IProps) => {
   return (
     <div className={styles.item}>
       <div className={styles.photoWrapper}>
-        <img src={photo} alt={`${username} not found`} className={styles.photoInactive} />
-        <img src={background_image} alt={`${username} not found`} className={styles.photoActive} />
+        <img src={photo} alt={`${username} not found`} className={styles.photoInactive} loading="lazy" />
+        <img src={background_image} alt={`${username} not found`} className={styles.photoActive} loading="lazy" />
       </div>
 
       <div className={styles.info}>

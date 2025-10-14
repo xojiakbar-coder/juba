@@ -1,88 +1,44 @@
-// import { useEffect, useMemo } from 'react';
-// import { useTranslation } from 'react-i18next';
-// import { useParams, useNavigate } from 'react-router-dom';
-// import { StringParam, useQueryParams, withDefault } from 'use-query-params';
-// import { useQueryClient } from '@tanstack/react-query';
+import React, { useEffect, useMemo, useState } from 'react';
+import { instance as i18n } from '@/core/services/i18n';
+import storage from '@/core/services/storage';
 
-// import Context from './context.ts';
-// import config from '@/config.ts';
-// import { storage } from '@/core/services/index.ts';
-// import { setHttpLanguage } from '@/core/services/http/http.ts';
-
-// const Provider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-//   const { lang } = useParams();
-//   const navigate = useNavigate();
-//   const { i18n } = useTranslation();
-//   const queryClient = useQueryClient();
-
-//   const [query, setQuery] = useQueryParams({
-//     contentLang: withDefault(StringParam, lang || 'uz')
-//   });
-
-//   useEffect(() => {
-//     (async () => {
-//       const storedLang = storage.local.get(config.language.key) || 'uz';
-//       const currentLang = lang || storedLang || 'uz';
-
-//       if (!['uz', 'ru'].includes(currentLang)) {
-//         navigate('/uz', { replace: true });
-//         return;
-//       }
-
-//       await i18n.changeLanguage(currentLang);
-//       document.documentElement.lang = currentLang;
-//       storage.local.set(config.language.key, currentLang);
-//       setHttpLanguage(currentLang);
-
-//       try {
-//       } catch (err) {
-//         console.error('Query refetch error', err);
-//       }
-//     })();
-//   }, [lang, navigate, i18n]);
-
-//   const contextValue = useMemo(
-//     () => ({
-//       contentLang: lang || 'uz',
-//       setQuery
-//     }),
-//     [lang, setQuery]
-//   );
-
-//   return <Context.Provider value={contextValue}>{children}</Context.Provider>;
-// };
-
-// export default Provider;
-
-import React, { useEffect, useMemo } from 'react';
-import { StringParam, useQueryParams, withDefault } from 'use-query-params';
-
-import Context from './context.ts';
-
-const getContentLangSearchParam = () => {
-  return new URLSearchParams(window.location.href).get('contentLang') || '';
-};
+import Context from './context';
 
 const Provider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [query, setQuery] = useQueryParams({
-    contentLang: withDefault(StringParam, getContentLangSearchParam())
+  const [lang, setLangState] = useState<'uz' | 'ru'>(() => {
+    return (storage.local.get('language') as 'uz' | 'ru') || 'ru';
   });
 
-  useEffect(() => {
-    if (query.contentLang && !['uz', 'ru'].includes(query.contentLang)) {
-      setQuery({ ...query, contentLang: 'uz' }, 'replace');
+  const setLang = (lng: 'uz' | 'ru') => {
+    if (lng !== lang) {
+      setLangState(lng);
+      i18n.changeLanguage(lng);
+      storage.local.set('language', lng);
     }
-  }, [query, query.contentLang, setQuery]);
+  };
 
-  const contextValue = useMemo(
-    () => ({
-      contentLang: query.contentLang || '',
-      setQuery
-    }),
-    [query.contentLang, setQuery]
-  );
+  useEffect(() => {
+    const savedLang = (storage.local.get('language') as 'uz' | 'ru') || 'ru';
+    if (savedLang !== i18n.language) {
+      i18n.changeLanguage(savedLang);
+    }
+  }, []);
 
-  return <Context.Provider value={contextValue}>{children}</Context.Provider>;
+  useEffect(() => {
+    const handleChange = (lng: string) => {
+      setLangState(lng as 'uz' | 'ru');
+      storage.local.set('language', lng);
+    };
+
+    i18n.on('languageChanged', handleChange);
+    return () => {
+      i18n.off('languageChanged', handleChange);
+    };
+  }, []);
+
+  const value = useMemo(() => ({ lang, setLang }), [lang]);
+
+  return <Context.Provider value={value}>{children}</Context.Provider>;
 };
 
 export default Provider;

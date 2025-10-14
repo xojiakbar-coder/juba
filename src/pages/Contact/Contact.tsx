@@ -1,21 +1,20 @@
-import { Element } from 'react-scroll';
 import Profiles from './components/Profiles/Profiles';
 
 // hooks
+import { useTranslation } from 'react-i18next';
 import { useContact } from '@/modules/contact/hooks';
+import { useContext } from '@/core/context/contentLanguage';
 
 // styles
 import styles from './Contact.module.scss';
-import { useTranslation } from 'react-i18next';
-import { useCurrentLang } from '@/core/utils';
 
 const Contact = () => {
+  const { lang } = useContext();
   const { data } = useContact();
-  const lang = useCurrentLang();
   const { t } = useTranslation();
 
   return (
-    <Element name="contact" className={styles.contact}>
+    <div id="contact" className={styles.contact}>
       <div className={styles.inner}>
         <h2 className={styles.title}>{t('contacts')}</h2>
 
@@ -45,7 +44,7 @@ const Contact = () => {
           />
         </div>
       </div>
-    </Element>
+    </div>
   );
 };
 

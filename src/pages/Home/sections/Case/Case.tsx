@@ -1,35 +1,31 @@
 import { Title } from '@/interface/components/Title';
 import { Case } from '@/interface/components/Cards/Case';
 
-// hooks
+import { useTranslation } from 'react-i18next';
 import { useCase } from '@/modules/case/hooks';
+import { useContext } from '@/core/context/contentLanguage';
 
 // styles
 import styles from './Case.module.scss';
-import { Element } from 'react-scroll';
-import { useTranslation } from 'react-i18next';
-import { useCurrentLang } from '@/core/utils';
 
 const Cases = () => {
   const { data } = useCase();
-  const lang = useCurrentLang();
+  const { lang } = useContext();
   const { t } = useTranslation();
 
   return (
-    <Element className={styles.case} name="projects">
+    <section className={styles.case} id="projects">
       <Title variant="title">{t('our_keys')}</Title>
 
       <div className={styles.grid}>
-        {data?.map(item => (
-          <Case
-            key={item[lang]?.id}
-            title={item[lang]?.title}
-            photo={item[lang]?.photo}
-            hashtags={item[lang]?.hashtags}
-          />
-        ))}
+        {data?.map(item => {
+          const content = item?.[lang];
+          if (!content) return null;
+
+          return <Case key={content.id} title={content.title} photo={content.photo} hashtags={content.hashtags} />;
+        })}
       </div>
-    </Element>
+    </section>
   );
 };
 

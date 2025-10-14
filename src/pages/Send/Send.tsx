@@ -2,7 +2,6 @@ import { Form } from './components/Form';
 import { useTranslation } from 'react-i18next';
 import { Send as SendForm } from '@/modules/contact/forms';
 
-import { Element } from 'react-scroll';
 import { Button } from '@/interface/components/Button';
 import { message } from '@/interface/components/Message';
 
@@ -12,7 +11,7 @@ const Send = () => {
   const { t } = useTranslation();
 
   return (
-    <Element name="send">
+    <div id="send">
       <div className={styles.container}>
         <h1 className={styles.title}>
           {t('form_title')},
@@ -40,7 +39,7 @@ const Send = () => {
           </SendForm>
         </div>
       </div>
-    </Element>
+    </div>
   );
 };
 

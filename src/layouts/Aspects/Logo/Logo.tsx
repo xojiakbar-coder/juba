@@ -27,7 +27,7 @@ const Logo = ({ event = true }: IProps) => {
   return (
     <div onClick={handleClick}>
       <div className={styles.wrapper}>
-        <img src={jubaLogo} alt="Juba Marketing logo not found" className={styles.logo} />
+        <img src={jubaLogo} alt="Juba Marketing logo not found" loading="lazy" className={styles.logo} />
       </div>
     </div>
   );

@@ -1,21 +1,22 @@
-import { useParams } from 'react-router-dom';
-import { useServiceTypeTop } from '@/modules/services/hooks';
-
 import { Card } from '../components';
+
+// hooks
+import { useContext } from '@/core/context/servicesContext';
+import { useServiceTypeTop } from '@/modules/services/hooks';
+import { useContext as useLangContext } from '@/core/context/contentLanguage';
 
 // styles
 import styles from './TopCard.module.scss';
-import { useCurrentLang } from '@/core/utils';
 
 const TopCard = () => {
-  const { id } = useParams();
-  const { data } = useServiceTypeTop(id ? +id : 0);
-  const lang = useCurrentLang();
+  const { service } = useContext();
+  const { lang } = useLangContext();
+  const { data } = useServiceTypeTop(service?.id ? +service?.id : 0);
 
   return (
     <div className={styles.container}>
       {data.map((item, i) => (
-        <Card key={id} i={i + 1} title={item?.[lang]?.title} description={item?.[lang]?.description} />
+        <Card key={item?.[lang]?.id} i={i + 1} title={item?.[lang]?.title} description={item?.[lang]?.description} />
       ))}
     </div>
   );

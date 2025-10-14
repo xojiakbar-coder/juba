@@ -2,21 +2,20 @@ import { Item } from './components';
 import { Title } from '@/interface/components/Title';
 
 // hooks
+import { useTranslation } from 'react-i18next';
 import { useTeam } from '@/modules/team/hooks';
+import { useContext } from '@/core/context/contentLanguage';
 
 // styles
 import styles from './Team.module.scss';
-import { Element } from 'react-scroll';
-import { useTranslation } from 'react-i18next';
-import { useCurrentLang } from '@/core/utils';
 
 const Team = () => {
   const { data } = useTeam();
-  const lang = useCurrentLang();
+  const { lang } = useContext();
   const { t } = useTranslation();
 
   return (
-    <Element name="team" className={styles.team}>
+    <div id="team" className={styles.team}>
       <Title variant="section-name" className={styles.title}>
         {t('our_team')}
       </Title>
@@ -37,7 +36,7 @@ const Team = () => {
           </div>
         </div>
       </div>
-    </Element>
+    </div>
   );
 };
 

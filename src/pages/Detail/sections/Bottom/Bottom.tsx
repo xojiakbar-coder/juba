@@ -1,18 +1,19 @@
-import { useParams } from 'react-router-dom';
-import { useServiceTypeBottom } from '@/modules/services/hooks';
-
 import { Title } from '@/interface/components/Title';
+
+// hooks
+import { useTranslation } from 'react-i18next';
+import { useContext } from '@/core/context/servicesContext';
+import { useServiceTypeBottom } from '@/modules/services/hooks';
+import { useContext as useLangContext } from '@/core/context/contentLanguage';
 
 // styles
 import styles from './Bottom.module.scss';
-import { useCurrentLang } from '@/core/utils';
-import { useTranslation } from 'react-i18next';
 
 const BottomCard = () => {
-  const { id } = useParams();
-  const lang = useCurrentLang();
   const { t } = useTranslation();
-  const { data } = useServiceTypeBottom(id ? +id : 0);
+  const { service } = useContext();
+  const { lang } = useLangContext();
+  const { data } = useServiceTypeBottom(service?.id ? +service?.id : 0);
 
   return (
     <div className={styles.container}>
@@ -23,7 +24,7 @@ const BottomCard = () => {
         {data.map(p => (
           <div key={p?.[lang].id} className={styles.card}>
             <div className={styles.icon}>
-              <img src={p?.[lang].photo} alt={p?.[lang].title} />
+              <img src={p?.[lang].photo} alt={p?.[lang].title} loading="lazy" />
             </div>
             <div>
               <h3 className={styles.cardTitle}>{p?.[lang].title}</h3>

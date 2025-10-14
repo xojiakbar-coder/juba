@@ -2,16 +2,16 @@ import { Card } from './components/Card';
 import { Title } from '@/interface/components/Title';
 
 // hooks
+import { useTranslation } from 'react-i18next';
 import { useResult } from '@/modules/resault/hooks';
+import { useContext } from '@/core/context/contentLanguage';
 
 // styles
 import styles from './Resault.module.scss';
-import { useTranslation } from 'react-i18next';
-import { useCurrentLang } from '@/core/utils';
 
 const Resault = () => {
   const { result } = useResult();
-  const lang = useCurrentLang();
+  const { lang } = useContext();
   const { t } = useTranslation();
 
   return (

@@ -11,7 +11,7 @@ import * as Types from '../types';
 import * as Mappers from '../mappers';
 import { message } from '@/interface/components/Message';
 import { get } from 'radash';
-import { HttpError } from '@/core/types';
+import { type AxiosError } from 'axios';
 
 interface FormValues extends Types.IForm.Send {}
 
@@ -30,12 +30,7 @@ interface IProps {
 const Send: React.FC<IProps> = ({ children, onError, onSettled, onSuccess, className }) => {
   const queryClient = useQueryClient();
 
-  const mutation = useMutation<
-    Types.IEntity.UserContact, // success type
-    any,
-    FormValues,
-    unknown
-  >({
+  const mutation = useMutation<Types.IEntity.UserContact, any, FormValues, unknown>({
     mutationFn: async (values: FormValues) => {
       const { data } = await Api.UserContact({ values });
       return Mappers.UserContact(data);
@@ -49,12 +44,17 @@ const Send: React.FC<IProps> = ({ children, onError, onSettled, onSuccess, class
       });
     },
 
-    onError: err => {
-      if (err instanceof HttpError) {
-        console.error('API error:', err.status, err.data);
-      } else {
-        console.error('Unexpected error:', err);
-      }
+    onError: (err: unknown) => {
+      const axiosErr = err as AxiosError<any>;
+      const status = axiosErr.response?.status;
+      const data = axiosErr.response?.data;
+
+      const errorMessage = get(data, 'error') || get(data, 'message') || axiosErr.message || 'Xatolik yuz berdi';
+
+      console.error('API error:', status, errorMessage);
+      message.error(errorMessage);
+
+      onError?.(String(errorMessage));
     },
 
     onSettled

@@ -19,6 +19,8 @@ export declare namespace IEntity {
     full_description?: string;
   }
 
+  export type SingleSerivce = { id: number; title: string; description: string };
+
   export interface Services {
     uz: { id: number; title: string; description: string };
     ru: { id: number; title: string; description: string };

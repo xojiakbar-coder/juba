@@ -1,31 +1,30 @@
-import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
+import { Desc } from '../components';
 import { Image } from '@mantine/core';
 import { Title } from '@/interface/components/Title';
+import { Splide, SplideSlide } from '@splidejs/react-splide';
 
 // hooks
-import { useParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { useServiceWorks } from '@/modules/services/hooks';
+import { useContext } from '@/core/context/servicesContext';
+import { useContext as useLangContext } from '@/core/context/contentLanguage';
 
 // styles
 import styles from './OurWorks.module.scss';
-import { Desc } from '../components';
-import { useCurrentLang } from '@/core/utils';
 
 const OurWorks = () => {
-  const { id } = useParams();
-  const { data } = useServiceWorks(id ? +id : 0);
-  const lang = useCurrentLang();
+  const { t } = useTranslation();
+  const { service } = useContext();
+  const { lang } = useLangContext();
+  const { data } = useServiceWorks(service?.id ? +service?.id : 0);
 
   return (
     <div className={styles.container}>
       <Title variant="section-name" className={styles.title}>
-        Bizning ishlarimiz
+        {t('our_keys')}
       </Title>
-      <Desc className={styles.desc}>
-        Мы с гордостью представляем наши работы, которые отражают нашу экспертность, творческий подход и
-        результативность.
-      </Desc>
+      <Desc className={styles.desc}>{data?.[0]?.[lang]?.description}</Desc>
 
       <div className={styles.wrapper}>
         <Splide

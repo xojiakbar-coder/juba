@@ -1,12 +1,15 @@
-import { Menu } from '@mantine/core';
-import Icon from '@/interface/components/Icon';
+// react
 import React, { useCallback, useMemo } from 'react';
-import { ScrollLink } from '@/interface/components/ScrollLink';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+
+import { Link } from 'react-scroll';
+import { Menu } from '@mantine/core';
+import ServiceMenu from './ServiceMenu';
+import { ScrollLink } from '@/interface/components/ScrollLink';
 
 import { useTranslation } from 'react-i18next';
 import { useServices } from '@/modules/services/hooks';
-import { nav_items, our_services_items } from './items';
+import { nav_items, our_services_items, type INavItem } from './items';
 import { useContext as useContentLang } from '@/core/context/contentLanguage';
 
 // styles
@@ -19,7 +22,7 @@ type IProps = {
   onClose?: () => void;
 };
 
-const Navigation: React.FC<IProps> = React.memo(({ onDrawer = false, responsible = true, onClose }) => {
+const Navigation = React.memo(({ onDrawer = false, responsible = true, onClose }: IProps) => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const { t } = useTranslation('home');
@@ -39,6 +42,7 @@ const Navigation: React.FC<IProps> = React.memo(({ onDrawer = false, responsible
     (index: number) => {
       onClose?.();
       navigate(`/our-services/${our_services_items[index]}/`);
+      window.scrollTo({ top: 0, behavior: 'auto' });
     },
     [navigate, onClose]
   );
@@ -59,28 +63,48 @@ const Navigation: React.FC<IProps> = React.memo(({ onDrawer = false, responsible
   );
 
   const renderNavItem = useCallback(
-    (item: any) => {
-      if (item.children) {
+    (item: INavItem) => {
+      if (item.children) return <ServiceMenu key={item.id} t={t} serviceItems={serviceItems} onDrawer={onDrawer} />;
+
+      if (item.title === 'contact') {
+        if (pathname === '/') {
+          return (
+            <ScrollLink
+              to={item.to!}
+              key={item.id}
+              onClick={() => onClose?.()}
+              className={cx(styles.link, onDrawer && styles.drawer_link)}
+            >
+              {t(item.title)}
+            </ScrollLink>
+          );
+        }
+
         return (
-          <Menu key={item.id} shadow="md" width={220} withArrow arrowPosition="side" trigger="click">
-            <Menu.Target>
-              <div className={cx(styles.link, styles.menu_target, onDrawer && styles.drawer_link)}>
-                <p>{t(item.title)}</p>
-                <Icon name="ChevronDown" />
-              </div>
-            </Menu.Target>
-            <Menu.Dropdown classNames={{ dropdown: styles.dropdown }}>{serviceItems}</Menu.Dropdown>
-          </Menu>
+          <Link
+            key={item.id}
+            spy={true}
+            to={item.to!}
+            smooth={true}
+            duration={500}
+            offset={-80}
+            onClick={() => {
+              onClose?.();
+            }}
+            className={cx(styles.link, onDrawer && styles.drawer_link)}
+          >
+            {t(item.title)}
+          </Link>
         );
       }
 
       if (item.to) {
         return (
           <ScrollLink
-            key={item.id}
             to={item.to}
-            onClick={() => handleScrollOrNavigate(item.to)}
+            key={item.id}
             className={cx(styles.link, onDrawer && styles.drawer_link)}
+            onClick={() => handleScrollOrNavigate(item.to ? item.to : '')}
           >
             {t(item.title)}
           </ScrollLink>
@@ -98,7 +122,7 @@ const Navigation: React.FC<IProps> = React.memo(({ onDrawer = false, responsible
         </NavLink>
       );
     },
-    [onDrawer, t, handleScrollOrNavigate, serviceItems, onClose]
+    [onDrawer, t, handleScrollOrNavigate, serviceItems, onClose, pathname]
   );
 
   return (

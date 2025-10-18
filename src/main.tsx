@@ -7,7 +7,6 @@ import '@gfazioli/mantine-marquee/styles.layer.css';
 
 import '@mantine/core/styles.css';
 import '@mantine/notifications/styles.css';
-import '@mantine/core/styles/ModalBase.css';
 import '@/assets/styles/main.scss';
 
 import { createRoot } from 'react-dom/client';

@@ -1,6 +1,6 @@
 import * as Types from '../types';
 
-import Icon from '@/interface/components/Icon';
+import { Icon } from '@/interface/components/Icon';
 import { notifications } from '@mantine/notifications';
 
 import cx from 'clsx';

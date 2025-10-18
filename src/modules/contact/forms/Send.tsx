@@ -61,10 +61,10 @@ const Send: React.FC<IProps> = ({ children, onError, onSettled, onSuccess, class
   });
 
   const validationSchema: yup.ObjectSchema<Types.IForm.Send> = yup.object({
-    name: yup.string().required('Majburiy maydon'),
+    name: yup.string().required('Ism kiritish maydoni majburiy'),
     phone: yup
       .string()
-      .required('Majburiy maydon')
+      .required('Telefon raqam kiritish maydoni majburiy')
       .matches(/^\+?[0-9]{7,15}$/, 'Telefon raqami noto‘g‘ri formatda')
   });
 

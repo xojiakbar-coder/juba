@@ -9,16 +9,12 @@ const Lang = () => {
   const { t } = useTranslation();
   const { lang, setLang } = useContext();
 
-  const handleChange = (lng: 'uz' | 'ru') => {
-    setLang(lng);
-  };
-
   return (
     <div className={styles.langContainer}>
-      <button className={clsx(styles.langBtn, { [styles.active]: lang === 'ru' })} onClick={() => handleChange('ru')}>
+      <button className={clsx(styles.langBtn, { [styles.active]: lang === 'ru' })} onClick={() => setLang('ru')}>
         {t('ru')}
       </button>
-      <button className={clsx(styles.langBtn, { [styles.active]: lang === 'uz' })} onClick={() => handleChange('uz')}>
+      <button className={clsx(styles.langBtn, { [styles.active]: lang === 'uz' })} onClick={() => setLang('uz')}>
         {t('uz')}
       </button>
     </div>

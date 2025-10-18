@@ -1,3 +1,4 @@
+import { Element } from 'react-scroll';
 import Profiles from './components/Profiles/Profiles';
 
 // hooks
@@ -14,7 +15,7 @@ const Contact = () => {
   const { t } = useTranslation();
 
   return (
-    <div id="contact" className={styles.contact}>
+    <Element name="contact" id="contact" className={styles.contact}>
       <div className={styles.inner}>
         <h2 className={styles.title}>{t('contacts')}</h2>
 
@@ -44,7 +45,7 @@ const Contact = () => {
           />
         </div>
       </div>
-    </div>
+    </Element>
   );
 };
 

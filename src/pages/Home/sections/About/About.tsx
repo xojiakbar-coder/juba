@@ -1,6 +1,7 @@
 import { Resault } from '../Resault';
 import { Image, Spoiler } from '@mantine/core';
 import { Title } from '@/interface/components/Title';
+import { Wrapper } from '@/interface/components/Section';
 
 // hooks
 import { useTranslation } from 'react-i18next';
@@ -16,7 +17,7 @@ const About = () => {
   const { t } = useTranslation();
 
   return (
-    <div className={styles.container} id="about">
+    <Wrapper id="about" lightBg>
       <Title variant="section-name" className={styles.title}>
         {t('about_us')}
       </Title>
@@ -31,7 +32,7 @@ const About = () => {
       </div>
 
       <Resault />
-    </div>
+    </Wrapper>
   );
 };
 

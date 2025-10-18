@@ -1,5 +1,6 @@
 import { Item } from './components';
 import { Title } from '@/interface/components/Title';
+import { Wrapper } from '@/interface/components/Section';
 
 // hooks
 import { useTranslation } from 'react-i18next';
@@ -15,7 +16,7 @@ const Team = () => {
   const { t } = useTranslation();
 
   return (
-    <div id="team" className={styles.team}>
+    <Wrapper id="team">
       <Title variant="section-name" className={styles.title}>
         {t('our_team')}
       </Title>
@@ -36,7 +37,7 @@ const Team = () => {
           </div>
         </div>
       </div>
-    </div>
+    </Wrapper>
   );
 };
 

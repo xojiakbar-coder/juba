@@ -1,0 +1,1 @@
+import{j as i}from"./mantine-Bpgc87IA.js";import{H as r,S as o,A as s}from"./SubDetail-DxCOySpi.js";import{P as t}from"./Pricing-CAMUUQDY.js";import"./react-BGVhe8l8.js";import"./SectionWrapper-CQe4KNEL.js";import"./index-CuVuxE-M.js";const d=()=>i.jsxs(i.Fragment,{children:[i.jsx(r,{id:8}),i.jsx(o,{id:8}),i.jsx(s,{id:8}),i.jsx(t,{id:8})]});export{d as Target};

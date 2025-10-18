@@ -16,6 +16,13 @@ const Services = () => {
   const { t } = useTranslation();
   const { services } = useServices();
 
+  const handleClick = (index: number) => {
+    const path = our_services_items[index];
+    if (!path) return; // xavfsizlik uchun
+    navigate(`/our-services/${path}/`);
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.inner}>
@@ -26,7 +33,7 @@ const Services = () => {
               key={item[lang].id}
               title={item[lang].title}
               text={item[lang].description}
-              onClick={() => navigate(`/our-services/${our_services_items[index]}/`)}
+              onClick={() => handleClick(index)}
             />
           ))}
         </div>

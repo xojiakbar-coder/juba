@@ -1,15 +1,14 @@
-import jubaLogo from '@/assets/images/logo.png';
+// logo
+import jubaLogo from '@/assets/images/logo.jpg';
 
+// hooks
 import { animateScroll as scroll } from 'react-scroll';
 import { useLocation, useNavigate } from 'react-router-dom';
 
+// styles
 import styles from './Logo.module.scss';
 
-type IProps = {
-  event?: boolean;
-};
-
-const Logo = ({ event = true }: IProps) => {
+const Logo = ({ event = true }: { event?: boolean }) => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
@@ -25,10 +24,8 @@ const Logo = ({ event = true }: IProps) => {
   };
 
   return (
-    <div onClick={handleClick}>
-      <div className={styles.wrapper}>
-        <img src={jubaLogo} alt="Juba Marketing logo not found" loading="lazy" className={styles.logo} />
-      </div>
+    <div onClick={handleClick} className={styles.wrapper}>
+      <img src={jubaLogo} alt="Juba Marketing logo not found" loading="lazy" className={styles.logo} />
     </div>
   );
 };

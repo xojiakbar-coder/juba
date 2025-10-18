@@ -50,8 +50,10 @@
   font-size: 14px;
   cursor: pointer;
   border-radius: 8px;
+  border: none;
   text-decoration: none;
   color: var(--color-white);
+  background-color: transparent !important;
 
   @media (max-width: 1160px) {
     font-size: 12px;

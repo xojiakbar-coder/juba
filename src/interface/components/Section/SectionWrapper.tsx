@@ -7,6 +7,7 @@ import styles from './SectionWrapper.module.scss';
 type IProps = {
   lightBg?: boolean;
   className?: string;
+  [key: string]: any;
   children: React.ReactNode;
 };
 

@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
-import Icon from '@/interface/components/Icon';
+import { Icon } from '@/interface/components/Icon';
 
 // styles
 import cx from 'clsx';

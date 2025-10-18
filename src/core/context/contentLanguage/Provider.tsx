@@ -1,10 +1,11 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import { ReactNode, useEffect, useMemo, useState } from 'react';
 import { instance as i18n } from '@/core/services/i18n';
+
 import storage from '@/core/services/storage';
 
 import Context from './context';
 
-const Provider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+const Provider = ({ children }: { children: ReactNode }) => {
   const [lang, setLangState] = useState<'uz' | 'ru'>(() => {
     return (storage.local.get('language') as 'uz' | 'ru') || 'ru';
   });

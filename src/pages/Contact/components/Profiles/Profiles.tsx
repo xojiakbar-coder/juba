@@ -1,27 +1,17 @@
 import styles from './Profiles.module.scss';
 
 interface IProps {
-  facebook_url?: string;
-  instagram_url?: string;
   email?: string;
   phone_number?: string;
   telegram_url?: string;
-  land?: string;
-  profilesDir?: 'row' | 'col';
+  facebook_url?: string;
+  instagram_url?: string;
 }
 
-const Profiles = ({
-  facebook_url,
-  instagram_url,
-  email,
-  phone_number,
-  telegram_url,
-  land = '',
-  profilesDir = 'row'
-}: IProps) => {
+const Profiles = ({ facebook_url, instagram_url, email, phone_number, telegram_url }: IProps) => {
   return (
     <div className={styles.container}>
-      <ul className={`${styles.links} ${profilesDir === 'col' ? styles.col : styles.row}`}>
+      <ul className={styles.links}>
         <li className={styles.socialLink}>
           <a href={telegram_url} target="_blank" rel="noreferrer">
             Telegram
@@ -39,12 +29,10 @@ const Profiles = ({
         </li>
       </ul>
 
-      {land === 'contact' && (
-        <div className={styles.contactInfo}>
-          <p>{email}</p>
-          <p>{phone_number}</p>
-        </div>
-      )}
+      <div className={styles.contactInfo}>
+        <p>{email}</p>
+        <p>{phone_number}</p>
+      </div>
     </div>
   );
 };

@@ -1,135 +1,48 @@
-// react
-import React, { useCallback, useMemo } from 'react';
-import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { items, type Types } from './data';
 
-import { Link } from 'react-scroll';
-import { Menu } from '@mantine/core';
-import ServiceMenu from './ServiceMenu';
+import { ServiceMenu } from './components';
 import { ScrollLink } from '@/interface/components/ScrollLink';
 
+// hooks
+import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useServices } from '@/modules/services/hooks';
-import { nav_items, our_services_items, type INavItem } from './items';
-import { useContext as useContentLang } from '@/core/context/contentLanguage';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 // styles
 import cx from 'clsx';
 import styles from './Navigation.module.scss';
 
-type IProps = {
-  onDrawer?: boolean;
-  responsible?: boolean;
-  onClose?: () => void;
-};
-
-const Navigation = React.memo(({ onDrawer = false, responsible = true, onClose }: IProps) => {
+const Navigation = memo(() => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const { t } = useTranslation('home');
 
-  const { services } = useServices();
-  const { lang: currentLang } = useContentLang();
-
-  const handleScrollOrNavigate = useCallback(
-    (target: string) => {
-      if (pathname !== '/') navigate('/', { state: { scrollTo: target } });
-      onClose?.();
-    },
-    [pathname, navigate, onClose]
-  );
-
-  const handleServiceClick = useCallback(
-    (index: number) => {
-      onClose?.();
-      navigate(`/our-services/${our_services_items[index]}/`);
-      window.scrollTo({ top: 0, behavior: 'auto' });
-    },
-    [navigate, onClose]
-  );
-
-  const serviceItems = useMemo(
-    () =>
-      services.map((service, index) => {
-        const langData = service[currentLang];
-        if (!langData) return null;
-
-        return (
-          <Menu.Item key={langData.id} onClick={() => handleServiceClick(index)} className={styles.dropdown_item}>
-            {langData.title}
-          </Menu.Item>
-        );
-      }),
-    [services, currentLang, handleServiceClick]
-  );
-
   const renderNavItem = useCallback(
-    (item: INavItem) => {
-      if (item.children) return <ServiceMenu key={item.id} t={t} serviceItems={serviceItems} onDrawer={onDrawer} />;
+    (item: Types.INavItem) => {
+      if (item.children) return <ServiceMenu key={item.id} />;
 
-      if (item.title === 'contact') {
-        if (pathname === '/') {
-          return (
-            <ScrollLink
-              to={item.to!}
-              key={item.id}
-              onClick={() => onClose?.()}
-              className={cx(styles.link, onDrawer && styles.drawer_link)}
-            >
-              {t(item.title)}
-            </ScrollLink>
-          );
-        }
-
+      if (pathname !== '/' && !item.general) {
         return (
-          <Link
+          <button
             key={item.id}
-            spy={true}
-            to={item.to!}
-            smooth={true}
-            duration={500}
-            offset={-80}
-            onClick={() => {
-              onClose?.();
-            }}
-            className={cx(styles.link, onDrawer && styles.drawer_link)}
+            className={cx(styles.link)}
+            onClick={() => navigate('/', { state: { scrollTo: item.to } })}
           >
             {t(item.title)}
-          </Link>
-        );
-      }
-
-      if (item.to) {
-        return (
-          <ScrollLink
-            to={item.to}
-            key={item.id}
-            className={cx(styles.link, onDrawer && styles.drawer_link)}
-            onClick={() => handleScrollOrNavigate(item.to ? item.to : '')}
-          >
-            {t(item.title)}
-          </ScrollLink>
+          </button>
         );
       }
 
       return (
-        <NavLink
-          key={item.id}
-          to={item.path || '/'}
-          onClick={onClose}
-          className={({ isActive }) => cx(styles.link, isActive && styles.active, onDrawer && styles.drawer_link)}
-        >
+        <ScrollLink key={item.id} to={item.to!} className={cx(styles.link)}>
           {t(item.title)}
-        </NavLink>
+        </ScrollLink>
       );
     },
-    [onDrawer, t, handleScrollOrNavigate, serviceItems, onClose, pathname]
+    [t, pathname]
   );
 
-  return (
-    <nav className={cx(styles.nav, responsible && styles.responsible, onDrawer && styles.drawer)}>
-      {nav_items.map(renderNavItem)}
-    </nav>
-  );
+  return <nav className={cx(styles.nav)}>{items.map(renderNavItem)}</nav>;
 });
 
 export default Navigation;

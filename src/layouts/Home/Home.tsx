@@ -1,7 +1,8 @@
+import { useEffect } from 'react';
 import { useDisclosure } from '@mantine/hooks';
 
 import config from '@/config';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 
 import { Lang } from '../Aspects/Lang';
 import { Footer } from '../Aspects/Footer';
@@ -14,14 +15,33 @@ import { AppShell, Burger, Group, Drawer } from '@mantine/core';
 import styles from './Home.module.scss';
 
 const Home = () => {
+  const location = useLocation();
   const [opened, { open, close, toggle }] = useDisclosure();
+
+  useEffect(() => {
+    const sectionName = location.state?.scrollTo;
+
+    if (sectionName) {
+      const section = document.getElementById(sectionName);
+
+      if (section) {
+        const yOffset = -80;
+        const y = section.getBoundingClientRect().top + window.scrollY + yOffset;
+
+        window.scrollTo({
+          top: y,
+          behavior: 'instant'
+        });
+      }
+    }
+  }, [location]);
 
   return (
     <>
       <AppShell header={{ height: 60 }}>
         <AppShell.Header classNames={{ header: styles.header }}>
           <Logo />
-          <Navigation responsible />
+          <Navigation />
           <Group gap={14}>
             <div className={styles.lang}>
               <Lang />
@@ -56,7 +76,9 @@ const Home = () => {
           </Group>
 
           <div className={styles.navigation}>
-            <Navigation onDrawer onClose={close} />
+            <Navigation
+            // onClose={close}
+            />
           </div>
 
           <div className={styles.bottom}>

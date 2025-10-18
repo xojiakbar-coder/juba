@@ -20,7 +20,7 @@ const Home = memo(({ id }: { id: number }) => {
   const { data } = useServiceDetailById(id);
 
   return (
-    <Wrapper>
+    <Wrapper id="home">
       {data.map(item => (
         <div key={item?.[lang]?.id}>
           <Title variant="secondary" className={styles.title}>

@@ -4,7 +4,6 @@ import { ErrorBoundary } from 'react-error-boundary';
 import { QueryParamProvider } from 'use-query-params';
 import { type RouteObject, Navigate } from 'react-router-dom';
 import { ReactRouter6Adapter } from 'use-query-params/adapters/react-router-6';
-import { Provider as SmoothScrollProvider } from '@/core/context/smoothScroll';
 
 import HomeLayout from '@/layouts/Home/Home';
 
@@ -21,9 +20,7 @@ const getRoutesData = (): RouteObject[] => [
           objectToSearchString: queryString.stringify
         }}
       >
-        <SmoothScrollProvider>
-          <HomeLayout />
-        </SmoothScrollProvider>
+        <HomeLayout />
       </QueryParamProvider>
     ),
     errorElement: <ErrorBoundary fallback={<div>Something went wrong</div>} />,

@@ -1,25 +1,25 @@
 import React from 'react';
 
-interface IProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
+interface IProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   to: string;
   offset?: number;
 }
 
-const ScrollLink = ({ to, offset = 0, children, ...rest }: IProps) => {
-  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+const ScrollLink = ({ to, offset = 80, children, ...rest }: IProps) => {
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     const target = document.getElementById(to);
 
     if (target) {
       const y = target.getBoundingClientRect().top + window.scrollY - offset;
-      window.scrollTo({ top: y, behavior: 'auto' });
+      window.scrollTo({ top: y, behavior: 'instant' });
     }
   };
 
   return (
-    <a href={`#${to}`} onClick={handleClick} {...rest}>
+    <button onClick={handleClick} {...rest}>
       {children}
-    </a>
+    </button>
   );
 };
 

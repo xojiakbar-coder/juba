@@ -1,5 +1,5 @@
-import { Element } from 'react-scroll';
 import Profiles from './components/Profiles/Profiles';
+import { Wrapper } from '@/interface/components/Section';
 
 // hooks
 import { useTranslation } from 'react-i18next';
@@ -15,7 +15,7 @@ const Contact = () => {
   const { t } = useTranslation();
 
   return (
-    <Element name="contact" id="contact" className={styles.contact}>
+    <Wrapper id="contact" lightBg>
       <div className={styles.inner}>
         <h2 className={styles.title}>{t('contacts')}</h2>
 
@@ -25,18 +25,16 @@ const Contact = () => {
               src={`https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2996.8975010266386!2d${data[0]?.[lang]?.longitude}!3d${data[0]?.[lang]?.latitude}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38ae8bf39ed4a3ad%3A0xff77565dc9633cc4!2z!5e0!3m2!1sru!2s!4v1731738256655!5m2!1sru!2s`}
               width="600"
               height="450"
-              style={{ border: 0 }}
-              allowFullScreen
               loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
+              allowFullScreen
               title="Location Map"
+              style={{ border: 0 }}
+              referrerPolicy="no-referrer-when-downgrade"
               className={styles.map}
             ></iframe>
           </div>
 
           <Profiles
-            land="contact"
-            profilesDir="col"
             email={data[0]?.[lang]?.email}
             facebook_url={data[0]?.[lang]?.facebook}
             telegram_url={data[0]?.[lang]?.telegram}
@@ -45,7 +43,7 @@ const Contact = () => {
           />
         </div>
       </div>
-    </Element>
+    </Wrapper>
   );
 };
 

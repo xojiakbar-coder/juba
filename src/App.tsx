@@ -7,7 +7,7 @@ import { instance as i18n } from '@/core/services/i18n';
 import { I18nextProvider } from 'react-i18next';
 import { Notifications } from '@mantine/notifications';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import ContentLanguageProvider from '@/core/context/contentLanguage/Provider';
+import { Provider as LanguageProvider } from '@/core/context/contentLanguage';
 
 const App = () => {
   const routes = getRoutesData();
@@ -17,12 +17,12 @@ const App = () => {
   }, [routes]);
   return (
     <I18nextProvider i18n={i18n}>
-      <ContentLanguageProvider>
+      <LanguageProvider>
         <Notifications autoClose={2000} />
         <Suspense fallback={<Splash />}>
           <RouterProvider router={router} />
         </Suspense>
-      </ContentLanguageProvider>
+      </LanguageProvider>
     </I18nextProvider>
   );
 };

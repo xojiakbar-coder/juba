@@ -24,7 +24,7 @@ const Clients = () => {
   const { t } = useTranslation();
 
   return (
-    <div className={styles.clients}>
+    <div className={styles.clients} id="clients">
       <Title variant="section-name" className={styles.title}>
         {t('our_clients')}
       </Title>

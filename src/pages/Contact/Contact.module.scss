@@ -1,21 +1,3 @@
-.contact {
-  display: flex;
-  background: #fff;
-  justify-content: center;
-  width: 100%;
-  padding: 100px 3%;
-
-  /* tablet */
-  @media (min-width: 1400px) {
-    padding: 100px 2%;
-  }
-
-  /* desktop */
-  @media (min-width: 768px) {
-    padding: 100px 5%;
-  }
-}
-
 .inner {
   display: flex;
   flex-direction: column;

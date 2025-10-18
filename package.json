@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fullpage/react-fullpage": "^0.1.49",
     "@gfazioli/mantine-marquee": "^2.6.1",
     "@hookform/resolvers": "^5.2.2",
     "@mantine/core": "^8.3.2",

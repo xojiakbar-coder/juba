@@ -11,7 +11,7 @@ i18n.init({
   languages: ['ru', 'uz'],
   currentLanguage: config.language.initial,
   initialLanguage: 'uz',
-  onChange: (language: string) => {
+  onChange: (language: 'uz' | 'ru') => {
     storage.local.set('language', language);
     dayjs.locale(language === 'uz' ? 'uz-latn' : language);
   },

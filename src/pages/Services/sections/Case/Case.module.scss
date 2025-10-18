@@ -1,0 +1,15 @@
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  margin-top: 50px;
+
+  @media (min-width: 1024px) {
+    // lg: breakpoint
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.title {
+  text-align: left !important;
+}

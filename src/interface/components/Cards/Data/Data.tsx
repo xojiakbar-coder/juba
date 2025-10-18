@@ -1,9 +1,10 @@
-import { IconChevronRight } from '@tabler/icons-react';
+import { useTranslation } from 'react-i18next';
+
+import Icon from '@/interface/components/Icon';
 
 // styles
 import cx from 'clsx';
 import styles from './Data.module.scss';
-import { useTranslation } from 'react-i18next';
 
 interface IProps {
   text?: string;
@@ -41,7 +42,7 @@ const Data = ({ title, text, subtitle, type = 'data', res, resText, onClick }: I
       {onClick && (
         <div className={styles.footer}>
           <span className={styles.footerText}>{t('more')}</span>
-          <IconChevronRight size={20} className={styles.icon} />
+          <Icon name={'ChevronRight'} size={20} className={styles.icon} />
         </div>
       )}
     </div>

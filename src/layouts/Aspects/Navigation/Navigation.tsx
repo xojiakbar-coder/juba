@@ -1,18 +1,17 @@
 import { Menu } from '@mantine/core';
+import Icon from '@/interface/components/Icon';
 import React, { useCallback, useMemo } from 'react';
-import { IconChevronDown } from '@tabler/icons-react';
+import { ScrollLink } from '@/interface/components/ScrollLink';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 
-import { nav_items } from './items';
-import { toSlug } from '@/helpers';
 import { useTranslation } from 'react-i18next';
 import { useServices } from '@/modules/services/hooks';
-import { useContext } from '@/core/context/servicesContext';
+import { nav_items, our_services_items } from './items';
 import { useContext as useContentLang } from '@/core/context/contentLanguage';
 
+// styles
 import cx from 'clsx';
 import styles from './Navigation.module.scss';
-import { ScrollLink } from '@/interface/components/ScrollLink';
 
 type IProps = {
   onDrawer?: boolean;
@@ -26,7 +25,6 @@ const Navigation: React.FC<IProps> = React.memo(({ onDrawer = false, responsible
   const { t } = useTranslation('home');
 
   const { services } = useServices();
-  const { setService } = useContext();
   const { lang: currentLang } = useContentLang();
 
   const handleScrollOrNavigate = useCallback(
@@ -38,23 +36,21 @@ const Navigation: React.FC<IProps> = React.memo(({ onDrawer = false, responsible
   );
 
   const handleServiceClick = useCallback(
-    (item: any) => {
+    (index: number) => {
       onClose?.();
-      navigate(`/xizmatlar/${toSlug(item.title)}`);
-      setService(item);
+      navigate(`/our-services/${our_services_items[index]}/`);
     },
     [navigate, onClose]
   );
 
   const serviceItems = useMemo(
     () =>
-      services.map(service => {
+      services.map((service, index) => {
         const langData = service[currentLang];
-        const navigateDat = service['uz'];
         if (!langData) return null;
 
         return (
-          <Menu.Item key={langData.id} onClick={() => handleServiceClick(navigateDat)} className={styles.dropdown_item}>
+          <Menu.Item key={langData.id} onClick={() => handleServiceClick(index)} className={styles.dropdown_item}>
             {langData.title}
           </Menu.Item>
         );
@@ -70,7 +66,7 @@ const Navigation: React.FC<IProps> = React.memo(({ onDrawer = false, responsible
             <Menu.Target>
               <div className={cx(styles.link, styles.menu_target, onDrawer && styles.drawer_link)}>
                 <p>{t(item.title)}</p>
-                <IconChevronDown stroke={1.5} />
+                <Icon name="ChevronDown" />
               </div>
             </Menu.Target>
             <Menu.Dropdown classNames={{ dropdown: styles.dropdown }}>{serviceItems}</Menu.Dropdown>

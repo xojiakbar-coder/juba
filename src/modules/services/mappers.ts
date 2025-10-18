@@ -61,18 +61,19 @@ export const ServicePricing = (src: any[]): Types.IEntity.ServicePricing[] =>
     }
   }));
 
-export const ServiceSubDetail = (src: any): Types.IEntity.ServiceSubDetail => ({
-  uz: {
-    id: get(src, 'uz.id', 0),
-    detail_sub_title: get(src, 'uz.detail_sub_title', ''),
-    detail_sub_description: get(src, 'uz.detail_sub_description', '')
-  },
-  ru: {
-    id: get(src, 'ru.id', 0),
-    detail_sub_title: get(src, 'ru.detail_sub_title', ''),
-    detail_sub_description: get(src, 'ru.detail_sub_description', '')
-  }
-});
+export const ServiceSubDetail = (src: any[]): Types.IEntity.ServiceSubDetail[] =>
+  src.map(item => ({
+    uz: {
+      id: get(item, 'uz.id', 0),
+      detail_sub_title: get(item, 'uz.detail_sub_title', ''),
+      detail_sub_description: get(item, 'uz.detail_sub_description', '')
+    },
+    ru: {
+      id: get(item, 'ru.id', 0),
+      detail_sub_title: get(item, 'ru.detail_sub_title', ''),
+      detail_sub_description: get(item, 'ru.detail_sub_description', '')
+    }
+  }));
 
 export const ServiceWorks = (src: any[]): Types.IEntity.ServiceWorks[] =>
   src.map(item => ({

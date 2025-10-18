@@ -2,7 +2,7 @@ export declare namespace IApi {
   export type Response = IQuery.ServicesList;
   export type ServiceDetailResponse = IEntity.ServiceDetailById[];
   export type ServicePricingResponse = IEntity.ServicePricing[];
-  export type ServiceSubDetailResponse = IEntity.ServiceSubDetail;
+  export type ServiceSubDetailResponse = IEntity.ServiceSubDetail[];
   export type ServiceWorksResponse = IEntity.ServiceWorks[];
   export type ServiceKeysResponse = IEntity.ServiceKeys[];
   export type ServicePricingByIdResponse = IEntity.ServicePricingById[];

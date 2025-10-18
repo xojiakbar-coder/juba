@@ -1,6 +1,6 @@
 import * as Types from '../types';
 
-import { IconCheck } from '@tabler/icons-react';
+import Icon from '@/interface/components/Icon';
 import { notifications } from '@mantine/notifications';
 
 import cx from 'clsx';
@@ -15,7 +15,7 @@ function success(arg: Types.IUse.SingleProps | Types.IUse.INotification) {
     message: values.message,
     position: values.position || 'top-center',
     autoClose: values.autoClose || 2000,
-    icon: <IconCheck className={styles.notify_icon} />,
+    icon: <Icon name="Check" className={styles.notify_icon} />,
     withCloseButton: values.withCloseButton ?? false,
     classNames: {
       title: styles.notify_title,

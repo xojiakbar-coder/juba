@@ -1,7 +1,7 @@
 import * as Types from '../types';
 
+import Icon from '@/interface/components/Icon';
 import { notifications } from '@mantine/notifications';
-import { IconExclamationMark } from '@tabler/icons-react';
 
 import cx from 'clsx';
 import styles from '../../Notification.module.scss';
@@ -15,7 +15,7 @@ function warning(arg: Types.IUse.SingleProps | Types.IUse.INotification) {
     message: values.message,
     position: values.position || 'top-center',
     autoClose: values.autoClose || 2000,
-    icon: <IconExclamationMark className={styles.notify_icon} />,
+    icon: <Icon name="ExclamationMark" className={styles.notify_icon} />,
     withCloseButton: values.withCloseButton ?? false,
     classNames: {
       title: styles.notify_title,

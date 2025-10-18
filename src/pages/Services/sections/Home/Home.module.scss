@@ -1,0 +1,12 @@
+.title {
+  color: var(--color-primary) !important;
+
+  @media (max-width: 768px) {
+    font-size: 30px;
+    line-height: 36px;
+  }
+}
+
+.btn {
+  color: var(--main-bg-color) !important;
+}

@@ -9,14 +9,13 @@ const Home = () => {
   const { lang } = useContext();
   const { slider } = useSlider();
 
+  const image = slider[lang]?.photo;
+
   return (
     <div className={styles.container} id="home">
-      <div
-        className={styles.hero}
-        style={{
-          backgroundImage: `url(${slider[lang].photo})`
-        }}
-      >
+      <div className={styles.hero}>
+        <img src={image} alt="" fetchPriority="high" className={styles.heroImage} loading="eager" />
+
         <Content
           title={slider[lang]?.title}
           description={slider[lang]?.short_description || slider[lang]?.description}

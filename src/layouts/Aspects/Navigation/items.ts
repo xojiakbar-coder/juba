@@ -10,6 +10,22 @@ export interface INavItem {
   path?: string | null;
   children?: boolean;
 }
+
+const our_services_items = [
+  'smm',
+  'website',
+  'google',
+  'seo',
+  'telegram-bot',
+  'crm',
+  'branding',
+  'target',
+  'advertising',
+  'video-montage',
+  'blogers',
+  'telegram-ads'
+];
+
 const nav_items: INavItem[] = [
   {
     id: 1,
@@ -43,4 +59,4 @@ const nav_items: INavItem[] = [
   }
 ];
 
-export { nav_items };
+export { nav_items, our_services_items };

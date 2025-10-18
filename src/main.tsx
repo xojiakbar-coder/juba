@@ -1,5 +1,7 @@
 import './bootstrap';
 
+import '@splidejs/react-splide/css';
+
 import '@gfazioli/mantine-marquee/styles.css';
 import '@gfazioli/mantine-marquee/styles.layer.css';
 

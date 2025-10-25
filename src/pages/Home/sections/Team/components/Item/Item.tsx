@@ -17,7 +17,7 @@ const Item = ({ username, job_title, photo, background_image }: IProps) => {
       </div>
 
       <div className={styles.info}>
-        <h3>{username}</h3>
+        <p>{username}</p>
         <p>{job_title}</p>
       </div>
     </div>

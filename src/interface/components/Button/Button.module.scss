@@ -86,15 +86,17 @@
     }
   }
 
-  // primary-out
-  &[data-variant='primary-out'] {
-    color: var(--color-primary);
-    background-color: transparent;
-    border: 1px solid var(--color-primary);
+  // scroll-link
+  &[data-variant='scroll-link'] {
+    padding: 0;
+    font-weight: 400;
+    height: max-content;
+    margin: 0 !important;
+    color: var(--color-white);
+    border-radius: 0 !important;
 
-    &:hover {
-      color: var(--color-white);
-      background-color: var(--color-primary-60);
+    @media (max-width: 1160px) {
+      font-size: 12px;
     }
   }
 

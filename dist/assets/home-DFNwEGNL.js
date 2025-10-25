@@ -1,1 +1,0 @@
-const o="Loyihani muhokama qiling",t="Tijorat taklifi",a="Asosiy",c="Biz haqimizda",s="Loyihalar",i="Jamoa",e="Xizmatlarimiz",n="Aloqa",m={consultation:o,commercial_offer:t,home:a,about_us:c,projects:s,team:i,services:e,contact:n};export{c as about_us,t as commercial_offer,o as consultation,n as contact,m as default,a as home,s as projects,e as services,i as team};

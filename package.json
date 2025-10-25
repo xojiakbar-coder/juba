@@ -13,6 +13,7 @@
     "@fullpage/react-fullpage": "^0.1.49",
     "@gfazioli/mantine-marquee": "^2.6.1",
     "@hookform/resolvers": "^5.2.2",
+    "@imagekit/react": "^5.0.1",
     "@mantine/core": "^8.3.2",
     "@mantine/hooks": "^8.3.2",
     "@mantine/notifications": "^8.3.2",
@@ -30,8 +31,7 @@
     "react-error-boundary": "^6.0.0",
     "react-hook-form": "^7.63.0",
     "react-i18next": "^16.0.0",
-    "react-router-dom": "^6.28.0",
-    "react-scroll": "^1.9.3",
+    "react-router-dom": "^7.9.4",
     "store2": "^2.14.4",
     "use-query-params": "^2.2.1",
     "yup": "^1.7.1"

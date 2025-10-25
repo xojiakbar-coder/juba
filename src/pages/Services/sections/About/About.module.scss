@@ -62,9 +62,10 @@
 .description {
   flex: 1;
   font-size: 18px;
+  color: #828282;
   line-height: 1.6;
+  text-wrap: balance;
   text-align: justify;
-  color: var(--light);
   font-family: var(--font-family);
 
   p {
@@ -73,6 +74,8 @@
 
   // Mobile text smaller
   @media (max-width: 768px) {
-    font-size: 16px;
+    font-size: 14px;
+    text-align: left;
+    text-wrap: stable;
   }
 }

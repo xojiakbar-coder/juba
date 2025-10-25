@@ -3,16 +3,15 @@ import { memo } from 'react';
 
 import { Desc } from '@/interface/components/Desc';
 import { Title } from '@/interface/components/Title';
-import { Button } from '@/interface/components/Button';
 import { Wrapper } from '@/interface/components/Section';
 
-import { scroller } from 'react-scroll';
 import { useTranslation } from 'react-i18next';
 import { useServiceDetailById } from '@/modules/services/hooks';
 import { useContext as useLangContext } from '@/core/context/contentLanguage';
 
 // styles
 import styles from './Home.module.scss';
+import { ScrollLink } from '@/interface/components/ScrollLink';
 
 const Home = memo(({ id }: { id: number }) => {
   const { t } = useTranslation();
@@ -27,9 +26,9 @@ const Home = memo(({ id }: { id: number }) => {
             {item?.[lang]?.detail_title}
           </Title>
           <Desc>{item?.[lang]?.detail_description}</Desc>
-          <Button size="xl" className={styles.btn} onClick={() => scroller.scrollTo('send', {})}>
+          <ScrollLink buttonProps={{ size: 'xl' }} className={styles.btn} to="send">
             {t('consultation')}
-          </Button>
+          </ScrollLink>
         </div>
       ))}
     </Wrapper>

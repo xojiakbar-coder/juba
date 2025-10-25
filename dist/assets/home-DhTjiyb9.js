@@ -1,0 +1,1 @@
+const o="Asosiy",t="Biz haqimizda",s="Loyihalar",a="Jamoa",c="Xizmatlar",e="Aloqa",n={home:o,about_us:t,projects:s,team:a,services:c,contact:e};export{t as about_us,e as contact,n as default,o as home,s as projects,c as services,a as team};

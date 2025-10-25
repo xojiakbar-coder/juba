@@ -5,6 +5,7 @@ import { Splash } from './interface/components/Splash';
 import { instance as i18n } from '@/core/services/i18n';
 
 import { I18nextProvider } from 'react-i18next';
+import { ImageKitProvider } from '@imagekit/react';
 import { Notifications } from '@mantine/notifications';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { Provider as LanguageProvider } from '@/core/context/contentLanguage';
@@ -13,15 +14,21 @@ const App = () => {
   const routes = getRoutesData();
 
   const router = useMemo(() => {
-    return createBrowserRouter(routes);
+    return createBrowserRouter(routes, {
+      future: {
+        v7_startTransition: true
+      }
+    });
   }, [routes]);
   return (
     <I18nextProvider i18n={i18n}>
       <LanguageProvider>
-        <Notifications autoClose={2000} />
-        <Suspense fallback={<Splash />}>
-          <RouterProvider router={router} />
-        </Suspense>
+        <ImageKitProvider urlEndpoint={import.meta.env.VITE_IMAGE_CDN_BASE}>
+          <Notifications autoClose={2000} />
+          <Suspense fallback={<Splash />}>
+            <RouterProvider router={router} />
+          </Suspense>
+        </ImageKitProvider>
       </LanguageProvider>
     </I18nextProvider>
   );

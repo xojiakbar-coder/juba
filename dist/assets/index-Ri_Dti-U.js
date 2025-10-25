@@ -1,1 +1,0 @@
-import{j as i}from"./mantine-Bpgc87IA.js";import{H as o,S as r,A as s}from"./SubDetail-DxCOySpi.js";import{P as t}from"./Pricing-CAMUUQDY.js";import"./react-BGVhe8l8.js";import"./SectionWrapper-CQe4KNEL.js";import"./index-CuVuxE-M.js";const d=()=>i.jsxs(i.Fragment,{children:[i.jsx(o,{id:5}),i.jsx(r,{id:5}),i.jsx(s,{id:5}),i.jsx(t,{id:5})]});export{d as Bot};

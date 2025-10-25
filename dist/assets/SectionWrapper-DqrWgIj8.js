@@ -1,0 +1,1 @@
+import{j as a,c as o}from"./mantine-DNg0D2Xw.js";const c="_wrapper_t20yt_1",g="_lightBg_t20yt_27",t={wrapper:c,lightBg:g},l=({lightBg:s=!1,children:r,className:p,...e})=>a.jsx("section",{className:o(t.wrapper,s&&t.lightBg,p),...e,children:r});export{l as S};

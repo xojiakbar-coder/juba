@@ -3,6 +3,7 @@ export { default as ArrowLeftLong } from './ArrowLeftLong';
 export { default as ArrowRight } from './ArrowRight';
 export { default as ArrowRightLong } from './ArrowRightLong';
 export { default as Bars } from './Bars';
+export { default as Burger } from './Burger';
 export { default as CalendarDays } from './CalendarDays';
 export { default as ChevronLeft } from './ChevronLeft';
 export { default as ChevronDown } from './ChevronDown';

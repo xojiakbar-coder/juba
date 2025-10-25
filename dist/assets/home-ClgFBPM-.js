@@ -1,1 +1,0 @@
-const o="Loyihani muhokama qiling",t="Главная",s="О нас",c="Проекты",n="Команда",a="Услуги",e="Контакты",i={consultation:o,home:t,about_us:s,projects:c,team:n,services:a,contact:e};export{s as about_us,o as consultation,e as contact,i as default,t as home,c as projects,a as services,n as team};

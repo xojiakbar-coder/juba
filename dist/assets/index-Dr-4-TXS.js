@@ -1,0 +1,1 @@
+import{j as o}from"./mantine-DNg0D2Xw.js";import{H as r,S as s,A as t}from"./SubDetail-CV3XgWcj.js";import"./react-DYUxucHH.js";import"./Title-BOmd1-tV.js";import"./SectionWrapper-DqrWgIj8.js";import"./index-Di_jaCIl.js";const j=()=>o.jsxs(o.Fragment,{children:[o.jsx(r,{id:11}),o.jsx(s,{id:11}),o.jsx(t,{id:11})]});export{j as Blogers};

@@ -4,11 +4,10 @@ import { memo } from 'react';
 // components
 import { Desc } from '@/interface/components/Desc';
 import { Title } from '@/interface/components/Title';
-import { Button } from '@/interface/components/Button';
 import { Wrapper } from '@/interface/components/Section';
+import { ScrollLink } from '@/interface/components/ScrollLink';
 
 // hooks
-import { scroller } from 'react-scroll';
 import { getTextOfHTML } from '@/helpers';
 import { useTranslation } from 'react-i18next';
 import { useContext as useLangContext } from '@/core/context/contentLanguage';
@@ -40,15 +39,13 @@ const Pricing = memo(({ id }: { id: number }) => {
               <div className={styles.cardPrice}>{item?.[lang]?.price}$</div>
               <div className={styles.cardDesc} dangerouslySetInnerHTML={{ __html: item?.[lang]?.description }} />
               <div className={styles.cardFooter}>
-                <Button
-                  size="xl"
+                <ScrollLink
+                  to="send"
                   className={styles.cardBtn}
-                  full
-                  effective
-                  onClick={() => scroller.scrollTo('send', {})}
+                  buttonProps={{ size: 'xl', full: true, effective: true }}
                 >
                   {t('order')}
-                </Button>
+                </ScrollLink>
               </div>
             </div>
           ))}

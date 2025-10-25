@@ -1,0 +1,29 @@
+.menu_wrapper {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border: none;
+  cursor: pointer;
+  min-width: 50px;
+  border-radius: 50%;
+  color: var(--color-primary);
+  background-color: var(--color-white);
+
+  @media (max-width: 1024px) {
+    display: flex;
+  }
+
+  &:focus-visible {
+    padding: 0 !important;
+    transition: none !important;
+    box-shadow: none !important;
+    outline: revert-layer !important;
+  }
+}
+
+.menu_icon {
+  width: 24px;
+  height: 24px;
+}

@@ -12,6 +12,7 @@ import * as Mappers from '../mappers';
 import { message } from '@/interface/components/Message';
 import { get } from 'radash';
 import { type AxiosError } from 'axios';
+import { useTranslation } from 'react-i18next';
 
 interface FormValues extends Types.IForm.Send {}
 
@@ -28,6 +29,7 @@ interface IProps {
 }
 
 const Send: React.FC<IProps> = ({ children, onError, onSettled, onSuccess, className }) => {
+  const { t } = useTranslation();
   const queryClient = useQueryClient();
 
   const mutation = useMutation<Types.IEntity.UserContact, any, FormValues, unknown>({
@@ -44,17 +46,19 @@ const Send: React.FC<IProps> = ({ children, onError, onSettled, onSuccess, class
       });
     },
 
-    onError: (err: unknown) => {
-      const axiosErr = err as AxiosError<any>;
-      const status = axiosErr.response?.status;
-      const data = axiosErr.response?.data;
+    onError: err => {
+      const data = err?.response?.data;
+      const raw = data?.phone_number || data?.message || data?.detail;
 
-      const errorMessage = get(data, 'error') || get(data, 'message') || axiosErr.message || 'Xatolik yuz berdi';
+      let msg = '';
+      if (Array.isArray(raw)) msg = raw.join(', ');
+      else if (typeof raw === 'object' && raw !== null) msg = JSON.stringify(raw);
+      else msg = raw ?? '';
 
-      console.error('API error:', status, errorMessage);
-      message.error(errorMessage);
+      if (msg.trim()) message.error(t('send_phone_error'));
+      else message.error('Nomaʼlum xato yuz berdi.');
 
-      onError?.(String(errorMessage));
+      onError?.(err);
     },
 
     onSettled

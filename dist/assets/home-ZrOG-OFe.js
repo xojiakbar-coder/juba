@@ -1,0 +1,1 @@
+const t="Главная",o="О нас",s="Проекты",c="Команда",e="Услуги",n="Контакты",a={home:t,about_us:o,projects:s,team:c,services:e,contact:n};export{o as about_us,n as contact,a as default,t as home,s as projects,e as services,c as team};

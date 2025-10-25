@@ -16,17 +16,64 @@ import { MutationCache, QueryCache, QueryClient, QueryClientProvider } from '@ta
 import App from './App';
 import { message } from '@/interface/components/Message';
 import { MantineProvider } from '@mantine/core';
+import { getApiError } from '@/core/utils';
+
+window.addEventListener('vite:preloadError', () => {
+  window.location.reload();
+});
+
+const showApiError = (error: any) => {
+  const data = getApiError(error);
+
+  if (data.validations.length > 0) {
+    data.validations.forEach((item: string) => {
+      message.error(item);
+    });
+    return;
+  }
+
+  data.message && message.error(data.message);
+};
+
+const onQueryError = (error: any, query: any) => {
+  if (query.options.meta?.customErrorHandling) return;
+
+  showApiError(error);
+};
+
+const onMutationError = (error: any, _variables: any, _context: any, mutation: any) => {
+  if (mutation.options.meta?.customErrorHandling) return;
+
+  // both 'ECONNABORTED' and 'ERR_NETWORK' can be due to network issue or disconnecting from server
+  if (['ECONNABORTED', 'ERR_NETWORK', 'ERR_INTERNET_DISCONNECTED'].includes(error?.code)) {
+    console.log('Something');
+    // if user is not online
+    if (!navigator.onLine) {
+      console.error('Internetga ulanmagansiz!');
+      return;
+    }
+
+    // If user is online, then the issue is with connecting to server
+    message.error("Serverga bog'lanib bo'lmayapti!");
+    return;
+  }
+
+  showApiError(error);
+};
 
 const queryClient = new QueryClient({
-  queryCache: new QueryCache({
-    onError: (e: any) => {
-      message.error(e.data?.error);
+  defaultOptions: {
+    queries: {
+      retry: false,
+      refetchOnWindowFocus: false
     }
-  }),
+  },
+
   mutationCache: new MutationCache({
-    onError: (e: any) => {
-      message.error(e.data?.error);
-    }
+    onError: onMutationError
+  }),
+  queryCache: new QueryCache({
+    onError: onQueryError
   })
 });
 

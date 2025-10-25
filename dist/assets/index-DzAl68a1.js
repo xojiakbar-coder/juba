@@ -1,1 +1,0 @@
-import{j as o}from"./mantine-Bpgc87IA.js";import{H as i,S as s,A as r}from"./SubDetail-DxCOySpi.js";import{P as t}from"./Pricing-CAMUUQDY.js";import"./react-BGVhe8l8.js";import"./SectionWrapper-CQe4KNEL.js";import"./index-CuVuxE-M.js";const d=()=>o.jsxs(o.Fragment,{children:[o.jsx(i,{id:3}),o.jsx(s,{id:3}),o.jsx(r,{id:3}),o.jsx(t,{id:3})]});export{d as Google};

@@ -2,7 +2,6 @@
 import jubaLogo from '@/assets/images/logo.jpg';
 
 // hooks
-import { animateScroll as scroll } from 'react-scroll';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 // styles
@@ -16,9 +15,9 @@ const Logo = ({ event = true }: { event?: boolean }) => {
     if (pathname !== '/' && event) navigate('/');
 
     if (event) {
-      scroll.scrollToTop({
-        duration: 200,
-        smooth: 'easeInOutQuart'
+      window.scrollTo({
+        top: 0,
+        behavior: 'instant'
       });
     }
   };

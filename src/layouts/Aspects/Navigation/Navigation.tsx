@@ -11,6 +11,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 // styles
 import cx from 'clsx';
 import styles from './Navigation.module.scss';
+import { Button } from '@/interface/components/Button';
 
 const Navigation = memo(() => {
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ const Navigation = memo(() => {
 
   const renderNavItem = useCallback(
     (item: Types.INavItem) => {
-      if (item.children) return <ServiceMenu key={item.id} />;
+      if (item.children) return <ServiceMenu key={item.id} type="header" />;
 
       if (pathname !== '/' && !item.general) {
         return (
@@ -34,7 +35,7 @@ const Navigation = memo(() => {
       }
 
       return (
-        <ScrollLink key={item.id} to={item.to!} className={cx(styles.link)}>
+        <ScrollLink key={item.id} to={item.to!} buttonProps={{ variant: 'scroll-link' }} className={cx(styles.link)}>
           {t(item.title)}
         </ScrollLink>
       );

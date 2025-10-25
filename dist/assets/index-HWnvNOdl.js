@@ -1,1 +1,0 @@
-import{j as i}from"./mantine-Bpgc87IA.js";import{H as r,S as o,A as s}from"./SubDetail-DxCOySpi.js";import{P as m}from"./Pricing-CAMUUQDY.js";import"./react-BGVhe8l8.js";import"./SectionWrapper-CQe4KNEL.js";import"./index-CuVuxE-M.js";const d=()=>i.jsxs(i.Fragment,{children:[i.jsx(r,{id:15}),i.jsx(o,{id:15}),i.jsx(s,{id:15}),i.jsx(m,{id:15})]});export{d as Telegram};

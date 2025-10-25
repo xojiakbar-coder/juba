@@ -11,6 +11,11 @@ interface IProps {
 const Profiles = ({ facebook_url, instagram_url, email, phone_number, telegram_url }: IProps) => {
   return (
     <div className={styles.container}>
+      <div className={styles.contactInfo}>
+        <p>{phone_number}</p>
+        <p>{email}</p>
+      </div>
+
       <ul className={styles.links}>
         <li className={styles.socialLink}>
           <a href={telegram_url} target="_blank" rel="noreferrer">
@@ -28,11 +33,6 @@ const Profiles = ({ facebook_url, instagram_url, email, phone_number, telegram_u
           </a>
         </li>
       </ul>
-
-      <div className={styles.contactInfo}>
-        <p>{email}</p>
-        <p>{phone_number}</p>
-      </div>
     </div>
   );
 };

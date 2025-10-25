@@ -1,3 +1,4 @@
+import { AppShell } from '@mantine/core';
 import { Logo } from '@/layouts/Aspects/Logo';
 
 // styles
@@ -5,11 +6,11 @@ import styles from './Footer.module.scss';
 
 const Footer = () => {
   return (
-    <footer className={styles.footer}>
-      <main className={styles.logo}>
+    <AppShell.Footer classNames={{ footer: styles.footer_wrapper }}>
+      <footer className={styles.footer}>
         <Logo event={false} />
-      </main>
-    </footer>
+      </footer>
+    </AppShell.Footer>
   );
 };
 

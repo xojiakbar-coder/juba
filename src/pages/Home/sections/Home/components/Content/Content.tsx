@@ -1,8 +1,8 @@
-import { scroller } from 'react-scroll';
 import { useTranslation } from 'react-i18next';
 
 import { Title } from '@/interface/components/Title';
 import { Button } from '@/interface/components/Button';
+import { ScrollLink } from '@/interface/components/ScrollLink';
 
 import cx from 'clsx';
 import styles from './Content.module.scss';
@@ -39,9 +39,9 @@ const Content = ({ title, description, desktop }: IProps) => {
       <p className={styles.description}>{description}</p>
 
       <div className={styles.buttons}>
-        <Button size="xl" onClick={() => scroller.scrollTo('send', {})}>
+        <ScrollLink to="send" buttonProps={{ size: 'xl' }}>
           {t('consultation')}
-        </Button>
+        </ScrollLink>
 
         <Button variant="secondary" size="xl" onClick={handleDownload}>
           {t('commercial_offer')}

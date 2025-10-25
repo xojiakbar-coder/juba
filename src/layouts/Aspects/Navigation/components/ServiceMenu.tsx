@@ -13,7 +13,7 @@ import { useContext } from '@/core/context/contentLanguage';
 import cx from 'clsx';
 import styles from '../Navigation.module.scss';
 
-const ServiceMenu = () => {
+const ServiceMenu = ({ type, onClose }: { type: 'header' | 'navbar'; onClose?: () => void }) => {
   const { lang } = useContext();
   const navigate = useNavigate();
   const { t } = useTranslation('home');
@@ -30,6 +30,7 @@ const ServiceMenu = () => {
             className={styles.dropdown_item}
             onClick={() => {
               navigate(`/our-services/${urls[index]}/`, { state: { scrollTo: 'home' } });
+              onClose?.();
             }}
           >
             {service[lang].title}
@@ -40,9 +41,16 @@ const ServiceMenu = () => {
   );
 
   return (
-    <Menu shadow="md" width={220} withArrow arrowPosition="center" position="bottom-start" trigger="click-hover">
+    <Menu
+      shadow="md"
+      width={220}
+      withArrow
+      arrowPosition="center"
+      position={type === 'navbar' ? 'bottom' : 'bottom-start'}
+      trigger="click-hover"
+    >
       <Menu.Target>
-        <button type="button" className={cx(styles.link, styles.menu_target)}>
+        <button type="button" className={cx(styles.link, type === 'navbar' && styles.navbar_link, styles.menu_target)}>
           <p>{t('services')}</p>
           <Icon name="ChevronDown" />
         </button>

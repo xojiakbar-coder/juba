@@ -1,94 +1,42 @@
 import { useEffect } from 'react';
-import { useDisclosure } from '@mantine/hooks';
+import { scrollTo } from '@/helpers';
+import { networkStatus } from '@/core/utils';
+import { useLocation } from 'react-router-dom';
+import { useDisclosure, useViewportSize } from '@mantine/hooks';
 
-import config from '@/config';
-import { Outlet, useLocation } from 'react-router-dom';
-
-import { Lang } from '../Aspects/Lang';
-import { Footer } from '../Aspects/Footer';
-import { Logo } from '@/layouts/Aspects/Logo';
-import { Button } from '@/interface/components/Button';
-import { Navigation } from '@/layouts/Aspects/Navigation';
-import { AppShell, Burger, Group, Drawer } from '@mantine/core';
-
-// styles
-import styles from './Home.module.scss';
+import { AppShell } from '@mantine/core';
+import { Main } from '@/layouts/Aspects/Main';
+import { Header } from '@/layouts/Aspects/Header';
+import { Navbar } from '@/layouts/Aspects/Navbar';
+import { Footer } from '@/layouts/Aspects/Footer';
 
 const Home = () => {
-  const location = useLocation();
-  const [opened, { open, close, toggle }] = useDisclosure();
+  const { state } = useLocation();
+  const [opened, { open, close }] = useDisclosure(false);
+  const { width } = useViewportSize();
 
   useEffect(() => {
-    const sectionName = location.state?.scrollTo;
+    networkStatus();
+  }, []);
 
-    if (sectionName) {
-      const section = document.getElementById(sectionName);
+  useEffect(() => {
+    if (width > 1024) close();
+  }, [width]);
 
-      if (section) {
-        const yOffset = -80;
-        const y = section.getBoundingClientRect().top + window.scrollY + yOffset;
-
-        window.scrollTo({
-          top: y,
-          behavior: 'instant'
-        });
-      }
+  useEffect(() => {
+    if (state?.scrollTo) {
+      const timeout = setTimeout(() => scrollTo(state), 100);
+      return () => clearTimeout(timeout);
     }
-  }, [location]);
+  }, [state]);
 
   return (
-    <>
-      <AppShell header={{ height: 60 }}>
-        <AppShell.Header classNames={{ header: styles.header }}>
-          <Logo />
-          <Navigation />
-          <Group gap={14}>
-            <div className={styles.lang}>
-              <Lang />
-            </div>
-            <Button size="lg" variant="primary-out" className={styles.contact_btn}>
-              {config.support.phone}
-            </Button>
-          </Group>
-          <Burger opened={opened} onClick={toggle} className={styles.burger} size="sm" />
-        </AppShell.Header>
-
-        <AppShell.Main classNames={{ main: styles.main }}>
-          <Outlet />
-        </AppShell.Main>
-
-        <AppShell.Footer classNames={{ footer: styles.footer }}>
-          <Footer />
-        </AppShell.Footer>
-      </AppShell>
-
-      <Drawer
-        size="100%"
-        onClose={close}
-        opened={opened}
-        withCloseButton={false}
-        classNames={{ content: styles.drawer }}
-      >
-        <div className={styles.drawer_inner}>
-          <Group justify="space-between" align="center" className={styles.top_group}>
-            <Lang />
-            <Burger opened={opened} onClick={toggle} className={styles.burger} size="sm" />
-          </Group>
-
-          <div className={styles.navigation}>
-            <Navigation
-            // onClose={close}
-            />
-          </div>
-
-          <div className={styles.bottom}>
-            <Button size="lg" variant="primary-out" className={styles.contact_btn_drawer}>
-              {config.support.phone}
-            </Button>
-          </div>
-        </div>
-      </Drawer>
-    </>
+    <AppShell navbar={{ width: 300, breakpoint: 'lg', collapsed: { desktop: true, mobile: !opened } }}>
+      <Header opened={opened} open={open} />
+      <Navbar opened={opened} close={close} />
+      <Main />
+      <Footer />
+    </AppShell>
   );
 };
 

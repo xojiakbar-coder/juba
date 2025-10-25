@@ -1,7 +1,7 @@
 import type { ButtonProps } from '@mantine/core';
 
 export declare namespace IBase {
-  type ExtendedVariant =
+  export type ExtendedVariant =
     | NonNullable<ButtonProps['variant']>
     | 'primary'
     | 'secondary'
@@ -15,7 +15,8 @@ export declare namespace IBase {
     | 'info-out'
     | 'success-out'
     | 'warning-out'
-    | 'danger-out';
+    | 'danger-out'
+    | 'scroll-link';
 
   interface IProps extends ButtonProps {
     className?: string;
@@ -23,7 +24,7 @@ export declare namespace IBase {
     variant?: ExtendedVariant;
     full?: boolean;
     htmlType?: 'button' | 'submit' | 'reset';
-    onClick?: (e?: React.MouseEvent<HTMLButtonElement>) => void;
+    onClick?: React.MouseEventHandler<HTMLButtonElement>;
   }
 }
 
